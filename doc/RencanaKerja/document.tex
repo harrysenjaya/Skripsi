@@ -44,22 +44,27 @@
 \pagenumbering{arabic}
 
 \section{Deskripsi}
-Setiap Dosen Wali memiliki data mengenai mahasiswa walinya. Namun, walaupun Dosen Wali memiliki data mengenai mahasiswa walinya, Dosen Wali juga perlu melakukan pemeriksaan data mahasiswa walinya, terutama data akademiknya secara berkala. Dengan berbagai kesibukan yang dialami oleh para Dosen Wali dan mahasiswa, ditambah dengan situasi Indonesia saat ini yang menyebabkan perkuliahan dilakukan secara daring, akan sangat sulit bagi Dosen Wali untuk menemui mahasiswa wali. Hal ini menyebabkan Dosen Wali kesulitan mengamati perkembangan mahasiswa walinya.
+Setiap Dosen Wali memiliki data mengenai mahasiswa walinya. Namun, walaupun Dosen Wali memiliki data mengenai mahasiswa walinya, Dosen Wali juga perlu melakukan pemeriksaan data mahasiswa walinya, terutama data akademiknya secara berkala. Dengan berbagai kesibukan yang dialami oleh para Dosen Wali dan mahasiswa, ditambah dengan situasi Indonesia saat ini yang menyebabkan perkuliahan dilakukan secara daring, akan sangat sulit bagi Dosen Wali untuk menemui mahasiswa wali. Hal ini menyebabkan Dosen Wali kesulitan mengamati perkembangan mahasiswa walinya. 
 
 Maka dari itu, pada skripsi ini akan dibuat sebuah perangkat lunak yang berupa \textit{screen saver} yang dapat menampilkan data akademik mahasiswa wali secara acak. Dengan menggunakan perangkat lunak tersebut, Dosen Wali dapat tetap mengamati perkembangan mahasiswa walinya, paling tidak secara akademik.
+
+Dikarenakan terbimbing tidak memiliki akses ke SIAKAD untuk mengakses data mahasiswa wali, namun terbimbing memiliki akses ke Student Portal maka, terbimbing mensimulasikan dengan Student Portal, dan kemudian Pembimbing mengubah aksesnya ke SIAKAD. Pembimbing dan terbimbing menyepakati struktur kelas yang akan digunakan yaitu struktur kelas SIAModels yang tersedia pada Maven Public Repository.
+
+Teknologi yang dapat dimanfaatkan untuk mengambil data mahasiswa yaitu teknik \textit{web scraping}. \textit{Web scraping} merupakan sebuah teknik yang digunakan untuk mengambil data tertentu secara semi-terstruktur dari sebuah halaman \textit{website}. Teknik tersebut dapat digunakan untuk mengambil data mahasiswa wali tanpa menggunakan \textit{API (Application Programming Interface)}. Teknologi lainnya yang dapat dimanfaatkan yaitu kelas JFrame pada bahasa pemrograman Java. Kelas JFrame dapat digunakan untuk mengonversi aplikasi tersebut menjadi \textit{screen saver}.
+
 
 \section{Rumusan Masalah}
 Rumusan masalah yang akan dibahas di skripsi ini adalah sebagai berikut :
 \begin{itemize}
-	\item Bagaimana cara mengambil data mahasiswa wali?
-	\item Bagaimana cara mengonversi aplikasi tersebut menjadi \textit{screen saver}?
+	\item Bagaimana cara menggunakan teknik \textit{web scraping} untuk mengambil data mahasiswa?
+	\item Bagaimana cara memanfaatkan kelas JFrame untuk mengonversi aplikasi tersebut menjadi \textit{screen saver}?
 \end{itemize}   
 
 \section{Tujuan}
 Tujuan yang ingin dicapai dari penulisan skripsi ini sebagai berikut :
 \begin{itemize}
-    \item Mencari cara mengambil data mahasiswa wali.
-    \item Menggunakan kelas JFrame pada bahasa pemrograman Java untuk mengonversi aplikasi tersebut menjadi \textit{screen saver}.
+    \item Mengimplementasikan teknik \textit{web scraping} untuk mengambil data mahasiswa.
+    \item Memanfaatkan kelas JFrame untuk mengonversi aplikasi tersebut menjadi \textit{screen saver}.
 \end{itemize}
 
 \section{Deskripsi Perangkat Lunak}
@@ -75,12 +80,12 @@ Bagian-bagian pekerjaan skripsi ini adalah sebagai berikut :
 	\begin{enumerate}
 		\item Melakukan studi mengenai teknik \textit{web scraping}.
 		\item Melakukan studi mengenai cara mengonversi aplikasi menjadi \textit{screen saver}.
-		\item Mempelajari struktur SIAModels.
+		\item Mempelajari struktur kelas SIAModels.
 		\item Menganalisis IF Student Portal dan Student Portal UNPAR.
 		\item Merancang struktur kelas aplikasi.
 	    \item Mendesain antarmuka aplikasi.
-	    \item Mengimplementasikan teknik \textit{web scraping}.
-	    \item Mengonversi aplikasi menjadi \textit{screen saver}. 
+	    \item Mengimplementasikan teknik \textit{web scraping} untuk mengambil data mahasiswa.
+        \item Mengonversi aplikasi menjadi \textit{screen saver} dengan menggunakan kelas JFrame. 
 		\item Melakukan pengujian dan eksperimen.
 		\item Menulis dokumen skripsi.
 	\end{enumerate}
@@ -90,22 +95,22 @@ Rincian capaian yang direncanakan di Skripsi 1 adalah sebagai berikut:
 \begin{enumerate}
 \item Mempelajari teknik \textit{web scraping}.
 \item Menganalisis IF Student Portal dan Student Portal UNPAR.
-\item Mempelajari struktur SIAModels.
+\item Mempelajari struktur kelas SIAModels.
 \item Merancang struktur kelas aplikasi.
-\item Mengimplementasikan teknik \textit{web scraping}.
+\item Mengimplementasikan teknik \textit{web scraping} untuk mengambil data mahasiswa.
 \item Menulis dokumen skripsi.
 \end{enumerate}
 
 Sedangkan yang akan diselesaikan di Skripsi 2 adalah sebagai berikut:
 \begin{enumerate}
-\item Mempelajari cara mengonversi aplikasi menjadi \textit{screen saver}.
+\item Melakukan studi mengenai cara mengonversi aplikasi menjadi \textit{screen saver}.
 \item Mendesain antarmuka aplikasi.
-\item Mengonversi aplikasi menjadi \textit{screen saver}. 
+\item Mengonversi aplikasi menjadi \textit{screen saver} dengan menggunakan kelas JFrame. 
 \item Melakukan pengujian dan eksperimen.
 \item Menulis dokumen skripsi.
 \end{enumerate}
 
-\newpage
+
 \vspace{1cm}
 \centering Bandung, \tanggal\\
 \vspace{2cm} \nama \\ 
