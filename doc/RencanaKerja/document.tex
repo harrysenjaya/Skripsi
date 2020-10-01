@@ -16,7 +16,7 @@
 \makeatletter
 \renewcommand{\@maketitle} {\begin{center} {\LARGE \textbf{ \textsc{\@title}} \par} \bigskip {\large \textbf{\textsc{\@author}} }\end{center} }
 \renewcommand{\thispagestyle}[1]{}
-\markright{\textbf{\textsc{AIF401/AIF402 \textemdash Rencana Kerja Skripsi \textemdash Sem. Genap 2016/2017}}}
+\markright{\textbf{\textsc{AIF401/AIF402 \textemdash Rencana Kerja Skripsi \textemdash Sem. Ganjil 2020/2021}}}
 
 \newcommand{\HRule}{\rule{\linewidth}{0.4mm}}
 \renewcommand{\baselinestretch}{1}
@@ -31,11 +31,11 @@
 \author{\nama \textendash \@npm} 
 
 %tulis nama dan NPM anda di sini:
-\newcommand{\nama}{Lionov}
-\newcommand{\@npm}{1997730020}
-\newcommand{\@judultopik}{Simulasi Kerumunan di Museum} % Judul/topik anda
+\newcommand{\nama}{Harry Senjaya Darmawan}
+\newcommand{\@npm}{2017730067}
+\newcommand{\@judultopik}{Mahasiswa Wali Screen Saver} % Judul/topik anda
 \newcommand{\jumpemb}{1} % Jumlah pembimbing, 1 atau 2
-\newcommand{\tanggal}{01/01/1900}
+\newcommand{\tanggal}{08/10/2020}
 
 % Dokumen hasil template ini harus dicetak bolak-balik !!!!
 
@@ -44,71 +44,68 @@
 \pagenumbering{arabic}
 
 \section{Deskripsi}
-Tuliskan deskripsi dari topik skripsi yang akan anda ajukan. Di sini dapat dituliskan latar belakang, seperti apa penelitian yang sudah ada sebelumnya dan apa yang akan anda kerjakan. Sertakan gambar agar penjelasan anda menjadi lebih baik.
+Setiap Dosen Wali memiliki data mengenai mahasiswa walinya. Namun, walaupun Dosen Wali memiliki data mengenai mahasiswa walinya, Dosen Wali juga perlu melakukan pemeriksaan data mahasiswa walinya, terutama data akademiknya secara berkala. Dengan berbagai kesibukan yang dialami oleh para Dosen Wali dan mahasiswa, ditambah dengan situasi Indonesia saat ini yang menyebabkan perkuliahan dilakukan secara daring, akan sangat sulit bagi Dosen Wali untuk menemui mahasiswa wali. Hal ini menyebabkan Dosen Wali kesulitan mengamati perkembangan mahasiswa walinya.
 
-Pada skripsi ini, akan dibuat sebuah perangkat lunak yang dapat menampilkan visualisasi dan simulasi kerumunan orang yang berkunjung ke sebuah museum. Dengan menggunakan perangkat lunak tersebut, pengelola museum dapat mengatur tempat peletakan objek sehingga tidak terjadi kerumunan yang terlalu padat.
-
-Dari berbagai macam teknik yang dapat digunakan untuk melakukan simulasi kerumunan, dipilih dua buah teknik yaitu teknik {\it flow tiles} dan {\it social force model (steering behaviour)}.
-
-Dst, dst, dst, \ldots\ldots\ldots 
-
-Perangkat lunak akan dibuat dengan bantuan {\it framework} OpenSteer. Sebagai studi kasus, museum yang digunakan untuk melakukan simulasi adalah Museum Geologi Bandung.
-
-Dst, dst, dst, \ldots\ldots\ldots 
+Maka dari itu, pada skripsi ini akan dibuat sebuah perangkat lunak yang berupa \textit{screen saver} yang dapat menampilkan data akademik mahasiswa wali secara acak. Dengan menggunakan perangkat lunak tersebut, Dosen Wali dapat tetap mengamati perkembangan mahasiswa walinya, paling tidak secara akademik.
 
 \section{Rumusan Masalah}
-Tuliskan rumusan dari masalah yang akan anda bahas pada skripsi ini. Rumusan masalah biasanya berupa kalimat pertanyaan. Gunakan itemize seperti contoh di bagian Deskripsi Perangkat Lunak.
+Rumusan masalah yang akan dibahas di skripsi ini adalah sebagai berikut :
+\begin{itemize}
+	\item Bagaimana cara mengambil data mahasiswa wali?
+	\item Bagaimana cara mengonversi aplikasi tersebut menjadi \textit{screen saver}?
+\end{itemize}   
 
 \section{Tujuan}
-Tuliskan tujuan dari topik skripsi yang anda ajukan. Tujuan penelitian biasanya berkaitan erat dengan pertanyaan yang diajukan di bagian rumusan masalah. Gunakan itemize seperti contoh di bagian Deskripsi Perangkat Lunak.
+Tujuan yang ingin dicapai dari penulisan skripsi ini sebagai berikut :
+\begin{itemize}
+    \item Mencari cara mengambil data mahasiswa wali.
+    \item Menggunakan kelas JFrame pada bahasa pemrograman Java untuk mengonversi aplikasi tersebut menjadi \textit{screen saver}.
+\end{itemize}
 
 \section{Deskripsi Perangkat Lunak}
-Tuliskan deksripsi dari perangkat lunak yang akan anda hasilkan. Apa saja fitur yang disediakan oleh PL tersebut dan apa saja kemampuan dari PL tersebut. Perhatikan contoh di bawah ini:
-
 Perangkat lunak akhir yang akan dibuat memiliki fitur minimal sebagai berikut:
 \begin{itemize}
-	\item Pengguna dapat melihat denah Musem Geologi Bandung dalam bidang dua dimensi. Sedangkan pengunjung direpresentasikan menggunakan lingkaran-lingkaran kecil (tidak menggunakan gambar manusia yang diambil dari atas)
-	\item Pengguna dapat memunculkan atau menghilangkan gambar {\it flow tiles} pada denah museum. 
-	\item Pengguna dapat mengatur jalannya simulasi: memulai(start) simulasi, menunda(pause) simulasi, melanjutkan(continue) simulasi, maupun menghentikan(stop) simulasi
-	\item Pengguna dapat mengatur banyaknya pengunjung di dalam museum, baik melalui perubahan frekuensi kedatangan pengunjung maupun menambahkan dan menghapus pengunjung satu-persatu secara manual.
-	\item Posisi kamera dapat diubah (pergerakan di bidang tiga dimensi) sehingga pengguna dapat melihat simulasi di museum dari berbagai arah. 
-	\item Posisi kamera dapat diubah untuk emngikuti perjalanan seorang pengunjung di dalam 
-	\item Pengguna dapat memilih apakah akan menggunakan teknik {\it flow tiles} atau tidak pada saat simulasi berlangsung
-	\item Jenis {\it flow tiles} yang digunakan dapat diubah-ubah pada saat simulasi sedang berlangsung
-		
+	\item Pengguna dapat melihat biodata mahasiswa wali.
+	\item Pengguna dapat melihat perkembangan akademik mahasiswa wali.
+	\item Pengguna dapat melihat data mahasiswa wali yang berbeda dalam kurun waktu tertentu.
 \end{itemize}
 
 \section{Detail Pengerjaan Skripsi}
-Tuliskan bagian-bagian pengerjaan skripsi secara detail. Bagian pekerjaan tersebut mencakup awal hingga akhir skripsi, termasuk di dalamnya pengerjaan dokumentasi skripsi, pengujian, survei, dll.
-
 Bagian-bagian pekerjaan skripsi ini adalah sebagai berikut :
 	\begin{enumerate}
-		\item Melakukan survei ke Museum Geologi Bandung untuk mendapatkan denah serta mengetahui perilaku pengunjung museum secara umum (arah perjalanan, kecepatan, lama melihat objek, dll)
-		\item Melakukan analisis pada hasil survei terhadap pergerakan pengunjung di museum dan membuat rancangan denah di komputer yang dilengkapi dengan penghalang dan objek di museum.
-		\item Melakukan studi literatur mengenai sifat kolektif suatu kerumunan, teknik {\it social force model} dan teknik {\it flow tiles}
-		\item Mempelajari bahasa pemrograman C++ dan cara menggunakan framework OpenSteer
-		\item Merancang pergerakan kerumunan di dalam museum menggunakan teknik {\it social force model} dan {\it flow tiles} serta menggunakan teknik lainnya seperti konsep pathway dan waypoints. Selain itu, dirancang pula adanya waktu tunggu (pada saat pengunjung melihat objek di museum) dan cara pembuatan jalur bagi setiap individu pengunjung
-		\item Melakukan analisa dan merancang struktur data yang cocok untuk menyimpan penghalang (obstacle)
-		\item Mengimplementasikan keseluruhan algoritma dan struktur data yang dirancang, dengan menggunakan framework OpenSteer 
-		\item Melakukan pengujian (dan eksperimen) yang melibatkan responde untuk menilai hasil simulasi secara kualitatif
-		\item Menulis dokumen skripsi
+		\item Melakukan studi mengenai teknik \textit{web scraping}.
+		\item Melakukan studi mengenai cara mengonversi aplikasi menjadi \textit{screen saver}.
+		\item Mempelajari struktur SIAModels.
+		\item Menganalisis IF Student Portal dan Student Portal UNPAR.
+		\item Merancang struktur kelas aplikasi.
+	    \item Mendesain antarmuka aplikasi.
+	    \item Mengimplementasikan teknik \textit{web scraping}.
+	    \item Mengonversi aplikasi menjadi \textit{screen saver}. 
+		\item Melakukan pengujian dan eksperimen.
+		\item Menulis dokumen skripsi.
 	\end{enumerate}
 
 \section{Rencana Kerja}
 Rincian capaian yang direncanakan di Skripsi 1 adalah sebagai berikut:
 \begin{enumerate}
-\item
-\item
-\item
+\item Mempelajari teknik \textit{web scraping}.
+\item Menganalisis IF Student Portal dan Student Portal UNPAR.
+\item Mempelajari struktur SIAModels.
+\item Merancang struktur kelas aplikasi.
+\item Mengimplementasikan teknik \textit{web scraping}.
+\item Menulis dokumen skripsi.
 \end{enumerate}
 
 Sedangkan yang akan diselesaikan di Skripsi 2 adalah sebagai berikut:
 \begin{enumerate}
-\item
-\item
-\item
+\item Mempelajari cara mengonversi aplikasi menjadi \textit{screen saver}.
+\item Mendesain antarmuka aplikasi.
+\item Mengonversi aplikasi menjadi \textit{screen saver}. 
+\item Melakukan pengujian dan eksperimen.
+\item Menulis dokumen skripsi.
 \end{enumerate}
 
+\newpage
 \vspace{1cm}
 \centering Bandung, \tanggal\\
 \vspace{2cm} \nama \\ 
@@ -132,4 +129,5 @@ Menyetujui, \\
 \vspace{2cm} Nama: \makebox[3cm]{\hrulefill}\\ Pembimbing Tunggal
 }
 \end{document}
+
 
