@@ -5,40 +5,60 @@
 \section{Latar Belakang}
 \label{sec:label}
 
-Bagian ini akan diisi dengan apa yang melatarbelakangi pembuatan template skripsi ini.
-Termasuk juga masalah-masalah yang akan dihadapi untuk membuatnya, termasuk kurangnya kemampuan penguasaan \LaTeX{} sehingga template ini dibuat dengan mengandalkan berbagai contoh yang tersebar di dunia maya, yang digabung-gabung menjadi satu jua.
-Bagian lain juga akan dilengkapi, untuk sementara diisi dengan lorem ipsum versi bahasa inggris.
+Setiap Dosen Wali memiliki data mengenai mahasiswa walinya. Namun, walaupun Dosen Wali memiliki data mengenai mahasiswa walinya, Dosen Wali juga perlu melakukan pemeriksaan data mahasiswa walinya, terutama data akademiknya secara berkala. Dengan berbagai kesibukan yang dialami oleh para Dosen Wali dan mahasiswa, ditambah dengan situasi Indonesia saat ini yang menyebabkan perkuliahan dilakukan secara daring, akan sangat sulit bagi Dosen Wali untuk menemui mahasiswa wali. Hal ini menyebabkan Dosen Wali kesulitan mengamati perkembangan mahasiswa walinya. 
 
-\dtext{5-10}
+Maka dari itu, pada skripsi ini akan dibuat sebuah perangkat lunak yang berupa \textit{screen saver} yang dapat menampilkan data akademik mahasiswa wali secara acak. Dengan menggunakan perangkat lunak tersebut, Dosen Wali dapat tetap mengamati perkembangan mahasiswa walinya, paling tidak secara akademik.
+
+Dikarenakan terbimbing tidak memiliki akses ke SIAKAD untuk mengakses data mahasiswa wali, namun terbimbing memiliki akses ke Student Portal maka, terbimbing mensimulasikan dengan Student Portal, dan kemudian Pembimbing mengubah aksesnya ke SIAKAD. Pembimbing dan terbimbing menyepakati struktur kelas yang akan digunakan yaitu struktur kelas SIAModels yang tersedia pada Maven Public Repository.
+
+Teknologi yang dapat dimanfaatkan untuk mengambil data mahasiswa yaitu teknik \textit{web scraping}. \textit{Web scraping} merupakan sebuah teknik yang digunakan untuk mengambil data tertentu secara semi-terstruktur dari sebuah halaman \textit{website}. Teknik tersebut dapat digunakan untuk mengambil data mahasiswa wali tanpa menggunakan \textit{API (Application Programming Interface)}. Teknologi lainnya yang dapat dimanfaatkan yaitu kelas JFrame pada bahasa pemrograman Java. Kelas JFrame dapat digunakan untuk mengonversi aplikasi tersebut menjadi \textit{screen saver}.
+
+
 
 \section{Rumusan Masalah}
 \label{sec:rumusan}
-Bagian ini akan diisi dengan penajaman dari masalah-masalah yang sudah diidentifikasi di bagian sebelumnya. 
-
-\dtext{6}
+Rumusan masalah yang akan dibahas pada skripsi ini adalah sebagai berikut:
+\begin{itemize}
+	\item Bagaimana cara menggunakan teknik \textit{web scraping} untuk mengambil data mahasiswa?
+	\item Bagaimana cara memanfaatkan kelas JFrame untuk mengonversi aplikasi tersebut menjadi \textit{screen saver}?
+\end{itemize}   
 
 \section{Tujuan}
 \label{sec:tujuan}
-Akan dipaparkan secara lebih terperinci dan tersturkur apa yang menjadi tujuan pembuatan template skripsi ini
-
-\dtext{7}
+Tujuan yang ingin dicapai dari penulisan skripsi ini sebagai berikut:
+\begin{itemize}
+    \item Mengimplementasikan teknik \textit{web scraping} untuk mengambil data mahasiswa.
+    \item Memanfaatkan kelas JFrame untuk mengonversi aplikasi tersebut menjadi \textit{screen saver}.
+\end{itemize}
 
 \section{Batasan Masalah}
 \label{sec:batasan}
-Untuk mempermudah pembuatan template ini, tentu ada hal-hal yang harus dibatasi, misalnya saja bahwa template ini bukan berupa style \LaTeX{} pada umumnya (dengan alasannya karena belum mampu jika diminta membuat seperti itu)
-
-\dtext{8}
+Dikarenakan terbimbing tidak memiliki akses ke SIAKAD untuk mengakses data mahasiswa wali, namun terbimbing memiliki akses ke Student Portal maka, terbimbing mensimulasikan dengan Student Portal, dan kemudian Pembimbing mengubah aksesnya ke SIAKAD. 
 
 \section{Metodologi}
 \label{sec:metlit}
-Tentunya akan diisi dengan metodologi yang serius sehingga templatenya terkesan lebih serius.
-
-\dtext{9}
+Langkah-langkah yang akan dilakukan dalam melakukan penelitian ini yaitu:
+	\begin{enumerate}
+		\item Melakukan studi mengenai teknik \textit{web scraping}.
+		\item Melakukan studi mengenai cara mengonversi aplikasi menjadi \textit{screen saver}.
+		\item Mempelajari struktur kelas SIAModels.
+		\item Menganalisis IF Student Portal dan Student Portal UNPAR.
+		\item Merancang struktur kelas aplikasi.
+	    \item Mendesain antarmuka aplikasi.
+	    \item Mengimplementasikan teknik \textit{web scraping} untuk mengambil data mahasiswa.
+        \item Mengonversi aplikasi menjadi \textit{screen saver} dengan menggunakan kelas JFrame. 
+		\item Melakukan pengujian dan eksperimen.
+		\item Menulis dokumen skripsi.
+	\end{enumerate}
 
 \section{Sistematika Pembahasan}
 \label{sec:sispem}
-Rencananya Bab 2 akan berisi petunjuk penggunaan template dan dasar-dasar \LaTeX.
-Mungkin bab 3,4,5 dapt diisi oleh ketiga jurusan, misalnya peraturan dasar skripsi atau pedoman penulisan, tentu jika berkenan.
-Bab 6 akan diisi dengan kesimpulan, bahwa membuat template ini ternyata sungguh menghabiskan banyak waktu.
-
-\dtext{10}
+Dokumen dibagi ke dalam beberapa bab dengan sistematika pembahasan sebagai berikut:
+    \begin{itemize}
+        \item Bab 1. Pendahuluan, membahas tentang latar belakang, rumusan masalah, tujuan penelitian, batasan masalah, metode penelitian dan sistematika pembahasan mengenai skripsi.
+        \item Bab 2. Landasan Teori, membahas landasan dari teori-teori yang berhubungan serta mendukung penelitian, meliputi \textit{web scraping}, dan JFrame. 
+        \item Bab 3. Analisis, menjelaskan tentang cara memanfaatkan \textit{web scraping}, dan cara memanfaatkan JFrame.
+        \item Bab 4. Perancangan, membahas perancangan antarmuka, diagram kelas beserta deskripsi kelas dan fungsinya.
+        \item Bab 5. Implementasi dan pengujian, membahas hasil-hasil implementasi dan pengujian secara fungsional dan eksperimental.
+        \item Bab 6. Kesimpulan dan saran, membahas kesimpulan yang diperoleh dari penelitian ini dan saran untuk pengembangan berikutnya.
+    \end{itemize}
