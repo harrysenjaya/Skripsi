@@ -1,158 +1,164 @@
-%versi 2 (8-10-2016)
+%versi 3 (22-07-2020)
 \chapter{Landasan Teori}
 \label{chap:teori}
 
-\section{Skripsi}
-\label{sec:skripsi} 
+Bab Landasan Teori ini berisi teori-teori yang menjadi dasar penelitian ini, meliputi JSOUP, dan Java Swing.
+
+\section{JSOUP}
+\label{sec:JSOUP} 
  
-Rencananya akan diisi dengan penjelasan umum mengenai buku skripsi.
+Menurut Bo Zhao\cite{zhao}, \textit{web scraping} juga dikenal sebagai ekstraksi atau pemanenan web, adalah teknik untuk mengekstrak data dari \textit{World Wide Web} (WWW) dan menyimpannya ke sistem file atau basis data untuk diambil atau dianalisis. Salah satu teknologi yang dapat dimanfaatkan untuk melakukan \textit{web scraping} yaitu \textit{library} Java JSOUP. JSOUP adalah \textit{library} Java untuk mengerjakan dokumen HTML yang menyediakan API yang baik untuk mengekstraksi, memanipulasi data, dan menyelesaikan pembersihan data awal menggunakan metode terbaik dari \textit{Document Object Model} (DOM), \textit{Cascading Style Sheets} (CSS), dan metode lain yang mirip dengan jQuery. JSOUP mengimplementasikan spesifikasi WHATWG HTML5, dan mem-parsing HTML ke DOM yang sama seperti yang dilakukan \textit{browser} modern. Berikut adalah layanan utama yang tersedia di JSOUP \cite{cokrowibowo}:
+\begin{enumerate}
+    \item \textit{Scrape} dan \textit{parse} HTML dari URL, \textit{file}, atau string.
+    \item Mencari dan ekstrak data menggunakan traversal DOM dan CSS \textit{selector}.
+    \item Memanipulasi elemen HTML, atribut HTML, dan teks.
+    \item Membersihkan konten yang dikirim oleh pengguna yang menggunakan \textit{safe white-lists} untuk mencegah serangan XSS.
+    \item Menghasilkan HTML yang rapi.
+\end{enumerate}
 
-\dtext{11-12} 
+Subbab-subbab berikut menjelaskan beberapa kelas dari JSOUP.
 
-\section{\LaTeX}
-\label{sec:latex}
+\subsection{JSOUP}
+Kelas ini merupakan inti untuk mengakses fungsi jsoup. Salah satu fungsi yang dimiliki kelas
+ini adalah sebagai berikut:
 
-Mengapa menggunakan \LaTeX{} untuk buku skripsi dan apa keunggulan/kerugiannya bagi mahasiswa dan pembuat template. 
-
-\dtext{13-14}
-
-
-\section{Template Skripsi FTIS UNPAR}
-\label{sec:template}
- 
-Akan dipaparkan bagaimana menggunakan template ini, termasuk petunjuk singkat membuat referensi, gambar dan tabel.
-Juga hal-hal lain yang belum terpikir sampai saat ini. 
- 
-\dtext{15-16}
-
-\subsection{Tabel}  
-Berikut adalah contoh pembuatan tabel. 
-Penempatan tabel dan gambar secara umum diatur secara otomatis oleh \LaTeX{}, perhatikan contoh di file bab2.tex untuk melihat bagaimana cara memaksa tabel ditempatkan sesuai keinginan kita.
-
-Perhatikan bawa berbeda dengan penempatan judul gambar gambar, keterangan tabel harus diletakkan di atas tabel!!
-Lihat Tabel~\ref{tab:contoh1} berikut ini:
-
-\begin{table}[H] %atau h saja untuk "kira kira di sini"
-	\centering 
-	\caption{Tabel contoh}
-	\label{tab:contoh1}
-	\begin{tabular}{cccc}
-		\toprule
-		& $v_{start}$ & $\mathcal{S}_{1}$ & $v_{end}$\\
-
-		\midrule
-		$\tau_{1}$ & 1 & 12& 20\\
-		$\tau_{2}$ & 1 &  & 20\\
-		$\tau_{3}$ & 1 & 9 & 20\\
-		$\tau_{4}$ & 1 &  & 20\\
-
-		\bottomrule
-		
-	\end{tabular} 
-\end{table}
-Tabel~\ref{tab:cthwarna1} dan Tabel~\ref{tab:cthwarna2} berikut ini adalah tabel dengan sel yang berwarna dan ada dua tabel yang bersebelahan. 
-\begin{table}[H]
-	\begin{minipage}[c]{0.49\linewidth}
-		\centering
-		\caption{Tabel bewarna(1)}
-		\label{tab:cthwarna1}
-		\begin{tabular}{ccccc}
-			\toprule
-			 & $v_{start}$ & $\mathcal{S}_{2}$ & $\mathcal{S}_{1}$ & $v_{end}$\\
-			
-			\midrule
-			$\tau_{1}$ & 1 & 5 \cellcolor{green}& 12& 20\\
-			$\tau_{2}$ & 1 & 8 \cellcolor{green}& & 20\\
-			$\tau_{3}$ & 1 & 2/8/17 \cellcolor{green}& 9 & 20\\
-			$\tau_{4}$ & 1 & \cellcolor{red}& & 20\\
-			
-			\bottomrule
-
-		\end{tabular}
-	\end{minipage}
-	\begin{minipage}[c]{0.49\linewidth}
-		
-		\centering 
-		\caption{Tabel bewarna(2)}
-		\label{tab:cthwarna2}
-		\begin{tabular}{ccccc}
-			\toprule
-			 & $v_{start}$ & $\mathcal{S}_{1}$ & $\mathcal{S}_{2}$ & $v_{end}$\\
-			
-			\midrule
-			$\tau_{1}$ & 1 & 12& 5 \cellcolor{red} &20\\
-			$\tau_{2}$ & 1 &  &  8 \cellcolor{green} &20\\
-			$\tau_{3}$ & 1 & 9 & 2/8/17 \cellcolor{green} &20\\
-			$\tau_{4}$ & 1 &   & \cellcolor{red} &20\\
-			
-			\bottomrule
-		
-		\end{tabular}
-	\end{minipage}
-\end{table}
-
- 
-\subsection{Kutipan}
-\label{subs:kutipan} 
-Berikut contoh kutipan dari berbagai sumber, untuk keterangan lebih lengkap, silahkan membaca file referensi.bib yang disediakan juga di template ini.
-Contoh kutipan:
 \begin{itemize}
-	\item Buku:~\cite{berg:08:compgeom} 
-	\item Bab dalam buku:~\cite{kreveld:04:GIS}
-	\item Artikel dari Jurnal:~\cite{buchin:13:median}
-	\item Artikel dari prosiding seminar/konferensi:~\cite{kreveld:11:median}
-	\item Skripsi/Thesis/Disertasi:~\cite{lionov:02:animasi}~\cite{wiratma:10:following}~\cite{wiratma:22:later}
-	\item Technical/Scientific Report:~\cite{kreveld:07:watertight}
-	\item RFC (Request For Comments):~\cite{RFC1654}
-	\item Technical Documentation/Technical Manual:~\cite{Z.500}~\cite{unicode:16:stdv9}~\cite{google:16:and7}
-	\item Paten:~\cite{webb:12:comm}
-	\item Tidak dipublikasikan:~\cite{wiratma:09:median}~\cite{lionov:11:cpoly}
-	\item Laman web:~\cite{erickson:03:cgmodel}  
-	\item Lain-lain:~\cite{agung:12:tango}
-\end{itemize}    
-  
-\subsection{Gambar}
-
-Pada hampir semua editor, penempatan gambar di dalam dokumen \LaTeX{} tidak dapat dilakukan melalui proses {\it drag and drop}.
-Perhatikan contoh pada file bab2.tex untuk melihat bagaimana cara menempatkan gambar.
-Beberapa hal yang harus diperhatikan pada saat menempatkan gambar:
-\begin{itemize}
-	\item Setiap gambar {\bf harus} diacu di dalam teks (gunakan {\it field} {\sc label})
-	\item {\it Field} {\sc caption} digunakan untuk teks pengantar pada gambar. Terdapat dua bagian yaitu yang ada di antara tanda $[$ dan $]$ dan yang ada di antara tanda $\{$ dan $\}$. Yang pertama akan muncul di Daftar Gambar, sedangkan yang kedua akan muncul di teks pengantar gambar. Untuk skripsi ini, samakan isi keduanya.
-	\item Jenis file yang dapat digunakan sebagai gambar cukup banyak, tetapi yang paling populer adalah tipe {\sc png} (lihat Gambar~\ref{fig:ularpng}), tipe {\sc jpg} (Gambar~\ref{fig:ularjpg}) dan tipe {\sc pdf} (Gambar~\ref{fig:ularpdf})
-	\item Besarnya gambar dapat diatur dengan {\it field} {\sc scale}.
-	\item Penempatan gambar diatur menggunakan {\it placement specifier} (di antara tanda  $[$ dan $]$ setelah deklarasi gambar.
-	Yang umum digunakan adalah {\bf H} untuk menempatkan gambar {\bf sesuai} penempatannya di file .tex atau  {\bf h} yang berarti "kira-kira" di sini. \\
-	Jika tidak menggunakan {\it placement specifier}, \LaTeX{} akan menempatkan gambar secara otomatis untuk menghindari bagian kosong pada dokumen anda.
-	Walaupun cara ini sangat mudah, hindarkan terjadinya penempatan dua gambar secara berurutan. 	
-	\begin{itemize}
-		\item Gambar~\ref{fig:ularpng} ditempatkan di bagian atas halaman, walaupun penempatannya dilakukan setelah penulisan 3 paragraf setelah penjelasan ini.
-		\item Gambar~\ref{fig:ularjpg} dengan skala 0.5 ditempatkan di antara dua buah paragraf. Perhatikan penulisannya di dalam file bab2.tex!
-		\item Gambar~\ref{fig:ularpdf} ditempatkan menggunakan {\it specifier} {\bf h}.
-	\end{itemize}
+    \item \textbf{public static Connection connect(String url)}\\
+    Berfungsi untuk membuat koneksi baru dengan suatu situs web.\\
+    \textbf{Parameter:} URL situs web dengan protokol HTTP atau HTTPS.\\
+    \textbf{Kembalian:} koneksi dengan situs web.
 \end{itemize}
- 
-\dtext{17-18}
-\begin{figure} 
-	\centering  
-	\includegraphics[scale=1]{ular-png}  
-	\caption[Gambar {\it Serpentes} dalam format png]{Gambar {\it Serpentes} dalam format png} 
-	\label{fig:ularpng} 
-\end{figure} 
 
-\dtext{19-20}
-\begin{figure}[H]
-	\centering  
-	\includegraphics[scale=0.5]{ular-jpg}  
-	\caption[Ular kecil]{Ular kecil} 
-	\label{fig:ularjpg} 
-\end{figure} 
-\dtext{21-22}
+\subsection{Connection}
+Kelas ini merupakan \textit{interface} yang menyediakan pengambilan data dari situs web. Beberapa
+fungsi yang dimiliki kelas ini adalah sebagai berikut:
 
-\begin{figure}[ht] 
-	\centering  
-	\includegraphics[scale=1]{ular-pdf}  
-	\caption[ {\it Serpentes} betina]{ {\it Serpentes} jantan} 
-	\label{fig:ularpdf} 
-\end{figure} 
- 
+\begin{itemize}
+	\item \textbf{Connection cookies(Map<String,String> cookies)} \\
+		Berfungsi untuk menambahkan \textit{cookie}. \\
+		\textbf{Parameter:}
+		\begin{itemize}
+			\item \textbf{cookies} \texttt{Map} dari \textit{cookie}.
+		\end{itemize}
+		\textbf{Kembalian:} koneksi yang sama tetapi sudah diubah.
+		
+		\item \textbf{Connection data(String key, String value)} \\
+		Berfungsi untuk menambahkan parameter data yang bisa dikirim melalui metode HTTP GET atau POST. \\
+		\textbf{Parameter:}
+		\begin{itemize}
+			\item \textbf{key} kunci data.
+			\item \textbf{value} nilai data.
+		\end{itemize}
+		\textbf{Kembalian:} koneksi yang sama tetapi sudah diubah.
+		
+		\item \textbf{Connection method(Connection.Method method)} \\
+		Berfungsi untuk mengatur metode permintaan HTTP, GET atau POST. Metode pengiriman secara \textit{default} adalah GET.\\
+		\textbf{Parameter:}
+		\begin{itemize}
+			\item \textbf{method} metode pengiriman permintaan HTTP.
+		\end{itemize}
+		\textbf{Kembalian:} koneksi yang sama tetapi sudah diubah.
+		
+		\item \textbf{Connection timeout(int millis)} \\
+		Berfungsi untuk mengatur batas waktu \textit{request}. Batas waktu nol akan dianggap sebagai batas waktu yang tak terhingga. \\
+		\textbf{Parameter:}
+		\begin{itemize}
+			\item \textbf{millis} batas waktu dalam milidetik.
+		\end{itemize}
+		\textbf{Kembalian:} koneksi yang sama tetapi sudah diubah.
+		
+		\item \textbf{Connection validateTLSCertificates(boolean value)} \\
+		Berfungsi untuk mengatur pemeriksaan sertifikat TLS untuk permintaan HTTPS. Nilai \texttt{true} untuk memeriksa dan nilai \texttt{false} untuk tidak memeriksa.\\
+		\textbf{Parameter:}
+		\begin{itemize}
+			\item \textbf{value} status pemeriksaan sertifikat TLS.
+		\end{itemize}
+		\textbf{Kembalian:} koneksi yang sama tetapi sudah diubah.
+		
+		\item \textbf{Connection.Response execute()} \\
+		Berfungsi untuk mengirim permintaan HTTP.\\
+		\textbf{Kembalian:} objek \texttt{Response}.	
+\end{itemize}
+
+\subsection{Response}
+
+Kelas ini merepresentasikan permintaan HTTP. Beberapa \textit{method} yang dimiliki kelas ini adalah sebagai berikut:
+\begin{itemize}
+	\item \textbf{Map<String,String> cookies()} \\
+		\textit{Method} ini berfungsi untuk mendapatkan seluruh \textit{cookies}. \\
+		\textbf{Kembalian:} seluruh \textit{cookies}.	
+		
+		\item \textbf{Document parse()} \\
+		Berfungsi untuk mengurai \textit{body} jawaban menjadi dokumen. \\
+		\textbf{Kembalian:} koneksi yang sama tetapi sudah diubah.
+		
+		\item \textbf{String body()} \\
+		Berfungsi untuk mendapatkan \textit{body} jawaban dalam bentuk \textit{string}. \\
+		\textbf{Kembalian:} \textit{body} jawaban dalam bentuk \textit{string}.
+\end{itemize}
+
+\subsection{Document}
+
+Kelas ini merepresentasikan dokumen HTML. Salah satu \textit{method} yang dimiliki kelas ini adalah sebagai berikut:
+\begin{itemize}
+	\item \textbf{public Elements select(String cssQuery)} \\
+		\textit{Method} ini diturunkan dari kelas Element, berfungsi untuk menemukan elemen HTML yang sesuai dengan kueri CSS. \\
+		\textbf{Parameter:} 
+		\begin{itemize}
+			\item \textbf{cssQuery} kueri CSS berupa CSS Selector.
+		\end{itemize}
+		\textbf{Kembalian:} elemen-elemen HTML yang sesuai dengan kueri CSS.	
+\end{itemize}
+
+\subsection{Elements}
+
+Kelas ini merepresentasikan kumpulan elemen HTML. Beberapa \textit{method} yang dimiliki kelas ini adalah sebagai berikut:
+\begin{itemize}
+	\item \textbf{public Elements select(String query)} \\
+		Berfungsi untuk menemukan elemen-elemen yang sesuai dalam \textit{list} elemen. \\
+		\textbf{Parameter:} 
+		\begin{itemize}
+			\item \textbf{query} kueri CSS berupa CSS Selector.
+		\end{itemize}
+		\textbf{Kembalian:} elemen-elemen yang sudah diseleksi sesuai kueri.	
+		
+		\item \textbf{public String val()} \\
+		Berfungsi untuk mendapatkan nilai dari elemen pertama. \\
+		\textbf{Kembalian:} nilai elemen.	
+		
+		\item \textbf{public String text()} \\
+		\textit{Method} Berfungsi untuk mendapatkan kombinasi teks dari seluruh elemen yang sesuai. \\
+		\textbf{Kembalian:} seluruh teks dalam \textit{string}.	
+\end{itemize}
+
+\subsection{Element}
+
+Kelas ini merepresentasikan sebuah elemen HTML yang berisikan \textit{tag}, atribut, dan anak elemen. Beberapa \textit{method} yang dimiliki kelas ini adalah sebagai berikut:
+\begin{itemize}
+	\item \textbf{public Element child(int index)} \\
+		Berfungsi untuk mendapatkan anak elemen berdasarkan nomor indeks. \\
+		\textbf{Parameter:} 
+		\begin{itemize}
+			\item \textbf{index} nomor index.
+		\end{itemize}
+		\textbf{Kembalian:} anak elemen.	
+		
+		\item \textbf{public Element children()} \\
+		Berfungsi untuk mendapatkan seluruh anak elemen. \\
+		\textbf{Kembalian:} seluruh anak elemen.	
+		
+		\item \textbf{public String className()} \\
+		Berfungsi untuk mendapatkan nama kelas elemen. \\
+		\textbf{Kembalian:} nama kelas elemen.	
+		
+		\item \textbf{public String text()} \\
+		Berfungsi untuk mendapatkan teks dari elemen. \\
+		\textbf{Kembalian:} teks dalam \textit{string}.	
+\end{itemize}
+
+\section{Java Swing}
+\label{sec:javaswing}
+
+Java Swing adalah toolkit \textit{graphical user interface} (GUI) generasi berikutnya yang dibuat oleh Sun Microsystems untuk memungkinkan pengembangan perusahaan di Java \cite{loy}. Pada Java, istilah \textit{frame} digunakan untuk apa yang umumnya disebut '\textit{window}'. Pada Swing, \textit{frame} tersebut direalisasikan oleh kelas JFrame. \textit{Frame} adalah area persegi panjang dengan \textit{title bar} di atasnya. \textit{Title bar} juga berisi tombol untuk menutup, memaksimalkan atau membuat ikon bingkai. Di bawah \textit{title bar} adalah area di mana komponen grafis lebih lanjut dapat ditambahkan \cite{fischer}. JFrame tersebut akan dimanfaatkan untuk membuat tampilan dari aplikasi \textit{screen saver}. 
+
+
