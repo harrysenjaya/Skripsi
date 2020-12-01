@@ -9,9 +9,9 @@ Setiap dosen wali memiliki data mengenai mahasiswa walinya. Namun, walaupun dose
 
 Maka dari itu, pada skripsi ini akan dibuat sebuah perangkat lunak yang berupa \textit{screen saver} yang dapat menampilkan data akademik mahasiswa wali secara acak. Dengan menggunakan perangkat lunak tersebut, dosen wali dapat tetap mengamati perkembangan mahasiswa walinya, paling tidak secara akademik.
 
-Dikarenakan terbimbing tidak memiliki akses ke SIAKAD untuk mengakses data mahasiswa wali, namun terbimbing memiliki akses ke Student Portal maka, terbimbing mensimulasikan dengan Student Portal, dan kemudian Pembimbing mengubah aksesnya ke SIAKAD. Pembimbing dan terbimbing menyepakati struktur kelas yang akan digunakan yaitu struktur kelas SIAModels yang tersedia pada Maven Public Repository \cite{siamodels}.
+Dikarenakan terbimbing tidak memiliki akses ke SIAKAD \cite{siakad} untuk mengakses data mahasiswa wali, namun terbimbing memiliki akses ke Student Portal maka, terbimbing mensimulasikan dengan Student Portal, dan kemudian Pembimbing mengubah aksesnya ke SIAKAD. Pembimbing dan terbimbing menyepakati struktur kelas yang akan digunakan yaitu struktur kelas SIAModels yang tersedia pada Github dan Maven Public Repository \cite{siamodels}.
 
-Teknologi yang dapat dimanfaatkan untuk mengambil data mahasiswa yaitu \textit{library} JSOUP. JSOUP dapat digunakan untuk melakukan \textit{web scraping}, sehingga pengambilan data mahasiswa tidak memerlukan API \textit{(Application Programming Interface)}. Teknologi lainnya yang dapat dimanfaatkan yaitu Java Swing. Java Swing dapat digunakan untuk mengonversi aplikasi tersebut menjadi \textit{screen saver}.
+Teknologi yang dapat dimanfaatkan untuk mengambil data mahasiswa yaitu \textit{library} jsoup. Jsoup dapat digunakan untuk melakukan \textit{web scraping}, sehingga pengambilan data mahasiswa tidak memerlukan API \textit{(Application Programming Interface)} \cite{jsoup}. Teknologi lainnya yang dapat dimanfaatkan yaitu JavaFX. JavaFX dapat digunakan untuk mengonversi aplikasi tersebut menjadi \textit{screen saver}.
 
 
 
@@ -19,16 +19,16 @@ Teknologi yang dapat dimanfaatkan untuk mengambil data mahasiswa yaitu \textit{l
 \label{sec:rumusan}
 Rumusan masalah yang akan dibahas pada skripsi ini adalah sebagai berikut:
 \begin{itemize}
-	\item Bagaimana cara memanfaatkan JSOUP untuk mengambil data mahasiswa?
-	\item Bagaimana cara memanfaatkan Java Swing untuk mengonversi aplikasi tersebut menjadi \textit{screen saver}?
+	\item Bagaimana cara memanfaatkan jsoup untuk mengambil data mahasiswa?
+	\item Bagaimana cara memanfaatkan JavaFX untuk mengonversi aplikasi tersebut menjadi \textit{screen saver}?
 \end{itemize}   
 
 \section{Tujuan}
 \label{sec:tujuan}
 Tujuan yang ingin dicapai dari penulisan skripsi ini sebagai berikut:
 \begin{itemize}
-    \item Memanfaatkan JSOUP untuk mengambil data mahasiswa.
-    \item Memanfaatkan Java Swing untuk mengonversi aplikasi tersebut menjadi \textit{screen saver}.
+    \item Memanfaatkan jsoup untuk mengambil data mahasiswa.
+    \item Memanfaatkan JavaFX untuk mengonversi aplikasi tersebut menjadi \textit{screen saver}.
 \end{itemize}
 
 \section{Batasan Masalah}
@@ -39,14 +39,14 @@ Dikarenakan terbimbing tidak memiliki akses ke SIAKAD untuk mengakses data mahas
 \label{sec:metlit}
 Langkah-langkah yang akan dilakukan dalam melakukan penelitian ini yaitu:
 	\begin{enumerate}
-		\item Melakukan studi mengenai JSOUP.
+		\item Melakukan studi mengenai jsoup.
 		\item Melakukan studi mengenai cara mengonversi aplikasi menjadi \textit{screen saver}.
 		\item Mempelajari struktur kelas SIAModels.
 		\item Menganalisis IF Student Portal dan Student Portal UNPAR.
 		\item Merancang struktur kelas aplikasi.
 	    \item Mendesain antarmuka aplikasi.
-	    \item Mengimplementasikan JSOUP untuk mengambil data mahasiswa.
-        \item Mengonversi aplikasi menjadi \textit{screen saver} dengan menggunakan Java Swing. 
+	    \item Mengimplementasikan jsoup untuk mengambil data mahasiswa.
+        \item Mengonversi aplikasi menjadi \textit{screen saver} dengan menggunakan JavaFX. 
 		\item Melakukan pengujian dan eksperimen.
 		\item Menulis dokumen skripsi.
 	\end{enumerate}
@@ -56,8 +56,8 @@ Langkah-langkah yang akan dilakukan dalam melakukan penelitian ini yaitu:
 Dokumen dibagi ke dalam beberapa bab dengan sistematika pembahasan sebagai berikut:
     \begin{itemize}
         \item Bab 1. Pendahuluan, membahas tentang latar belakang, rumusan masalah, tujuan penelitian, batasan masalah, metode penelitian dan sistematika pembahasan mengenai skripsi.
-        \item Bab 2. Landasan Teori, membahas landasan dari teori-teori yang berhubungan serta mendukung penelitian, meliputi JSOUP, dan Java Swing. 
-        \item Bab 3. Analisis, menjelaskan tentang cara memanfaatkan JSOUP, dan cara memanfaatkan Java Swing.
+        \item Bab 2. Landasan Teori, membahas landasan dari teori-teori yang berhubungan serta mendukung penelitian, meliputi \textit{web scraping}, jsoup, JavaFX, dan SIAModels. 
+        \item Bab 3. Analisis, menjelaskan tentang cara memanfaatkan jsoup, dan cara memanfaatkan JavaFX.
         \item Bab 4. Perancangan, membahas perancangan antarmuka, diagram kelas beserta deskripsi kelas dan fungsinya.
         \item Bab 5. Implementasi dan pengujian, membahas hasil-hasil implementasi dan pengujian secara fungsional dan eksperimental.
         \item Bab 6. Kesimpulan dan saran, membahas kesimpulan yang diperoleh dari penelitian ini dan saran untuk pengembangan berikutnya.
