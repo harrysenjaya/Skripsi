@@ -32,7 +32,7 @@
 \newcommand{\nama}{Harry Senjaya Darmawan}
 \newcommand{\@npm}{2017730067}
 \newcommand{\tanggal}{11/01/2021} %Tanggal pembuatan dokumen
-\newcommand{\@judultopik}{Mahasiswa Wali Screen Saver} % Judul/topik anda
+\newcommand{\@judultopik}{Screen Saver Informasi Mahasiswa Wali} % Judul/topik anda
 \newcommand{\kodetopik}{PAN4903}
 \newcommand{\jumpemb}{1} % Jumlah pembimbing, 1 atau 2
 \newcommand{\pembA}{Pascal Alfadian}
@@ -72,7 +72,7 @@ Setiap dosen wali memiliki data mengenai mahasiswa walinya. Namun, walaupun dose
 
 Maka dari itu, pada skripsi ini akan dibuat sebuah perangkat lunak yang berupa \textit{screen saver} yang dapat menampilkan data akademik mahasiswa wali secara acak. Dengan menggunakan perangkat lunak tersebut, dosen wali dapat tetap mengamati perkembangan mahasiswa walinya, paling tidak secara akademik.
 
-Dikarenakan terbimbing tidak memiliki akses ke SIAKAD untuk mengakses data mahasiswa wali, namun terbimbing memiliki akses ke Student Portal maka, terbimbing mensimulasikan dengan Student Portal, dan kemudian Pembimbing mengubah aksesnya ke SIAKAD. Pembimbing dan terbimbing menyepakati struktur kelas yang akan digunakan yaitu struktur kelas SIAModels yang tersedia pada Github dan Maven Public Repository.
+Dikarenakan terbimbing tidak memiliki akses ke SIAKAD untuk mengakses data mahasiswa wali, namun terbimbing memiliki akses ke Portal Akademik Mahasiswa maka, terbimbing mensimulasikan dengan Portal Akademik Mahasiswa, dan kemudian Pembimbing mengubah aksesnya ke SIAKAD. Pembimbing dan terbimbing menyepakati struktur kelas yang akan digunakan yaitu struktur kelas SIAModels yang tersedia pada Github dan Maven Public Repository.
 
 Teknologi yang dapat dimanfaatkan untuk mengambil data mahasiswa yaitu \textit{library} jsoup. Jsoup dapat digunakan untuk melakukan \textit{web scraping}, sehingga pengambilan data mahasiswa tidak memerlukan API \textit{(Application Programming Interface)}. Teknologi lainnya yang dapat dimanfaatkan yaitu JavaFX. JavaFX dapat digunakan untuk mengonversi aplikasi tersebut menjadi \textit{screen saver}.
 
@@ -106,15 +106,15 @@ Detail bagian pekerjaan skripsi sesuai dengan rencana kerja/laporan perkembangan
         \end{enumerate}
 		
 		
-		\item \textbf{Menganalisis IF Student Portal dan Student Portal UNPAR}\\
+		\item \textbf{Menganalisis IF Portal Akademik Mahasiswa dan Portal Akademik Mahasiswa UNPAR}\\
 		{\bf Status :} Ada sejak rencana kerja skripsi.\\
-		{\bf Hasil :} Menganalisis IF Student Portal yang dikembangkan oleh Andrianto Sugiarto. Kemudian melakukan modifikasi teknik \textit{web scraping} yang diimplementasikan pada IF Student Portal sebelumnya, dikarenakan terdapat beberapa perubahan pada situs Student Portal UNPAR yang mengakibatkan perlunya dilakukan beberapa modifikasi agar \textit{web scraping} dapat berjalan kembali dengan baik.
+		{\bf Hasil :} Menganalisis IF Portal Akademik Mahasiswa yang dikembangkan oleh Andrianto Sugiarto. Kemudian melakukan modifikasi teknik \textit{web scraping} yang diimplementasikan pada IF Portal Akademik Mahasiswa sebelumnya, dikarenakan terdapat beberapa perubahan pada situs Portal Akademik Mahasiswa UNPAR yang mengakibatkan perlunya dilakukan beberapa modifikasi agar \textit{web scraping} dapat berjalan kembali dengan baik.
 
 
         \item \textbf{Mempelajari struktur kelas SIAModels}\\
 		{\bf Status :} Ada sejak rencana kerja skripsi.\\
 		{\bf Hasil :} SIAModels merupakan kelas-kelas dalam bahasa Java yang merepresentasikan objek-objek yang tersedia di Sistem Informasi Akademik UNPAR.
-		Struktur kelas SIAModels telah dipelajari, sehingga hasil dari \textit{web scraping} pada situs Student Portal UNPAR dapat direpresentasikan sebagai objek-objek pada SIAModels.
+		Struktur kelas SIAModels telah dipelajari, sehingga hasil dari \textit{web scraping} pada situs Portal Akademik Mahasiswa UNPAR dapat direpresentasikan sebagai objek-objek pada SIAModels.
 		
 		
 		\item \textbf{Merancang struktur kelas aplikasi}\\
@@ -129,7 +129,7 @@ Detail bagian pekerjaan skripsi sesuai dengan rencana kerja/laporan perkembangan
 		
 		\item \textbf{Mendesain antarmuka aplikasi}\\
 		{\bf Status :} Ada sejak rencana kerja skripsi.\\
-		{\bf Hasil :} Pembimbing dan terbimbing sepakat menggunakan JavaFX untuk menampilkan data mahasiswa dalam bentuk aplikasi. Antarmuka aplikasi (Gambar \ref{ui}) telah dibuat mengikuti purwarupa(\textit{prototype}) (Gambar \ref{purwarupa}) yang diberikan oleh terbimbing.
+		{\bf Hasil :} Pembimbing dan terbimbing sepakat menggunakan JavaFX untuk menampilkan data mahasiswa dalam bentuk aplikasi. Antarmuka aplikasi (Gambar \ref{ui}) telah dibuat mengikuti purwarupa(\textit{prototype}) (Gambar \ref{purwarupa}) yang diberikan oleh terbimbing. Foto mahasiswa tidak dapat ditampilkan dikarenakan \textit{source} foto mahasiswa pada situs Portal Akademik Mahasiswa UNPAR tidak valid, yang mengakibatkan pada situs Portal Akademik Mahasiswa UNPAR pun foto mahasiswa tidak terlihat.
 		
 		\begin{figure}[H]
         	\centering
@@ -163,7 +163,7 @@ Detail bagian pekerjaan skripsi sesuai dengan rencana kerja/laporan perkembangan
 		
 		\item \textbf{Menulis dokumen skripsi}\\
 		{\bf Status :} Ada sejak rencana kerja skripsi.\\
-		{\bf Hasil :} Dokumen skripsi telah dikerjakan hingga Bab 3. Bab 1 telah selesai ditulis, Bab 2 sudah ditulis sekitar 80\%, dikarenakan perlu menunggu aplikasi selesai dibuat terlebih dahulu. Bab 3 hanya tersisa pembuatan berbagai diagram.
+		{\bf Hasil :} Dokumen skripsi telah dikerjakan hingga Bab 3. Bab 1 telah selesai ditulis, Bab 2 sudah ditulis sekitar 80\%, dikarenakan perlu menunggu aplikasi selesai dibuat terlebih dahulu. Bab 3 sudah menulis Analisis Pemanfaatan Jsoup.
 		
 	\end{enumerate}
 
@@ -172,7 +172,7 @@ Detail bagian pekerjaan skripsi sesuai dengan rencana kerja/laporan perkembangan
 Langkah-langkah kerja yang berhasil diselesaikan dalam Skripsi 1 ini adalah sebagai berikut:
 \begin{enumerate}
 \item Mempelajari teknik \textit{web scraping}.
-\item Menganalisis IF Student Portal dan Student Portal UNPAR.
+\item Menganalisis IF Portal Akademik Mahasiswa dan Portal Akademik Mahasiswa UNPAR.
 \item Mempelajari struktur kelas SIAModels.
 \item Mengimplementasikan teknik \textit{web scraping} untuk mengambil data mahasiswa.
 \item Mendesain antarmuka aplikasi.
