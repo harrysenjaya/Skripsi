@@ -54,13 +54,21 @@
 \usepackage[pagewise]{lineno}%line numbering
 \usepackage{emptypage}%halaman kosong antar bab
 \usepackage{graphicx}%untuk graphicspath
-\usepackage{listings}%untuk penulisan source code
 \usepackage{etoolbox}%untuk programming dll
 \usepackage{xstring}%manipulasi string, strchar, ifstreq
 \usepackage[table]{xcolor}%untuk kode program
+\usepackage{listings}%untuk penulisan source code
 \usepackage{pgffor}% untuk foreach
 \usepackage{.sty/digsig}% untuk digital signature
 \usepackage{nomencl} % daftar simbol
+
+\lstdefinelanguage{diff}{
+  morecomment=[f][\color{blue}]{@@},     % group identifier
+  morecomment=[f][\color{red}]-,         % deleted lines 
+  morecomment=[f][\color{green}]+,       % added lines
+  morecomment=[f][\color{magenta}]{---}, % Diff header lines (must appear after +,-)
+  morecomment=[f][\color{magenta}]{+++},
+}
 
 \newcommand{\vtemplateauthor}{lionov}
 \newcommand{\dtext}[1]{{\color{lightgray} \lipsum[#1]}}%command untuk dummy text

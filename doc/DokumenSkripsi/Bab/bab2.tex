@@ -33,7 +33,7 @@ Subbab-subbab berikut menjelaskan beberapa kelas dari jsoup \cite{jsoup}.
 Kelas ini merupakan inti untuk mengakses fungsionalitas jsoup. Salah satu \textit{method} yang dimiliki kelas ini adalah sebagai berikut:
 
 \begin{itemize}
-    \item \textbf{public static Connection connect(String url)}\\
+    \item \texttt{public static Connection connect(String url)}\\
     Berfungsi untuk membuat koneksi baru ke URL. Digunakan untuk mengambil dan mengurai halaman HTML.\\
     \textbf{Parameter:} URL situs web dengan protokol HTTP atau HTTPS.\\
     \textbf{Kembalian:} koneksi dengan situs web.
@@ -44,36 +44,36 @@ Kelas ini merupakan inti untuk mengakses fungsionalitas jsoup. Salah satu \texti
 Kelas ini merupakan \textit{interface} yang menyediakan antarmuka yang nyaman untuk mengambil konten dari web, dan menguraikannya menjadi dokumen. Beberapa \textit{method} yang dimiliki kelas ini adalah sebagai berikut:
 
 \begin{itemize}
-	\item \textbf{Connection cookies(Map<String,String> cookies)} \\
+	\item \texttt{Connection cookies(Map<String,String> cookies)} \\
 		Berfungsi untuk menambahkan \textit{cookies} ke \textit{request}. \\
 		\textbf{Parameter:}
 		\begin{itemize}
-			\item \textbf{cookies} \texttt{Map} dari \textit{cookie}.
+			\item \texttt{cookies} \texttt{Map} dari \textit{cookie}.
 		\end{itemize}
 		\textbf{Kembalian:} koneksi yang sama tetapi sudah diubah.
 		
-		\item \textbf{Connection data(String key, String value)} \\
+		\item \texttt{Connection data(String key, String value)} \\
 		Berfungsi untuk menambahkan parameter data \textit{request} yang bisa dikirim melalui \textit{method} HTTP GET atau POST. \\
 		\textbf{Parameter:}
 		\begin{itemize}
-			\item \textbf{key} kunci data.
-			\item \textbf{value} nilai data.
+			\item \texttt{key} kunci data.
+			\item \texttt{value} nilai data.
 		\end{itemize}
 		\textbf{Kembalian:} koneksi yang sama tetapi sudah diubah.
 		
-		\item \textbf{Connection method(Connection.Method method)} \\
+		\item \texttt{Connection method(Connection.Method method)} \\
 		Berfungsi untuk mengatur \textit{method} \textit{request} yang akan digunakan, HTTP GET atau POST. \textit{Default}-nya adalah GET.\\
 		\textbf{Parameter:}
 		\begin{itemize}
-			\item \textbf{method} \textit{method} \textit{request} HTTP.
+			\item \texttt{method} \textit{method} \textit{request} HTTP.
 		\end{itemize}
 		\textbf{Kembalian:} koneksi yang sama tetapi sudah diubah.
 		
-		\item \textbf{Connection timeout(int millis)} \\
+		\item \texttt{Connection timeout(int millis)} \\
 		Berfungsi untuk mengatur batas waktu \textit{request}. Batas waktu \textit{default} adalah 30 detik. Batas waktu nol akan dianggap sebagai batas waktu yang tak terhingga. \\
 		\textbf{Parameter:}
 		\begin{itemize}
-			\item \textbf{millis} batas waktu dalam milidetik.
+			\item \texttt{millis} batas waktu dalam milidetik.
 		\end{itemize}
 		\textbf{Kembalian:} koneksi yang sama tetapi sudah diubah.
 		
@@ -85,7 +85,7 @@ Kelas ini merupakan \textit{interface} yang menyediakan antarmuka yang nyaman un
 % 		\end{itemize}
 % 		\textbf{Kembalian:} koneksi yang sama tetapi sudah diubah.
 		
-		\item \textbf{Connection.Response execute()} \\
+		\item \texttt{Connection.Response execute()} \\
 		Berfungsi untuk mengirim \textit{request} HTTP.\\
 		\textbf{Kembalian:} objek \texttt{Response}.	
 \end{itemize}
@@ -98,11 +98,11 @@ Kelas ini merepresentasikan \textit{response} HTTP. Beberapa \textit{method} yan
 % 		\textit{Method} ini berfungsi untuk mendapatkan seluruh \textit{cookies}. \\
 % 		\textbf{Kembalian:} seluruh \textit{cookies}.	
 		
-		\item \textbf{Document parse()} \\
+		\item \texttt{Document parse()} \\
 		Berfungsi untuk mengurai \textit{body} jawaban menjadi dokumen. \\
 		\textbf{Kembalian:} dokumen yang diurai.
 		
-		\item \textbf{String body()} \\
+		\item \texttt{String body()} \\
 		Berfungsi untuk mendapatkan \textit{body} jawaban dalam bentuk \textit{string}. \\
 		\textbf{Kembalian:} \textit{body} jawaban dalam bentuk \textit{string}.
 \end{itemize}
@@ -111,19 +111,19 @@ Kelas ini merepresentasikan \textit{response} HTTP. Beberapa \textit{method} yan
 \subsection{Elements}
 Kelas ini merepresentasikan kumpulan elemen HTML. Beberapa \textit{method} yang dimiliki kelas ini adalah sebagai berikut:
 \begin{itemize}
-	    \item \textbf{public Elements select(String query)} \\
+	    \item \texttt{public Elements select(String query)} \\
 		Berfungsi untuk menemukan elemen-elemen yang sesuai dalam \textit{list} elemen. \\
 		\textbf{Parameter:} 
 		\begin{itemize}
-			\item \textbf{query} kueri CSS berupa CSS Selector.
+			\item \texttt{query} kueri CSS berupa CSS Selector.
 		\end{itemize}
 		\textbf{Kembalian:} elemen-elemen yang sudah diseleksi sesuai kueri.	
 		
-		\item \textbf{public String val()} \\
+		\item \texttt{public String val()} \\
 		Berfungsi untuk mendapatkan nilai dari elemen pertama. \\
 		\textbf{Kembalian:} nilai elemen.	
 		
-		\item \textbf{public String text()} \\
+		\item \texttt{public String text()} \\
 		Berfungsi untuk mendapatkan kombinasi teks dari seluruh elemen yang sesuai. \\
 		\textbf{Kembalian:} seluruh teks dalam \textit{string}.	
 \end{itemize}
@@ -132,31 +132,31 @@ Kelas ini merepresentasikan kumpulan elemen HTML. Beberapa \textit{method} yang 
 \subsection{Element}
 Kelas ini merepresentasikan sebuah elemen HTML yang berisikan \textit{tag}, atribut, dan anak elemen. Beberapa \textit{method} yang dimiliki kelas ini adalah sebagai berikut:
 \begin{itemize}
-    	\item \textbf{public Elements select(String cssQuery)} \\
+    	\item \texttt{public Elements select(String cssQuery)} \\
 		Berfungsi untuk menemukan elemen yang cocok dengan kueri CSS Selector, dengan elemen ini sebagai konteks awal. \\
 		\textbf{Parameter:} 
 		\begin{itemize}
-			\item \textbf{cssQuery} kueri CSS berupa CSS Selector.
+			\item \texttt{cssQuery} kueri CSS berupa CSS Selector.
 		\end{itemize}
 		\textbf{Kembalian:} elemen-elemen HTML yang sesuai dengan kueri CSS.	
 
-    	\item \textbf{public Element child(int index)} \\
+    	\item \texttt{public Element child(int index)} \\
 		Berfungsi untuk mendapatkan anak elemen berdasarkan nomor indeks. \\
 		\textbf{Parameter:} 
 		\begin{itemize}
-			\item \textbf{index} nomor index.
+			\item \texttt{index} nomor index.
 		\end{itemize}
 		\textbf{Kembalian:} anak elemen.	
 		
-		\item \textbf{public Element children()} \\
+		\item \texttt{public Element children()} \\
 		Berfungsi untuk mendapatkan seluruh anak elemen. \\
 		\textbf{Kembalian:} seluruh anak elemen.	
 		
-		\item \textbf{public String className()} \\
+		\item \texttt{public String className()} \\
 		Berfungsi untuk mendapatkan nama kelas elemen. \\
 		\textbf{Kembalian:} nama kelas elemen.	
 		
-		\item \textbf{public String text()} \\
+		\item \texttt{public String text()} \\
 		Berfungsi untuk mendapatkan teks gabungan dari elemen. \\
 		\textbf{Kembalian:} teks dalam \textit{string}.	
 \end{itemize}
@@ -164,7 +164,7 @@ Kelas ini merepresentasikan sebuah elemen HTML yang berisikan \textit{tag}, atri
 \section{JavaFX dan FXML}
 \subsection{JavaFX}
 \label{sec:javafx}
-JavaFX adalah platform aplikasi klien \textit{open source} generasi berikutnya untuk \textit{desktop}, \textit{mobile}, dan \textit{embedded systems} yang dibangun dengan Java. JavaFX merupakan upaya kolaboratif oleh banyak individu dan perusahaan dengan tujuan menghasilkan perangkat yang modern, efisien, dan berfitur lengkap untuk mengembangkan aplikasi klien yang kaya \cite{javafx}. Subbab-subbab berikut menjelaskan beberapa kelas dari JavaFX. \cite{javafx}
+JavaFX adalah platform aplikasi klien \textit{open source} generasi berikutnya untuk \textit{desktop}, \textit{mobile}, dan \textit{embedded systems} yang dibangun dengan Java. JavaFX memungkinkan untuk membuat aplikasi Java dengan antarmuka pengguna (UI) modern dengan akselerasi perangkat keras yang sangat portabel. \cite{javafx}. Subbab-subbab berikut menjelaskan beberapa kelas dari JavaFX. \cite{javafx}
 
 
 \subsubsection{Application}
@@ -183,17 +183,17 @@ Titik masuk untuk aplikasi JavaFX adalah kelas \texttt{Application}. JavaFX mela
 
 Beberapa \textit{method} yang dimiliki kelas ini adalah sebagai berikut:
 \begin{itemize}
-	\item \textbf{public void init()}\\
+	\item \texttt{public void init()}\\
 	\textit{Method} inisialisasi aplikasi. \textit{Method} ini dipanggil segera setelah kelas \texttt{Application} dimuat dan dibangun. \textit{Method} ini dapat ditimpa untuk melakukan inisialisasi sebelum aplikasi sebenarnya dimulai.
 	
-	\item \textbf{public abstract void start(Stage primaryStage)}\\
+	\item \texttt{public abstract void start(Stage primaryStage)}\\
 	Titik masuk utama untuk semua aplikasi JavaFX. \textit{Method} \texttt{start} dipanggil setelah \textit{method} \texttt{init} kembali, dan setelah sistem siap untuk aplikasi mulai berjalan.\\
 	\textbf{Parameter:}
 	\begin{itemize}
-		\item \textbf{primaryStage} \textit{stage} utama untuk aplikasi ini, tempat \textit{scene} aplikasi dapat diatur.
+		\item \texttt{primaryStage} \textit{stage} utama untuk aplikasi ini, tempat \textit{scene} aplikasi dapat diatur.
 	\end{itemize}
 	
-	\item \textbf{public static void launch()}\\
+	\item \texttt{public static void launch()}\\
     Meluncurkan aplikasi. \textit{Method} ini biasanya dipanggil dari \texttt{main()} \textit{method}. Tidak boleh dipanggil lebih dari sekali atau \textit{exception} akan dilemparkan. Harus merupakan \textit{subclass} dari \texttt{Application} atau \textit{RuntimeException} akan dilemparkan.\\
 \end{itemize}
 
@@ -203,14 +203,14 @@ Kelas \texttt{Stage} adalah \textit{container} JavaFX tingkat atas. \texttt{Stag
 
 Beberapa \textit{method} yang dimiliki kelas ini adalah sebagai berikut:
 \begin{itemize}
-	\item \textbf{public final void setScene(Scene value)}\\
+	\item \texttt{public final void setScene(Scene value)}\\
 	Menentukan \textit{scene} yang akan digunakan di \textit{stage} ini.\\
 	\textbf{Parameter:}
 	\begin{itemize}
-		\item \textbf{value} \textit{scene} yang akan digunakan.
+		\item \texttt{value} \textit{scene} yang akan digunakan.
 	\end{itemize}
 	
-	\item \textbf{public final void show()}\\
+	\item \texttt{public final void show()}\\
 	Mencoba menampilkan \textit{window} ini dengan mengubah \textit{visibility} menjadi true.
 \end{itemize}
 
@@ -220,13 +220,13 @@ Kelas \texttt{Scene} adalah wadah untuk semua konten dalam grafik \textit{scene}
 
 Beberapa \textit{method} yang dimiliki kelas ini adalah sebagai berikut:
 \begin{itemize}
-	\item \textbf{public Scene(Parent root, double width, double height)}\\
+	\item \texttt{public Scene(Parent root, double width, double height)}\\
     Merupakan \textit{constructor} dari kelas \texttt{Scene}.
     \textbf{Parameter:}
 	\begin{itemize}
-		\item \textbf{root} Node root dari grafik \textit{scene}.
-		\item \textbf{width} Lebar \textit{scene}.
-		\item \textbf{height} Tinggi \textit{scene}.
+		\item \texttt{root} Node root dari grafik \textit{scene}.
+		\item \texttt{width} Lebar \textit{scene}.
+		\item \texttt{height} Tinggi \textit{scene}.
 	\end{itemize}
 \end{itemize}
 
@@ -236,14 +236,14 @@ Memuat hierarki objek dari dokumen XML.
 
 Beberapa \textit{method} yang dimiliki kelas ini adalah sebagai berikut:
 \begin{itemize}
-	\item \textbf{public FXMLLoader(URL location)}\\
+	\item \texttt{public FXMLLoader(URL location)}\\
     Merupakan \textit{constructor} dari kelas \texttt{FXMLLoader}.
 	\textbf{Parameter:}
 	\begin{itemize}
-		\item \textbf{location} lokasi dokumen fxml.
+		\item \texttt{location} lokasi dokumen fxml.
 	\end{itemize}
 	
-	\item \textbf{public <T> T load}\\
+	\item \texttt{public <T> T load}\\
 	Memuat hierarki objek dari dokumen FXML.
 \end{itemize}
 
@@ -259,172 +259,172 @@ SIAModels merupakan kelas-kelas dalam bahasa Java yang merepresentasikan objek-o
 \subsection{Mahasiswa}
 Kelas ini merepresentasikan mahasiswa. Atribut yang dimiliki kelas ini antara lain:
 \begin{itemize}
-	\item \textbf{String npm} : Nomor Pokok Mahasiswa (NPM).
-	\item \textbf{String nama} : nama mahasiswa.
-	\item \textbf{List<Nilai> riwayatNilai} : riwayat nilai yang dimiliki mahasiswa.
-	\item \textbf{String photoPath} : URL dari foto mahasiswa.
-	\item \textbf{List<JadwalKuliah> jadwalKuliahList} : daftar jadwal kuliah mahasiswa
-	\item \textbf{SortedMap<LocalDate, Integer> nilaiTOEFL} : nilai TOEFL mahasiswa.
-	\item \textbf{Status status} : status mahasiswa.
-	\item \textbf{LocalDate tanggalLahir} : tanggal lahir mahasiswa.
-	\item \textbf{JenisKelamin jenisKelamin} : jenis kelamin mahasiswa.
+	\item \texttt{String npm} : Nomor Pokok Mahasiswa (NPM).
+	\item \texttt{String nama} : nama mahasiswa.
+	\item \texttt{List<Nilai> riwayatNilai} : riwayat nilai yang dimiliki mahasiswa.
+	\item \texttt{String photoPath} : URL dari foto mahasiswa.
+	\item \texttt{List<JadwalKuliah> jadwalKuliahList} : daftar jadwal kuliah mahasiswa
+	\item \texttt{SortedMap<LocalDate, Integer> nilaiTOEFL} : nilai TOEFL mahasiswa.
+	\item \texttt{Status status} : status mahasiswa.
+	\item \texttt{LocalDate tanggalLahir} : tanggal lahir mahasiswa.
+	\item \texttt{JenisKelamin jenisKelamin} : jenis kelamin mahasiswa.
 
 \end{itemize}
 Beberapa \textit{method} yang dimiliki kelas ini adalah sebagai berikut:
 \begin{itemize}
-	\item \textbf{public Mahasiswa(String npm)}\\
+	\item \texttt{public Mahasiswa(String npm)}\\
 	Merupakan \textit{constructor} dari kelas \texttt{Mahasiswa}.\\
 	\textbf{Parameter:}
 	\begin{itemize}
-		\item \textbf{npm} nomor pokok mahasiswa.
+		\item \texttt{npm} nomor pokok mahasiswa.
 	\end{itemize}
 	
-	\item \textbf{public String getNama()}\\
+	\item \texttt{public String getNama()}\\
 		Berfungsi untuk mendapatkan nama mahasiswa.\\
 		\textbf{Kembalian:} nama mahasiswa.
 
-	\item \textbf{public void setNama(String nama)}\\
+	\item \texttt{public void setNama(String nama)}\\
 		Berfungsi untuk mengubah nama mahasiswa.\\
 		\textbf{Parameter:}
 		\begin{itemize}
-			\item \textbf{nama} nama mahasiswa.
+			\item \texttt{nama} nama mahasiswa.
 		\end{itemize}
 
-	\item \textbf{public String getNpm()}\\
+	\item \texttt{public String getNpm()}\\
 		Berfungsi untuk mendapatkan nomor pokok mahasiswa.\\
 		\textbf{Kembalian:} nomor pokok mahasiswa.
 	
-	\item \textbf{public String getPhotoPath()}\\
+	\item \texttt{public String getPhotoPath()}\\
 		Berfungsi untuk mendapatkan URL dari foto mahasiswa.\\
 		\textbf{Kembalian:} URL dari foto mahasiswa.
 	
-	\item \textbf{public void setPhotoPath(String photoPath)}\\
+	\item \texttt{public void setPhotoPath(String photoPath)}\\
 		Berfungsi untuk mengubah URL dari foto mahasiswa.\\
         \textbf{Parameter:}
 		\begin{itemize}
-			\item \textbf{photoPath} URL dari foto mahasiswa.
+			\item \texttt{photoPath} URL dari foto mahasiswa.
 		\end{itemize}	
 		
-	\item \textbf{public List<JadwalKuliah> getJadwalKuliahList}\\
+	\item \texttt{public List<JadwalKuliah> getJadwalKuliahList}\\
 		Berfungsi untuk mendapatkan jadwal kuliah mahasiswa.\\
 		\textbf{Kembalian:} jadwal kuliah mahasiswa dalam \textit{list}.
 	
-	\item \textbf{public void setJadwalKuliahList(List<JadwalKuliah> jadwalKuliahList)}\\
+	\item \texttt{public void setJadwalKuliahList(List<JadwalKuliah> jadwalKuliahList)}\\
 		Berfungsi untuk mengubah jadwal kuliah mahasiswa.\\
         \textbf{Parameter:}
 		\begin{itemize}
-			\item \textbf{jadwalKuliahList} jadwal kuliah mahasiswa dalam \textit{list}.
+			\item \texttt{jadwalKuliahList} jadwal kuliah mahasiswa dalam \textit{list}.
 		\end{itemize}	
 		
-	\item \textbf{public String getEmailAddress()}\\
+	\item \texttt{public String getEmailAddress()}\\
 		Berfungsi untuk mendapatkan \textit{email} mahasiswa.\\
 		\textbf{Kembalian:} \textit{email} mahasiswa.
 	
-	\item \textbf{public List<Nilai> getRiwayatNilai()}\\
+	\item \texttt{public List<Nilai> getRiwayatNilai()}\\
 		Berfungsi untuk mendapatkan riwayat nilai mahasiswa.\\
 		\textbf{Kembalian:} riwayat nilai mahasiswa dalam List.
 		
-	\item \textbf{public SortedMap<LocalDate, Integer> getNilaiTOEFL()}\\
+	\item \texttt{public SortedMap<LocalDate, Integer> getNilaiTOEFL()}\\
 	Berfungsi untuk mendapatkan nilai TOEFL mahasiswa.\\
 	\textbf{Kembalian:} nilai TOEFL mahasiswa dalam SortedMap.
 	
-	\item \textbf{public void setNilaiTOEFL(SortedMap<LocalDate, Integer> nilaiTOEFL}\\
+	\item \texttt{public void setNilaiTOEFL(SortedMap<LocalDate, Integer> nilaiTOEFL}\\
 	Berfungsi untuk mengubah nilai TOEFL mahasiswa.\\
     \textbf{Parameter:}
 		\begin{itemize}
-			\item \textbf{nilaiTOEFL} nilai TOEFL mahasiswa dalam SortedMap.
+			\item \texttt{nilaiTOEFL} nilai TOEFL mahasiswa dalam SortedMap.
 		\end{itemize}		
 		
-	\item \textbf{public Status getStatus()}\\
+	\item \texttt{public Status getStatus()}\\
 	Berfungsi untuk mendapatkan status mahasiswa.\\
 	\textbf{Kembalian:} status mahasiswa.
 	
-	\item \textbf{public void setStatus(Status status)}\\
+	\item \texttt{public void setStatus(Status status)}\\
 	Berfungsi untuk mengubah status mahasiswa.\\
         \textbf{Parameter:}
 		\begin{itemize}
-			\item \textbf{status} status mahasiswa.
+			\item \texttt{status} status mahasiswa.
 		\end{itemize}	
 		
-	\item \textbf{public LocalDate getTanggalLahir()}\\
+	\item \texttt{public LocalDate getTanggalLahir()}\\
 	Berfungsi untuk mendapatkan tanggal lahir mahasiswa.\\
 	\textbf{Kembalian:} tanggal lahir mahasiswa.
 	
-	\item \textbf{public void setTanggalLahir(LocalDate tanggalLahir)}\\
+	\item \texttt{public void setTanggalLahir(LocalDate tanggalLahir)}\\
 	Berfungsi untuk mengubah tanggal lahir mahasiswa.\\
         \textbf{Parameter:}
 		\begin{itemize}
-			\item \textbf{tanggalLahir} tanggal lahir mahasiswa.
+			\item \texttt{tanggalLahir} tanggal lahir mahasiswa.
 		\end{itemize}
 		
-	\item \textbf{public JenisKelamin getJenisKelamin()}\\
+	\item \texttt{public JenisKelamin getJenisKelamin()}\\
 	Berfungsi untuk mendapatkan jenis kelamin mahasiswa.\\
 	\textbf{Kembalian:} jenis kelamin mahasiswa.
 	
-	\item \textbf{public void setJenisKelamin(JenisKelamin jenisKelamin)}\\
+	\item \texttt{public void setJenisKelamin(JenisKelamin jenisKelamin)}\\
 	Berfungsi untuk mengubah jenis kelamin mahasiswa.\\
         \textbf{Parameter:}
 		\begin{itemize}
-			\item \textbf{jenisKelamin} jenis kelamin mahasiswa.
+			\item \texttt{jenisKelamin} jenis kelamin mahasiswa.
 		\end{itemize}
 		
-	\item \textbf{public byte[] getPhotoImage()}\\
+	\item \texttt{public byte[] getPhotoImage()}\\
 	Berfungsi untuk mendapatkan foto mahasiswa yang dibungkus dalam kelas \texttt{java.awt.Image}. Berbeda dengan \textit{method} \texttt{getPhotoPath()}, \textit{method} ini akan menghasilkan image, apapun bentuk photo path nya (bisa berupa URL ataupun base64 string).\\
 	\textbf{Kembalian:} foto mahasiswa.
 		
-	\item \textbf{public double calculateIPKLulus()}\\
+	\item \texttt{public double calculateIPKLulus()}\\
 	Berfungsi untuk menghitung IPK mahasiswa sampai saat ini, dengan aturan kuliah yang tidak lulus tidak dihitung dan jika pengambilan beberapa kali, diambil nilai terbaik. Sebelum memanggil \textit{method} ini, \texttt{getRiwayatNilai()} harus sudah mengandung nilai per mata kuliah.\\
 	\textbf{Kembalian:} IPK lulus.
 		
-	\item \textbf{public double calculateIPTempuh(boolean lulusSaja)}\\
+	\item \texttt{public double calculateIPTempuh(boolean lulusSaja)}\\
 	Berfungsi untuk menghitung IP mahasiswa sampai saat ini, dengan aturan perhitungan kuliah yang tidak lulus ditentukan parameter, dan jika pengambilan beberapa kali, diambil nilai terbaik.\\
         \textbf{Parameter:}
 		\begin{itemize}
-			\item \textbf{lulusSaja} lulusSaja set true jika ingin membuang mata kuliah tidak lulus, false jika ingin semua (sama dengan "IP N. Terbaik" di DPS). Sebelum memanggil \textit{method} ini, \texttt{getRiwayatNilai()} harus sudah mengandung nilai per mata kuliah.
+			\item \texttt{lulusSaja} lulusSaja set true jika ingin membuang mata kuliah tidak lulus, false jika ingin semua (sama dengan "IP N. Terbaik" di DPS). Sebelum memanggil \textit{method} ini, \texttt{getRiwayatNilai()} harus sudah mengandung nilai per mata kuliah.
 		\end{itemize}
 		\textbf{Kembalian:} IPK lulus.
 		
-	\item \textbf{public double calculateIPKumulatif()}\\
+	\item \texttt{public double calculateIPKumulatif()}\\
 	Berfungsi untuk menghitung IP Kumulatif mahasiswa sampai saat ini, dengan aturan jika pengambilan beberapa kali, diambil semua.Sebelum memanggil \textit{method} ini, \texttt{getRiwayatNilai()} harus sudah mengandung nilai per mata kuliah.\\
 		\textbf{Kembalian:} IPK lulus.
 		
-	\item \textbf{public double calculateIPS()}\\
+	\item \texttt{public double calculateIPS()}\\
 		Berfungsi untuk menghitung IPS semester terakhir sampai saat ini, dengan aturan kuliah yang tidak lulus dihitung. Sebelum memanggil \textit{method} ini, \texttt{getRiwayatNilai()} harus sudah mengandung nilai per mata kuliah.\\
 		\textbf{Kembalian:}  nilai IPS sampai saat ini.
 		
-	\item \textbf{public int calculateSKSLulus()}\\
+	\item \texttt{public int calculateSKSLulus()}\\
 		Berfungsi untuk menghitung jumlah SKS lulus mahasiswa saat ini. Sebelum memanggil \textit{method} ini, \texttt{getRiwayatNilai()} harus sudah mengandung nilai per mata kuliah.\\
 		\textbf{Kembalian:} SKS lulus.
 		
-	\item \textbf{public int calculateSKSTempuh(boolean lulusSaja)}\\
+	\item \texttt{public int calculateSKSTempuh(boolean lulusSaja)}\\
 		Berfungsi untuk menghitung jumlah SKS tempuh mahasiswa saat ini. Sebelum memanggil \textit{method} ini, \texttt{getRiwayatNilai()} harus sudah mengandung nilai per mata kuliah.\\
         \textbf{Parameter:}
 		\begin{itemize}
-			\item \textbf{lulusSaja} lulusSaja set true jika ingin membuang SKS tidak lulus
+			\item \texttt{lulusSaja} lulusSaja set true jika ingin membuang SKS tidak lulus
 		\end{itemize}
 		\textbf{Kembalian:} SKS tempuh
 		
-	\item \textbf{public Set<TahunSemester> calculateTahunSemesterAktif()}\\
+	\item \texttt{public Set<TahunSemester> calculateTahunSemesterAktif()}\\
 		Berfungsi untuk mendapatkan seluruh tahun semester di mana mahasiswa ini tercatat sebagai mahasiswa aktif, dengan strategi memeriksa riwayat nilainya.Jika ada satu nilai saja pada sebuah tahun semester, maka dianggap aktif pada semester tersebut.\\
 		\textbf{Kembalian:} kumpulan tahun semester di mana mahasiswa ini aktif.
 		
-	\item \textbf{public boolean hasLulusKuliah(String kodeMataKuliah)}\\
+	\item \texttt{public boolean hasLulusKuliah(String kodeMataKuliah)}\\
 		Berfungsi untuk memeriksa apakah mahasiswa ini sudah lulus mata kuliah tertentu. Sebelum memanggil \textit{method} ini, \texttt{getRiwayatNilai()} harus sudah mengandung nilai per mata kuliah.\\
 		\textbf{Parameter:}
 		\begin{itemize}
-			\item \textbf{kodeMataKuliah} kode mata kuliah yang ingin diperiksa kelulusannya.
+			\item \texttt{kodeMataKuliah} kode mata kuliah yang ingin diperiksa kelulusannya.
 		\end{itemize}
 		\textbf{Kembalian:} \texttt{true} jika sudah pernah mengambil dan lulus, \texttt{false} jika belum.
 		
-	\item \textbf{public boolean hasTempuhKuliah(String kodeMataKuliah)}\\
+	\item \texttt{public boolean hasTempuhKuliah(String kodeMataKuliah)}\\
 		Memeriksa apakah mahasiswa ini sudah pernah menempuh mata kuliah tertentu. Sebelum memanggil \textit{method} ini, \texttt{getRiwayatNilai()} harus sudah mengandung nilai per mata kuliah.\\
 		\textbf{Parameter:}
 		\begin{itemize}
-			\item \textbf{kodeMataKuliah} kode mata kuliah yang ingin diperiksa kelulusannya.
+			\item \texttt{kodeMataKuliah} kode mata kuliah yang ingin diperiksa kelulusannya.
 		\end{itemize}
 		\textbf{Kembalian:} \texttt{true} jika sudah pernah mengambil, \texttt{false} jika belum.
 	
-	\item \textbf{public int getTahunAngkatan()}\\
+	\item \texttt{public int getTahunAngkatan()}\\
 		Mendapatkan tahun angkatan mahasiswa ini berdasarkan NPM-nya.\\
 		\textbf{Kembalian:} tahun angkatan.
 	\end{itemize}
@@ -433,51 +433,51 @@ Beberapa \textit{method} yang dimiliki kelas ini adalah sebagai berikut:
 \subsection{Nilai}
 Kelas ini merepresentasikan nilai yang ada pada riwayat nilai mahasiswa. Atribut yang dimiliki kelas ini antara lain:
 \begin{itemize}
-	\item \textbf{TahunSemester tahunSemester:} tahun dan semester kuliah ini diambil
-	\item \textbf{MataKuliah mataKuliah:} mata kuliah yang diambil.
-	\item \textbf{Character kelas:} kelas kuliah.
-	\item \textbf{Map<String, Double> nilaiTugas:} nilai Angka Rata-rata Tugas (ART).
-	\item \textbf{Double nilaiUTS:} nilai Ujian Tengah Semester (UTS).
-	\item \textbf{Double nilaiUAS:} nilai Ujian Akhir Semester (UAS).
-	\item \textbf{String nilaiAkhir:} nilai akhir.
+	\item \texttt{TahunSemester tahunSemester:} tahun dan semester kuliah ini diambil
+	\item \texttt{MataKuliah mataKuliah:} mata kuliah yang diambil.
+	\item \texttt{Character kelas:} kelas kuliah.
+	\item \texttt{Map<String, Double> nilaiTugas:} nilai Angka Rata-rata Tugas (ART).
+	\item \texttt{Double nilaiUTS:} nilai Ujian Tengah Semester (UTS).
+	\item \texttt{Double nilaiUAS:} nilai Ujian Akhir Semester (UAS).
+	\item \texttt{String nilaiAkhir:} nilai akhir.
 \end{itemize}
 
 Beberapa \textit{method} yang dimiliki kelas ini adalah sebagai berikut:
 \begin{itemize}
-	\item \textbf{public Nilai(TahunSemester tahunSemester, MataKuliah mataKuliah, Character kelas, Map<String, Double> nilaiTugas, Double nilaiUTS, Double nilaiUAS, ~String nilaiAkhir)}\\
+	\item \texttt{public Nilai(TahunSemester tahunSemester, MataKuliah mataKuliah, Character kelas, Map<String, Double> nilaiTugas, Double nilaiUTS, Double nilaiUAS, ~String nilaiAkhir)}\\
 	Merupakan \textit{constructor} dari kelas \texttt{Nilai}.\\
 	\textbf{Parameter:}
 	\begin{itemize}
-		\item \textbf{tahunSemester} tahun dan semester kuliah ini diambil.
-		\item \textbf{mataKuliah} mata kuliah yang diambil.
-		\item \textbf{kelas} kelas kuliah.
-		\item \textbf{nilaiTugas} nilai ART.
-		\item \textbf{nilaiUTS} nilai UTS.
-		\item \textbf{nilaiUAS} nilai UAS.
-		\item \textbf{nilaiAkhir} nilai akhir.
+		\item \texttt{tahunSemester} tahun dan semester kuliah ini diambil.
+		\item \texttt{mataKuliah} mata kuliah yang diambil.
+		\item \texttt{kelas} kelas kuliah.
+		\item \texttt{nilaiTugas} nilai ART.
+		\item \texttt{nilaiUTS} nilai UTS.
+		\item \texttt{nilaiUAS} nilai UAS.
+		\item \texttt{nilaiAkhir} nilai akhir.
 	\end{itemize}
 		
-	\item \textbf{public MataKuliah getMataKuliah()}\\
+	\item \texttt{public MataKuliah getMataKuliah()}\\
 	Mendapatkan mata kuliah yang diambil.\\
 	\textbf{Kembalian:} mata kuliah.
 	
-	\item \textbf{public String getNilaiAkhir()}\\
+	\item \texttt{public String getNilaiAkhir()}\\
 	Mengembalikan nilai akhir dalam bentuk huruf (A, B, C, D, ..., atau K).\\
 	\textbf{Kembalian:} nilai akhir dalam huruf, atau \texttt{null} jika tidak ada.
 	
-	\item \textbf{public Double getAngkaAkhir()}\\
+	\item \texttt{public Double getAngkaAkhir()}\\
 	Mendapatkan nilai akhir dalam bentuk angka.\\
 	\textbf{Kembalian:}  nilai akhir dalam angka, atau \texttt{null} jika \texttt{getNilaiAkhir()} mengembalikan \texttt{null}.
 	
-	\item \textbf{public int getTahunAjaran()}\\
+	\item \texttt{public int getTahunAjaran()}\\
 	Mendapatkan tahun ajaran saat pengambilan mata kuliah.\\
 	\textbf{Kembalian:} tahun ajaran saat pengambilan mata kuliah.
 
-    \item \textbf{public TahunSemester getTahunSemester()}\\
+    \item \texttt{public TahunSemester getTahunSemester()}\\
 	Mendapatkan tahun dan semester pengambilan mata kuliah.\\
 	\textbf{Kembalian:} tahun dan semester pengambilan mata kuliah.	
 	
-	\item \textbf{public Semester getSemester()}\\
+	\item \texttt{public Semester getSemester()}\\
 	Mendapatkan semester pengambilan mata kuliah.\\
 	\textbf{Kembalian:} semester pengambilan mata kuliah
 	
@@ -487,12 +487,12 @@ Beberapa \textit{method} yang dimiliki kelas ini adalah sebagai berikut:
 Pembanding antara satu nilai dengan nilai lainnya, secara kronologis waktu pengambilan. \textit{Method} yang dimiliki kelas ini adalah sebagai berikut:
 
 \begin{itemize}
-	\item \textbf{public int compare(Nilai o1, Nilai o2) } \\
+	\item \texttt{public int compare(Nilai o1, Nilai o2) } \\
 	Berfungsi untuk membandingkan nilai. \\
 	\textbf{Parameter:}
 	\begin{itemize}
-		\item \textbf{o1} nilai pertama yang akan dibandingkan.
-		\item \textbf{o2} nilai kedua yang akan dibandingkan.
+		\item \texttt{o1} nilai pertama yang akan dibandingkan.
+		\item \texttt{o2} nilai kedua yang akan dibandingkan.
 	\end{itemize}
 	\textbf{Kembalian:} hasil perbandingan.
 \end{itemize}
@@ -501,31 +501,31 @@ Pembanding antara satu nilai dengan nilai lainnya, secara kronologis waktu penga
 \subsection{MataKuliah}
 Kelas ini merepresentasikan sebuah mata kuliah. Atribut yang dimiliki kelas ini antara lain:
 \begin{itemize}
-	\item \textbf{String kode:} kode mata kuliah
-	\item \textbf{String nama:} nama mata kuliah
-	\item \textbf{Integer sks:} sks mata kuliah.
+	\item \texttt{String kode:} kode mata kuliah
+	\item \texttt{String nama:} nama mata kuliah
+	\item \texttt{Integer sks:} sks mata kuliah.
 \end{itemize}
 
 Beberapa \textit{method} yang dimiliki kelas ini adalah sebagai berikut:
 \begin{itemize}
-	\item \textbf{public MataKuliah(String kode, String nama, int sks)}\\
+	\item \texttt{public MataKuliah(String kode, String nama, int sks)}\\
 	Merupakan \textit{constructor} dari kelas \texttt{MataKuliah}.\\
 	\textbf{Parameter:}
 	\begin{itemize}
-		\item \textbf{kode} kode mata kuliah.
-		\item \textbf{nama} nama mata kuliah.
-		\item \textbf{sks} sks mata kuliah.
+		\item \texttt{kode} kode mata kuliah.
+		\item \texttt{nama} nama mata kuliah.
+		\item \texttt{sks} sks mata kuliah.
 	\end{itemize}
 	
-	\item \textbf{public String getKode()} \\
+	\item \texttt{public String getKode()} \\
 	Mendapatkan kode mata kuliah. \\
 	\textbf{Kembalian:} kode mata kuliah.
 	
-	\item \textbf{public int getSks()} \\
+	\item \texttt{public int getSks()} \\
 	Mendapatkan sks mata kuliah. \\
 	\textbf{Kembalian:} sks mata kuliah.
 	
-	\item \textbf{public String getNama()} \\
+	\item \texttt{public String getNama()} \\
 	Mendapatkan nama mata kuliah. \\
 	\textbf{Kembalian:} nama mata kuliah.
 \end{itemize}
@@ -534,21 +534,21 @@ Beberapa \textit{method} yang dimiliki kelas ini adalah sebagai berikut:
 \subsection{JenisKelamin}
 Kelas ini berupa enum yang merepresentasikan jenis kelamin mahasiswa. Nilai dari enum ini antara lain:
 \begin{itemize}
-	\item \textbf{LAKI\_LAKI("Laki-laki")} 
-	\item \textbf{PEREMPUAN("Perempuan")}
+	\item \texttt{LAKI\_LAKI("Laki-laki")} 
+	\item \texttt{PEREMPUAN("Perempuan")}
 \end{itemize}
 
 
 \subsection{Status}
 Kelas ini berupa enum yang merepresentasikan status mahasiswa. Nilai dari enum ini antara lain:
 \begin{itemize}
-	\item \textbf{SEMUA("00")} 
-	\item \textbf{AKTIF("01")} 
-	\item \textbf{GENCAT("02")} 
-	\item \textbf{CUTI\_SEBELUM\_FRS("03")} 
-	\item \textbf{CUTI\_SETELAH\_FRS("04")} 
-	\item \textbf{KELUAR("05")} 
-	\item \textbf{LULUS("06")} 
-	\item \textbf{DROP\_OUT("07")} 
-	\item \textbf{SISIPAN("08")} 
+	\item \texttt{SEMUA("00")} 
+	\item \texttt{AKTIF("01")} 
+	\item \texttt{GENCAT("02")} 
+	\item \texttt{CUTI\_SEBELUM\_FRS("03")} 
+	\item \texttt{CUTI\_SETELAH\_FRS("04")} 
+	\item \texttt{KELUAR("05")} 
+	\item \texttt{LULUS("06")} 
+	\item \texttt{DROP\_OUT("07")} 
+	\item \texttt{SISIPAN("08")} 
 \end{itemize}

@@ -5,11 +5,11 @@
 \section{Latar Belakang}
 \label{sec:label}
 
-Setiap dosen wali memiliki data mengenai mahasiswa walinya. Namun, walaupun dosen wali memiliki data mengenai mahasiswa walinya, dosen wali juga perlu melakukan pemeriksaan data mahasiswa walinya, terutama data akademiknya secara berkala. Dengan berbagai kesibukan yang dialami oleh para dosen wali dan mahasiswa, ditambah dengan situasi Indonesia saat ini yang menyebabkan perkuliahan dilakukan secara daring, akan sangat sulit bagi dosen wali untuk menemui mahasiswa wali. Hal ini menyebabkan dosen wali kesulitan mengamati perkembangan mahasiswa walinya. 
+Setiap dosen wali memiliki data mengenai mahasiswa walinya. Namun, walaupun dosen wali memiliki data mengenai mahasiswa walinya, dosen wali juga perlu melakukan pemeriksaan data mahasiswa walinya, terutama data akademiknya secara berkala. Dengan berbagai kesibukan yang dialami oleh para dosen wali dan mahasiswa, ditambah dengan situasi Indonesia saat ini yang menyebabkan perkuliahan dilakukan secara daring, akan sangat sulit bagi dosen wali untuk menemui mahasiswa walinya. Hal ini menyebabkan dosen wali kesulitan mengamati perkembangan mahasiswa walinya. 
 
 Maka dari itu, pada skripsi ini akan dibuat sebuah perangkat lunak yang berupa \textit{screen saver} yang dapat menampilkan data akademik mahasiswa wali secara acak. Dengan menggunakan perangkat lunak tersebut, dosen wali dapat tetap mengamati perkembangan mahasiswa walinya, paling tidak secara akademik.
 
-Dikarenakan terbimbing tidak memiliki akses ke SIAKAD \cite{siakad} untuk mengakses data mahasiswa wali, namun terbimbing memiliki akses ke Student Portal maka, terbimbing mensimulasikan dengan Student Portal, dan kemudian Pembimbing mengubah aksesnya ke SIAKAD. Pembimbing dan terbimbing menyepakati struktur kelas yang akan digunakan yaitu struktur kelas SIAModels yang tersedia pada Github dan Maven Public Repository \cite{siamodels}.
+Dikarenakan terbimbing tidak memiliki akses ke SIAKAD \cite{siakad} untuk mengakses data mahasiswa wali, namun terbimbing memiliki akses ke Portal Akademik Mahasiswa \cite{stupor} maka, terbimbing mensimulasikan dengan Portal Akademik Mahasiswa, dan kemudian Pembimbing mengubah aksesnya ke SIAKAD. Pembimbing dan terbimbing menyepakati struktur kelas yang akan digunakan yaitu struktur kelas SIAModels yang tersedia pada Github dan Maven Public Repository \cite{siamodels}.
 
 Teknologi yang dapat dimanfaatkan untuk mengambil data mahasiswa yaitu \textit{library} jsoup. Jsoup dapat digunakan untuk melakukan \textit{web scraping}, sehingga pengambilan data mahasiswa tidak memerlukan API \textit{(Application Programming Interface)} \cite{jsoup}. Teknologi lainnya yang dapat dimanfaatkan yaitu JavaFX. JavaFX dapat digunakan untuk mengonversi aplikasi tersebut menjadi \textit{screen saver}.
 
@@ -33,7 +33,7 @@ Tujuan yang ingin dicapai dari penulisan skripsi ini sebagai berikut:
 
 \section{Batasan Masalah}
 \label{sec:batasan}
-Dikarenakan terbimbing tidak memiliki akses ke SIAKAD untuk mengakses data mahasiswa wali, namun terbimbing memiliki akses ke Student Portal maka, terbimbing mensimulasikan dengan Student Portal, dan kemudian Pembimbing mengubah aksesnya ke SIAKAD. 
+Dikarenakan terbimbing tidak memiliki akses ke SIAKAD untuk mengakses data mahasiswa wali, namun terbimbing memiliki akses ke Portal Akademik Mahasiswa maka, terbimbing mensimulasikan dengan Portal Akademik Mahasiswa, dan kemudian Pembimbing mengubah aksesnya ke SIAKAD. 
 
 \section{Metodologi}
 \label{sec:metlit}
@@ -42,8 +42,9 @@ Langkah-langkah yang akan dilakukan dalam melakukan penelitian ini yaitu:
 		\item Melakukan studi mengenai jsoup.
 		\item Melakukan studi mengenai cara mengonversi aplikasi menjadi \textit{screen saver}.
 		\item Mempelajari struktur kelas SIAModels.
-		\item Menganalisis IF Student Portal dan Student Portal UNPAR.
+		\item Menganalisis IF Portal Akademik Mahasiswa dan Portal Akademik Mahasiswa.
 		\item Merancang struktur kelas aplikasi.
+		\item Melakukan studi mengenai cara mendesain antarmuka aplikasi
 	    \item Mendesain antarmuka aplikasi.
 	    \item Mengimplementasikan jsoup untuk mengambil data mahasiswa.
         \item Mengonversi aplikasi menjadi \textit{screen saver} dengan menggunakan JavaFX. 
@@ -57,7 +58,7 @@ Dokumen dibagi ke dalam beberapa bab dengan sistematika pembahasan sebagai berik
     \begin{itemize}
         \item Bab 1. Pendahuluan, membahas tentang latar belakang, rumusan masalah, tujuan penelitian, batasan masalah, metode penelitian dan sistematika pembahasan mengenai skripsi.
         \item Bab 2. Landasan Teori, membahas landasan dari teori-teori yang berhubungan serta mendukung penelitian, meliputi \textit{web scraping}, jsoup, JavaFX, dan SIAModels. 
-        \item Bab 3. Analisis, menjelaskan tentang cara memanfaatkan jsoup, dan cara memanfaatkan JavaFX.
+        \item Bab 3. Analisis, menjelaskan tentang kebutuhan data, analisis Portal Akademik Mahasiswa versi 2020, dan analisis cara memanfaatkan jsoup.
         \item Bab 4. Perancangan, membahas perancangan antarmuka, diagram kelas beserta deskripsi kelas dan fungsinya.
         \item Bab 5. Implementasi dan pengujian, membahas hasil-hasil implementasi dan pengujian secara fungsional dan eksperimental.
         \item Bab 6. Kesimpulan dan saran, membahas kesimpulan yang diperoleh dari penelitian ini dan saran untuk pengembangan berikutnya.

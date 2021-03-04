@@ -1,15 +1,15 @@
 \chapter{Analisis}
 \label{chap:analisis}
 
-Pada bab ini akan dijelaskan mengenai analisis pemanfaatan jsoup untuk mengambil data mahasiswa, dan analisis pemanfaatan JavaFX untuk membuat tampilan antarmuka pengguna.
+Pada bab ini akan dijelaskan mengenai analisis pemanfaatan jsoup untuk mengambil data mahasiswa.
 
 \section{Analisis Pemanfaatan Jsoup}
-Untuk mengambil data mahasiswa, diperlukan sumber data mahasiswa tersebut. Sumber data mahasiswa tersebut dapat diperoleh melalui Student Portal UNPAR. Student Portal UNPAR merupakan sebuah situs yang diperuntukkan bagi mahasiswa untuk mendapatkan informasi mengenai profil dan kegiatan akademik mahasiswa tersebut. Mahasiswa dapat mengakses Student Portal UNPAR melalui \textit{URL} \url{https://studentportal.unpar.ac.id/}. Untuk mengakses Student Portal UNPAR, mahasiswa harus melakukan \textit{login} menggunakan \textit{email} dan \textit{password} mahasiswa tersebut.
+Untuk mengambil data mahasiswa, diperlukan sumber data mahasiswa tersebut. Sumber data mahasiswa tersebut dapat diperoleh melalui Portal Akademik Mahasiswa. Portal Akademik Mahasiswa merupakan sebuah situs yang diperuntukkan bagi mahasiswa untuk mendapatkan informasi mengenai profil dan kegiatan akademik mahasiswa tersebut. Mahasiswa dapat mengakses Portal Akademik Mahasiswa melalui \textit{URL} \url{https://studentportal.unpar.ac.id/}. Untuk mengakses Portal Akademik Mahasiswa, mahasiswa harus melakukan \textit{login} menggunakan \textit{email} dan \textit{password} mahasiswa tersebut.
 
-Aplikasi \textit{screen saver} akan melakukan \textit{http} ke Student Portal UNPAR untuk mendapatkan data untuk setiap kebutuhan dari masing-masing fitur yang ada. Pengambilan data secara langsung dari Student Portal UNPAR dilakukan menggunakan \textit{library} jsoup. Beberapa implementasi pemanfaatan jsoup untuk mengambil data-data tersebut sudah diimplementasikan pada skripsi Andrianto Sugiarto \cite{ifstupor} sebelumnya. Data yang telah didapat dari Student Portal UNPAR kemudian diolah ke dalam SIAModels, dan ditampilkan sesuai dengan fitur-fitur yang ada pada aplikasi Mahasiswa Wali \textit{Screen Saver}.
+Aplikasi \textit{screen saver} akan melakukan \textit{http request} ke Portal Akademik Mahasiswa untuk mendapatkan data untuk setiap kebutuhan dari masing-masing fitur yang ada. Pengambilan data secara langsung dari Portal Akademik Mahasiswa dilakukan menggunakan \textit{library} jsoup. Beberapa implementasi pemanfaatan jsoup untuk mengambil data-data tersebut sudah diimplementasikan pada skripsi Andrianto Sugiarto \cite{ifstupor} sebelumnya. Data yang telah didapat dari Portal Akademik Mahasiswa kemudian diolah ke dalam SIAModels, dan ditampilkan sesuai dengan fitur-fitur yang ada pada aplikasi Mahasiswa Wali \textit{Screen Saver}.
 
 \subsection{\textit{Login}}
-Halaman \textit{Login} (Gambar \ref{fig:3_login} dan \ref{fig:3_login_2}) merupakan halaman dimana mahasiswa memasukkan \textit{email} dan \textit{password} untuk mengakses menu-menu Student Portal UNPAR.
+Halaman \textit{Login} (Gambar \ref{fig:3_login} dan \ref{fig:3_login_2}) merupakan halaman dimana mahasiswa memasukkan \textit{email} dan \textit{password} untuk mengakses menu-menu Portal Akademik Mahasiswa.
 
 \begin{figure}[H]
 	\centering
@@ -26,50 +26,150 @@ Halaman \textit{Login} (Gambar \ref{fig:3_login} dan \ref{fig:3_login_2}) merupa
 \end{figure}
 
 \textit{Login} dilakukan dengan mengirim \textit{request method} POST, dan kemudian mengambil session yang akan digunakan sebagai \textit{cookies} apabila \textit{login} berhasil.
-Terdapat beberapa perubahan yang terjadi pada situs Student Portal UNPAR semenjak skripsi Andrianto Sugiarto, yang mengakibatkan perlunya perubahan (Gambar \ref{fig:3_diff_login}) terhadap implementasi jsoup:
+Terdapat beberapa perubahan yang terjadi pada situs Portal Akademik Mahasiswa semenjak skripsi Andrianto Sugiarto \cite{ifstupor}, yang mengakibatkan perlunya perubahan (Kode \ref{diff_login}) terhadap implementasi jsoup:
 
 \begin{enumerate}
-    \item Menyimpan atribut mahasiswa pada kelas tersebut agar tidak perlu melakukan \textit{request} \textit{login} berulang kali ketika mengakses menu-menu Student Portal UNPAR.
+    \item Menyimpan atribut mahasiswa pada kelas tersebut agar tidak perlu melakukan \textit{request} \textit{login} berulang kali ketika mengakses menu-menu Portal Akademik Mahasiswa.
     \item Menghapus pemanggilan fungsi validateTLSCertificates() dikarenakan sudah \textit{deprecated} \cite{jsoup}.
-    \item Menghapus kueri css "input[name=lt]" dikarenakan kueri tersebut sudah dihapus oleh Student Portal UNPAR.
+    \item Menghapus pengambilan data dengan kueri css "input[name=lt]" dikarenakan kueri tersebut sudah dihapus oleh Portal Akademik Mahasiswa.
     \item Menghapus atribut jsessionid dikarenakan tidak dibutuhkan.
 \end{enumerate}
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=0.6]{Gambar/diff_login.png}
-	\caption{Perubahan Implementasi Jsoup Login} 
-	\label{fig:3_diff_login}
-\end{figure}
+\begin{lstlisting}[language=diff, caption=Perubahan Implementasi Jsoup Login, label=diff_login]
+@@ -38,40 +38,32 @@ public class Scraper {
+        baseConn.execute();
+}
+
+-       public String login(String npm, String pass) throws IOException {
+-           init();
+-           Mahasiswa logged_mhs = new Mahasiswa(npm);
+-           String user = logged_mhs.getEmailAddress();
+-           Connection conn = Jsoup.connect(LOGIN_URL);
+-           conn.data("Submit", "Login");
+-           conn.timeout(0);
+-           conn.validateTLSCertificates(false);
+-           conn.method(Connection.Method.POST);
+-           Response resp = conn.execute();
+-           Document doc = resp.parse();
+-           String lt = doc.select("input[name=lt]").val();
+-           String execution = doc.select("input[name=execution]").val();
+-           String jsessionid = resp.cookie("JSESSIONID");
+-           /* SSO LOGIN */
+-           Connection loginConn = Jsoup.connect(SSO_URL + ";jsessionid=" + jsessionid + "?service=" + LOGIN_URL);
+-           loginConn.cookies(resp.cookies());
+-           loginConn.data("username", user);
+-           loginConn.data("password", pass);
+-           loginConn.data("lt", lt);
+-           loginConn.data("execution", execution);
+-           loginConn.data("_eventId", "submit");
+-           loginConn.data("submit", "");
+-           loginConn.timeout(0);
+-           loginConn.validateTLSCertificates(false);
+-           loginConn.method(Connection.Method.POST);
+-           resp = loginConn.execute();
+-           if (resp.body().contains(user)) {
+-                   Map<String, String> phpsessid = resp.cookies();
+-                   return phpsessid.get("ci_session");
+-           } else {
+-                   return null;
+-           }
+-       }
++       public void login() throws IOException {
++           init();
++           this.mahasiswa = new Mahasiswa(this.npm);
++           String user = this.mahasiswa.getEmailAddress();
++           Connection conn = Jsoup.connect(LOGIN_URL);
++           conn.data("Submit", "Login");
++           conn.timeout(0);
++           conn.method(Connection.Method.POST);
++           Response resp = conn.execute();
++           Document doc = resp.parse();
++           String execution = doc.select("input[name=execution]").val();
++
++           /* SSO LOGIN */
++           Connection loginConn = Jsoup.connect(SSO_URL + "?service=" + LOGIN_URL);
++           loginConn.data("username", user);
++           loginConn.data("password", this.password);
++           loginConn.data("execution", execution);
++           loginConn.data("_eventId", "submit");
++           loginConn.timeout(0);
++           loginConn.method(Connection.Method.POST);
++           resp = loginConn.execute();
++           if (resp.body().contains(user)) {
++               Map<String, String> sessionId = resp.cookies();
++               this.session = sessionId.get("ci_session");
++           }
++       }
+\end{lstlisting}
 
 \subsection{Halaman Utama}
-Pada Halaman Utama Student Portal UNPAR (Gambar \ref{fig:3_home}), terdapat nama lengkap dan foto dari mahasiswa tersebut yang dapat diambil dan digunakan. Nama mahasiswa dapat diambil dengan melakukan kueri css "div[class=namaUser d-none d-lg-block mr-3]". Foto mahasiswa dapat diambil dengan melakukan kueri css "img[class=img-fluid fotoProfil]".
-Terdapat beberapa perubahan (Gambar \ref{fig:3_diff_halaman_utama}) yang perlu dilakukan terhadap skripsi Andrianto Sugiarto:
+Pada Halaman Utama Portal Akademik Mahasiswa (Gambar \ref{fig:3_home}), terdapat nama lengkap dan foto dari mahasiswa tersebut yang dapat diambil dan digunakan. Nama mahasiswa dapat diambil dengan mencari elemen "div" yang memiliki kelas "namaUser d-none d-lg-block mr-3", sehingga kueri css yang dihasilkan adalah "div[class=namaUser d-none d-lg-block mr-3]". Foto mahasiswa dapat diambil dengan mencari elemen "img" yang memiliki kelas "img-fluid fotoProfil", sehingga kueri css yang dihasilkan adalah "img[class=img-fluid fotoProfil]".
+Terdapat beberapa perubahan (Kode \ref{diff_halaman_utama}) yang perlu dilakukan terhadap skripsi Andrianto Sugiarto \cite{ifstupor}:
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.5]{Gambar/home.png}
-	\caption{Halaman Utama Student Portal UNPAR} 
+	\caption{Halaman Utama Portal Akademik Mahasiswa} 
 	\label{fig:3_home}
 \end{figure}
 
 \begin{enumerate}
     \item Menghapus pemanggilan fungsi validateTLSCertificates() dikarenakan sudah \textit{deprecated} \cite{jsoup}.
-    \item Menyimpan atribut mahasiswa pada kelas tersebut agar tidak perlu melakukan \textit{request} \textit{login} berulang kali ketika mengakses menu-menu Student Portal UNPAR.
-    % \item Sebelumnya semester yang sedang dijalani mahasiswa diambil dari menu FRS/PRS, namun karena terdapat perubahan pada Student Portal UNPAR maka semester yang sedang dijalani mahasiswa diambil dari menu Nilai.
+    \item Menyimpan atribut mahasiswa pada kelas tersebut agar tidak perlu melakukan \textit{request} \textit{login} berulang kali ketika mengakses menu-menu Portal Akademik Mahasiswa.
+    % \item Sebelumnya semester yang sedang dijalani mahasiswa diambil dari menu FRS/PRS, namun karena terdapat perubahan pada Portal Akademik Mahasiswa maka semester yang sedang dijalani mahasiswa diambil dari menu Nilai.
+    \item Menghapus pengambilan semester yang sedang dijalani karena tidak akan ditampilkan pada \textit{screen saver}.
 \end{enumerate}
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=0.6]{Gambar/diff_requestNamePhotoTahunSemester.png}
-	\caption{Perubahan Implementasi Jsoup Halaman Utama} 
-	\label{fig:3_diff_halaman_utama}
-\end{figure}
+\begin{lstlisting}[language=diff, caption=Perubahan Implementasi Jsoup Halaman Utama, label=diff_halaman_utama]
+@@ -73,31 +73,20 @@ public class Scraper {
+        }
+}
 
-Pada halaman utama Student Portal UNPAR juga terdapat beberapa menu yang dapat digunakan sebagai sumber data yaitu:
+-       public TahunSemester requestNamePhotoTahunSemester(String phpsessid, Mahasiswa mhs) throws IOException {
++       public void requestNamePhotoTahunSemester(String phpsessid) throws IOException {
+            Connection connection = Jsoup.connect(HOME_URL);
+-           connection.cookie("ci_session", phpsessid);
+-           connection.timeout(0);
+-           connection.validateTLSCertificates(false);
+-           connection.method(Connection.Method.GET);
+-           Response resp = connection.execute();
+-           Document doc = resp.parse();
+-           String nama = doc.select("div[class=namaUser d-none d-lg-block mr-3]").text();
+-           mhs.setNama(nama.substring(0, nama.indexOf(mhs.getEmailAddress())));
+-           Element photo = doc.select("img[class=img-fluid fotoProfil]").first();
+-           String photoPath = photo.attr("src");
+-           mhs.setPhotoPath(photoPath);
+-           connection = Jsoup.connect(NILAI_URL);
+-           connection.cookie("ci_session", phpsessid);
+-           connection.timeout(0);
+-           connection.validateTLSCertificates(false);
+-           connection.method(Connection.Method.GET);
+-           resp = connection.execute();
+-           doc = resp.parse();
+-           Elements options = doc.getElementsByAttributeValue("name", "dropdownSemester").first().children();
+-           String curr_sem = options.last().val();
+-           curr_sem = curr_sem.substring(2,4).concat(curr_sem.substring(5));
+-           TahunSemester currTahunSemester = new TahunSemester(curr_sem);
+-           return currTahunSemester;
++           connection.cookie("ci_session", phpsessid);
++           connection.timeout(0);
++           connection.method(Connection.Method.GET);
++           Response resp = connection.execute();
++
++           Document doc = resp.parse();
++           String nama = doc.select("div[class=namaUser d-none d-lg-block mr-3]").text();
++           this.mahasiswa.setNama(nama.substring(0, nama.indexOf(this.mahasiswa.getEmailAddress())));
++
++           Element photo = doc.select("img[class=img-fluid fotoProfil]").first();
++           String photoPath = photo.attr("src");
++           this.mahasiswa.setPhotoPath(photoPath);
+        }
+\end{lstlisting}
+
+Pada halaman utama Portal Akademik Mahasiswa juga terdapat beberapa menu yang dapat digunakan sebagai sumber data yaitu:
 
 \subsection{Profil}
-    Menu Profil merupakan halaman yang menampilkan data diri mahasiswa (Gambar \ref{fig:3_profil}). Pada halaman ini tempat, dan tanggal lahir mahasiswa akan diambil untuk ditampilkan pada \textit{screen saver}. Implementasi jsoup tersebut belum diimplementasikan pada skripsi Andrianto Sugiarto, sehingga perlu dilakukan penambahan fitur untuk mengambil data tersebut. Tempat, dan tanggal lahir mahasiswa dapat diambil dengan melakukan kueri css "div[class=offset-md-1 col-md-10 col-12 headerWrapper my-0 border-bottom]".
+    Menu Profil merupakan halaman yang menampilkan data diri mahasiswa (Gambar \ref{fig:3_profil}). Pada halaman ini tempat, dan tanggal lahir mahasiswa akan diambil untuk ditampilkan pada \textit{screen saver}. Implementasi jsoup tersebut belum diimplementasikan pada skripsi Andrianto Sugiarto \cite{ifstupor}, sehingga perlu dilakukan penambahan fitur untuk mengambil data tersebut. Tempat, dan tanggal lahir mahasiswa dapat diambil dengan mencari elemen "div" yang memiliki kelas "offset-md-1 col-md-10 col-12 headerWrapper my-0 border-bottom", sehingga kueri css yang dihasilkan adalah "div[class=offset-md-1 col-md-10 col-12 headerWrapper my-0 border-bottom]".
     \begin{figure}[H]
     	\centering
     	\includegraphics[scale=0.45]{Gambar/profil.png}
@@ -107,22 +207,103 @@ Pada halaman utama Student Portal UNPAR juga terdapat beberapa menu yang dapat d
         	\caption{Halaman Daftar Perkembangan Studi (2)} 
         	\label{fig:3_dps_2}
         \end{figure}
-        Data yang dapat dimanfaatkan dari halaman ini adalah IPK, IPS, jumlah sks yang lulus, dan jumlah sks yang ditempuh. Namun, pada SIAModels sudah terdapat \textit{method} yang melakukan kalkulasi untuk mendapatkan data-data tersebut, sehingga tidak perlu dilakukan pengambilan data menggunakan jsoup. Untuk dapat memanfaatkan \textit{method} tersebut diperlukan seluruh riwayat mata kuliah dan nilai yang pernah ditempuh mahasiswa, sehingga perlu dilakukan pengambilan data menggunakan jsoup.  Implementasi pengambilan data tersebut sudah diimplementasikan sebelumnya pada skripsi Andrianto Sugiarto. Proses dari pengambilan data tersebut yaitu:
+        Data yang dapat dimanfaatkan dari halaman ini adalah IPK, IPS, jumlah sks yang lulus, dan jumlah sks yang ditempuh. Namun, pada SIAModels sudah terdapat \textit{method} yang melakukan kalkulasi untuk mendapatkan data-data tersebut, sehingga tidak perlu dilakukan pengambilan data menggunakan jsoup. Untuk dapat memanfaatkan \textit{method} tersebut diperlukan seluruh riwayat mata kuliah dan nilai yang pernah ditempuh mahasiswa, sehingga perlu dilakukan pengambilan data menggunakan jsoup.  Implementasi pengambilan data tersebut sudah diimplementasikan sebelumnya pada skripsi Andrianto Sugiarto \cite{ifstupor}. Proses dari pengambilan data tersebut yaitu:
         \begin{itemize}
-            \item Mengambil data nilai berdasarkan tahun dan semester dengan melakukan kueri css menggunakan kueri ``select\#dropdownSemester.custom-select.mr-3''.
-            \item Dikarenakan perlunya melakukan koneksi berkali-kali sebanyak semester yang telah ditempuh mahasiswa, sehingga dibutuhkan waktu yang tidak sebentar. Karena pada halaman nilai tidak dapat menampilkan seluruh semester seperti Student Portal yang lama, sehingga untuk mengatasi masalah ini dibuat menjadi paralel. Untuk itu dibuat kelas yang mengimplementasikan kelas \textit{interface} \texttt{Runnable}, yaitu kelas \texttt{MultipleRequest}. Kelas inilah yang melakukan koneksi ke setiap semester yang telah ditempuh mahasiswa, dan mengambil data-data tersebut.
+            \item Mengambil data nilai berdasarkan tahun dan semester dengan mencari elemen "select" yang memiliki id "dropdownSemester", dan memiliki kelas "custom-select mr-3" sehingga kueri css yang dihasilkan adalah "select\#dropdownSemester.custom-select.mr-3".
+            \item Dikarenakan perlunya melakukan koneksi berkali-kali sebanyak semester yang telah ditempuh mahasiswa, sehingga dibutuhkan waktu yang tidak sebentar. Karena pada halaman nilai tidak dapat menampilkan seluruh semester seperti Portal Akademik Mahasiswa yang lama, sehingga untuk mengatasi masalah ini dibuat menjadi paralel. Untuk itu dibuat kelas yang mengimplementasikan kelas \textit{interface} \texttt{Runnable}, yaitu kelas \texttt{MultipleRequest}. Kelas inilah yang melakukan koneksi ke setiap semester yang telah ditempuh mahasiswa, dan mengambil data-data tersebut.
         \end{itemize}
-        Namun, terdapat beberapa perubahan (Gambar \ref{fig:3_diff_halaman_dps}) yang perlu dilakukan:
+        Namun, terdapat beberapa perubahan (Kode \ref{diff_halaman_dps}) yang perlu dilakukan:
         \begin{enumerate}
             \item Menghapus pemanggilan fungsi validateTLSCertificates() dikarenakan sudah \textit{deprecated} \cite{jsoup}.
             \item Indeks yang digunakan untuk melakukan keri css berubah, sehingga untuk mengantisipasi tersebut, indeks yang digunakan menjadi \textit{size} dari kueri css dikurangi 1.
         \end{enumerate}
-        \begin{figure}[H]
-        	\centering
-        	\includegraphics[scale=0.4]{Gambar/diff_multipleRequest.png}
-        	\caption{Perubahan Implementasi Jsoup Halaman Daftar Perkembangan Studi} 
-        	\label{fig:3_diff_halaman_dps}
-        \end{figure}
+        
+        
+        \begin{lstlisting}[language=diff, caption=Perubahan Implementasi Jsoup Halaman Daftar Perkembangan Studi, label=diff_halaman_dps]
+@@ -175,7 +175,7 @@ public class Scraper {
+        return jadwalList;
+}
+
+-   public void requestNilai(String phpsessid, Mahasiswa logged_mhs) throws IOException, InterruptedException {
++       public void requestNilai(String phpsessid) throws IOException, InterruptedException {
+            Connection connection = Jsoup.connect(NILAI_URL);
+-           connection.cookie("ci_session", phpsessid);
+-           connection.timeout(0);
+-           connection.validateTLSCertificates(false);
+-           connection.method(Connection.Method.POST);
+-           Response resp = connection.execute();
+-           Document doc = resp.parse();
++           connection.cookie("ci_session", phpsessid);
++           connection.timeout(0);
++           connection.method(Connection.Method.POST);
++           Response resp = connection.execute();
++           Document doc = resp.parse();
+
+-           Elements dropdownSemester = doc.select("#dropdownSemester option");
+-           ArrayList<String> listSemester = new ArrayList<String>();
+-           for (Element semester : dropdownSemester){
+-                   listSemester.add(semester.attr("value"));
+-           }
++           Elements dropdownSemester = doc.select("#dropdownSemester option");
++           ArrayList<String> listSemester = new ArrayList<String>();
++           for (Element semester : dropdownSemester){
++               listSemester.add(semester.attr("value"));
++           }
+
+-           Thread[] threadUrl = new Thread[listSemester.size()-1];
+-           for(int i = 0; i < listSemester.size()-1; i++){
+-               threadUrl[i] = new Thread(new MultipleRequest(i, listSemester, NILAI_URL, phpsessid, logged_mhs));
+-               threadUrl[i].start();
+-           }
+-           for(int i = 0; i < listSemester.size()-1; i++){
+-               threadUrl[i].join();
+-           }
+-           Collections.sort(logged_mhs.getRiwayatNilai(), new Comparator<Nilai>() {
+-                   @Override
+-                   public int compare(Nilai o1, Nilai o2) {
+-                           if (o1.getTahunAjaran() < o2.getTahunAjaran()) {
+-                                   return -1;
+-                           }
+-                           if (o1.getTahunAjaran() > o2.getTahunAjaran()) {
+-                                   return + 1;
+-                           }
+-                           if (o1.getSemester().getOrder() < o2.getSemester().getOrder()) {
+-                                   return -1;
+-                           }
+-                           if (o1.getSemester().getOrder() > o2.getSemester().getOrder()) {
+-                                   return +1;
+-                           }
+-                           return 0;
+-                   }
+-           });
++           Thread[] threadUrl = new Thread[listSemester.size()-1];
++           for(int i = 0; i < listSemester.size()-1; i++){
++                threadUrl[i] = new Thread(new MultipleRequest(i, listSemester, NILAI_URL, phpsessid, this.mahasiswa));
++                threadUrl[i].start();
++           }
++           for(int i = 0; i < listSemester.size()-1; i++){
++                threadUrl[i].join();
++           }
++           Collections.sort(this.mahasiswa.getRiwayatNilai(), new Comparator<Nilai>() {
++                @Override
++                public int compare(Nilai o1, Nilai o2) {
++                        if (o1.getTahunAjaran() < o2.getTahunAjaran()) {
++                                return -1;
++                        }
++                        if (o1.getTahunAjaran() > o2.getTahunAjaran()) {
++                                return + 1;
++                        }
++                        if (o1.getSemester().getOrder() < o2.getSemester().getOrder()) {
++                                return -1;
++                        }
++                        if (o1.getSemester().getOrder() > o2.getSemester().getOrder()) {
++                                return +1;
++                        }
++                        return 0;
++                }
++           });
+        }
+        \end{lstlisting}
         
         \item Riwayat Indeks Prestasi\\
        Submenu ini menampilkan seluruh riwayat Indeks Prestasi Semester (IPS) dan Indeks Prestasi Kumulatif (IPK) setiap semester mahasiswa (Gambar \ref{fig:3_rip}).
@@ -135,13 +316,13 @@ Pada halaman utama Student Portal UNPAR juga terdapat beberapa menu yang dapat d
         \end{figure}
         
         \item Nilai TOEFL\\
-       Submenu ini menampilkan seluruh riwayat skor dan detail skor \textit{Test of English as Foreign Language} (TOEFL) yang pernah ditempuh mahasiswa (Gambar \ref{fig:3_toefl}). Riwayat skor tersebut dapat diambil dengan melakukan kueri css menggunakan kueri “table”, “tbody”, dan “tr”.
-       Terdapat beberapa perubahan yang terjadi pada halaman TOEFL semenjak skripsi Andrianto Sugiarto, yang mengakibatkan perlunya perubahan (Gambar \ref{fig:3_diff_toefl}) terhadap implementasi jsoup:
+       Submenu ini menampilkan seluruh riwayat skor dan detail skor \textit{Test of English as Foreign Language} (TOEFL) yang pernah ditempuh mahasiswa (Gambar \ref{fig:3_toefl}). Riwayat skor tersebut dapat diambil dengan mencari elemen "table" yang memiliki elemen "tbody" didalamnya, serta memiliki elemen "tr" didalam elemen "tbody".
+       Terdapat beberapa perubahan yang terjadi pada halaman TOEFL semenjak skripsi Andrianto Sugiarto \cite{ifstupor}, yang mengakibatkan perlunya perubahan (Kode \ref{diff_toefl}) terhadap implementasi jsoup:
 
         \begin{enumerate}
-            \item Menyimpan atribut mahasiswa pada kelas tersebut agar tidak perlu melakukan \textit{request} \textit{login} berulang kali ketika mengakses menu-menu Student Portal UNPAR.
+            \item Menyimpan atribut mahasiswa pada kelas tersebut agar tidak perlu melakukan \textit{request} \textit{login} berulang kali ketika mengakses menu-menu Portal Akademik Mahasiswa.
             \item Menghapus pemanggilan fungsi validateTLSCertificates() dikarenakan sudah \textit{deprecated} \cite{jsoup}.
-            \item Perubahan format tanggal TOEFL pada Student Portal UNPAR menjadi dd-mm-yyyy.
+            \item Perubahan format tanggal TOEFL pada Portal Akademik Mahasiswa menjadi dd-mm-yyyy.
         \end{enumerate}
        
        \begin{figure}[H]
@@ -151,14 +332,96 @@ Pada halaman utama Student Portal UNPAR juga terdapat beberapa menu yang dapat d
         	\label{fig:3_toefl}
         \end{figure}
         
-        \begin{figure}[H]
-        	\centering
-        	\includegraphics[scale=0.52]{Gambar/diff_toefl.png}
-        	\caption{Perubahan Implementasi Jsoup TOEFL} 
-        	\label{fig:3_diff_toefl}
-        \end{figure}
-        
-        
-    \end{itemize}
 
+        \begin{lstlisting}[language=diff, caption=Perubahan Implementasi Jsoup TOEFL, label=diff_toefl]
+@@ -218,68 +218,29 @@ public class Scraper {
+        });
+}
+
+-       public void requestNilaiTOEFL(String phpsessid, Mahasiswa mahasiswa) throws IOException {
+-           SortedMap<LocalDate, Integer> nilaiTerakhirTOEFL = new TreeMap<>();
+-           Connection connection = Jsoup.connect(TOEFL_URL);
+-           connection.cookie("ci_session", phpsessid);
+-           connection.timeout(0);
+-           connection.validateTLSCertificates(false);
+-           connection.method(Connection.Method.POST);
+-           Response resp = connection.execute();
+-           Document doc = resp.parse();
+-           Elements nilaiTOEFL = doc.select("table").select("tbody").select("tr");
+-           if (!nilaiTOEFL.isEmpty()) {
+-               for (int i = 0; i < nilaiTOEFL.size(); i++) {
+-                   Element nilai = nilaiTOEFL.get(i).select("td").get(5);
+-                   Element tgl_toefl = nilaiTOEFL.get(i).select("td").get(1);
+-                   String[] tanggal = tgl_toefl.text().split(" ");
+-                   switch (tanggal[1].toLowerCase()) {
+-                   case "januari":
+-                       tanggal[1] = "1";
+-                       break;
+-                   case "februari":
+-                       tanggal[1] = "2";
+-                       break;
+-                   case "maret":
+-                       tanggal[1] = "3";
+-                       break;
+-                   case "april":
+-                       tanggal[1] = "4";
+-                       break;
+-                   case "mei":
+-                       tanggal[1] = "5";
+-                       break;
+-                   case "juni":
+-                       tanggal[1] = "6";
+-                       break;
+-                   case "juli":
+-                       tanggal[1] = "7";
+-                       break;
+-                   case "agustus":
+-                       tanggal[1] = "8";
+-                       break;
+-                   case "september":
+-                       tanggal[1] = "9";
+-                       break;
+-                   case "oktober":
+-                       tanggal[1] = "10";
+-                       break;
+-                   case "november":
+-                       tanggal[1] = "11";
+-                       break;
+-                   case "desember":
+-                       tanggal[1] = "12";
+-                       break;
+-                   }
++       public void requestNilaiTOEFL(String phpsessid) throws IOException {
++           SortedMap<LocalDate, Integer> nilaiTerakhirTOEFL = new TreeMap<>();
++           Connection connection = Jsoup.connect(TOEFL_URL);
++           connection.cookie("ci_session", phpsessid);
++           connection.timeout(0);
++           connection.method(Connection.Method.POST);
++           Response resp = connection.execute();
++           Document doc = resp.parse();
++           Elements nilaiTOEFL = doc.select("table").select("tbody").select("tr");
++           if (!nilaiTOEFL.isEmpty()) {
++               for (int i = 0; i < nilaiTOEFL.size(); i++) {
++                   Element nilai = nilaiTOEFL.get(i).select("td").get(5);
++                   Element tgl_toefl = nilaiTOEFL.get(i).select("td").get(1);
++                   String[] tanggal = tgl_toefl.text().split("-");
+
+-                   LocalDate localDate = LocalDate.of(Integer.parseInt(tanggal[2]), Integer.parseInt(tanggal[1]),
+-                                       Integer.parseInt(tanggal[0]));
++                   LocalDate localDate = LocalDate.of(Integer.parseInt(tanggal[2]), Integer.parseInt(tanggal[1]),
++                                       Integer.parseInt(tanggal[0]));
+
+-                   nilaiTerakhirTOEFL.put(localDate, Integer.parseInt(nilai.text()));
+-               }
+-           }
+-           mahasiswa.setNilaiTOEFL(nilaiTerakhirTOEFL);
+-       }
++                   nilaiTerakhirTOEFL.put(localDate, Integer.parseInt(nilai.text()));
++               }
++           }
++           this.mahasiswa.setNilaiTOEFL(nilaiTerakhirTOEFL);
++       }
+        \end{lstlisting}
+
+    \end{itemize}
 
