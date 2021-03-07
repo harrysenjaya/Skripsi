@@ -6,7 +6,7 @@ Pada bab ini akan dijelaskan mengenai analisis pemanfaatan jsoup untuk mengambil
 \section{Analisis Pemanfaatan Jsoup}
 Untuk mengambil data mahasiswa, diperlukan sumber data mahasiswa tersebut. Sumber data mahasiswa tersebut dapat diperoleh melalui Portal Akademik Mahasiswa. Portal Akademik Mahasiswa merupakan sebuah situs yang diperuntukkan bagi mahasiswa untuk mendapatkan informasi mengenai profil dan kegiatan akademik mahasiswa tersebut. Mahasiswa dapat mengakses Portal Akademik Mahasiswa melalui \textit{URL} \url{https://studentportal.unpar.ac.id/}. Untuk mengakses Portal Akademik Mahasiswa, mahasiswa harus melakukan \textit{login} menggunakan \textit{email} dan \textit{password} mahasiswa tersebut.
 
-Aplikasi \textit{screen saver} akan melakukan \textit{http request} ke Portal Akademik Mahasiswa untuk mendapatkan data untuk setiap kebutuhan dari masing-masing fitur yang ada. Pengambilan data secara langsung dari Portal Akademik Mahasiswa dilakukan menggunakan \textit{library} jsoup. Beberapa implementasi pemanfaatan jsoup untuk mengambil data-data tersebut sudah diimplementasikan pada skripsi Andrianto Sugiarto \cite{ifstupor} sebelumnya. Data yang telah didapat dari Portal Akademik Mahasiswa kemudian diolah ke dalam SIAModels, dan ditampilkan sesuai dengan fitur-fitur yang ada pada aplikasi Mahasiswa Wali \textit{Screen Saver}.
+Aplikasi \textit{screensaver} akan melakukan \textit{http request} ke Portal Akademik Mahasiswa untuk mendapatkan data untuk setiap kebutuhan dari masing-masing fitur yang ada. Pengambilan data secara langsung dari Portal Akademik Mahasiswa dilakukan menggunakan \textit{library} jsoup. Beberapa implementasi pemanfaatan jsoup untuk mengambil data-data tersebut sudah diimplementasikan pada skripsi Andrianto Sugiarto \cite{ifstupor} sebelumnya. Data yang telah didapat dari Portal Akademik Mahasiswa kemudian diolah ke dalam SIAModels, dan ditampilkan sesuai dengan fitur-fitur yang ada pada aplikasi Mahasiswa Wali \textit{Screensaver}.
 
 \subsection{\textit{Login}}
 Halaman \textit{Login} (Gambar \ref{fig:3_login} dan \ref{fig:3_login_2}) merupakan halaman dimana mahasiswa memasukkan \textit{email} dan \textit{password} untuk mengakses menu-menu Portal Akademik Mahasiswa.
@@ -117,7 +117,7 @@ Terdapat beberapa perubahan (Kode \ref{diff_halaman_utama}) yang perlu dilakukan
     \item Menghapus pemanggilan fungsi validateTLSCertificates() dikarenakan sudah \textit{deprecated} \cite{jsoup}.
     \item Menyimpan atribut mahasiswa pada kelas tersebut agar tidak perlu melakukan \textit{request} \textit{login} berulang kali ketika mengakses menu-menu Portal Akademik Mahasiswa.
     % \item Sebelumnya semester yang sedang dijalani mahasiswa diambil dari menu FRS/PRS, namun karena terdapat perubahan pada Portal Akademik Mahasiswa maka semester yang sedang dijalani mahasiswa diambil dari menu Nilai.
-    \item Menghapus pengambilan semester yang sedang dijalani karena tidak akan ditampilkan pada \textit{screen saver}.
+    \item Menghapus pengambilan semester yang sedang dijalani karena tidak akan ditampilkan pada \textit{screensaver}.
 \end{enumerate}
 
 \begin{lstlisting}[language=diff, caption=Perubahan Implementasi Jsoup Halaman Utama, label=diff_halaman_utama]
@@ -169,7 +169,7 @@ Terdapat beberapa perubahan (Kode \ref{diff_halaman_utama}) yang perlu dilakukan
 Pada halaman utama Portal Akademik Mahasiswa juga terdapat beberapa menu yang dapat digunakan sebagai sumber data yaitu:
 
 \subsection{Profil}
-    Menu Profil merupakan halaman yang menampilkan data diri mahasiswa (Gambar \ref{fig:3_profil}). Pada halaman ini tempat, dan tanggal lahir mahasiswa akan diambil untuk ditampilkan pada \textit{screen saver}. Implementasi jsoup tersebut belum diimplementasikan pada skripsi Andrianto Sugiarto \cite{ifstupor}, sehingga perlu dilakukan penambahan fitur untuk mengambil data tersebut. Tempat, dan tanggal lahir mahasiswa dapat diambil dengan mencari elemen "div" yang memiliki kelas "offset-md-1 col-md-10 col-12 headerWrapper my-0 border-bottom", sehingga kueri css yang dihasilkan adalah "div[class=offset-md-1 col-md-10 col-12 headerWrapper my-0 border-bottom]".
+    Menu Profil merupakan halaman yang menampilkan data diri mahasiswa (Gambar \ref{fig:3_profil}). Pada halaman ini tempat, dan tanggal lahir mahasiswa akan diambil untuk ditampilkan pada \textit{screensaver}. Implementasi jsoup tersebut belum diimplementasikan pada skripsi Andrianto Sugiarto \cite{ifstupor}, sehingga perlu dilakukan penambahan fitur untuk mengambil data tersebut. Tempat, dan tanggal lahir mahasiswa dapat diambil dengan mencari elemen "div" yang memiliki kelas "offset-md-1 col-md-10 col-12 headerWrapper my-0 border-bottom", sehingga kueri css yang dihasilkan adalah "div[class=offset-md-1 col-md-10 col-12 headerWrapper my-0 border-bottom]".
     \begin{figure}[H]
     	\centering
     	\includegraphics[scale=0.45]{Gambar/profil.png}
@@ -183,7 +183,7 @@ Pada halaman utama Portal Akademik Mahasiswa juga terdapat beberapa menu yang da
     \begin{itemize}
         \item Nilai per Semester\\
         Submenu ini menampilkan informasi nilai per semester. Mahasiswa dapat melihat nilai sesuai dengan semester yang dipilih (Gambar \ref{fig:3_nilai_per_semester}). 
-        % Semester yang sedang diambil oleh mahasiswa dapat digunakan untuk ditampilkan pada \textit{screen saver}. Pengambilan semester tersebut dilakukan dengan mencari elemen dengan nama "dropdownSemester". 
+        % Semester yang sedang diambil oleh mahasiswa dapat digunakan untuk ditampilkan pada \textit{screensaver}. Pengambilan semester tersebut dilakukan dengan mencari elemen dengan nama "dropdownSemester". 
         
         \begin{figure}[H]
         	\centering
