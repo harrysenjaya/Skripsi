@@ -4,9 +4,10 @@
 Pada bab ini akan dijelaskan mengenai analisis pemanfaatan jsoup untuk mengambil data mahasiswa.
 
 \section{Analisis Pemanfaatan Jsoup}
+\label{analisisPemanfaatanJsoup}
 Untuk mengambil data mahasiswa, diperlukan sumber data mahasiswa tersebut. Sumber data mahasiswa tersebut dapat diperoleh melalui Portal Akademik Mahasiswa. Portal Akademik Mahasiswa merupakan sebuah situs yang diperuntukkan bagi mahasiswa untuk mendapatkan informasi mengenai profil dan kegiatan akademik mahasiswa tersebut. Mahasiswa dapat mengakses Portal Akademik Mahasiswa melalui \textit{URL} \url{https://studentportal.unpar.ac.id/}. Untuk mengakses Portal Akademik Mahasiswa, mahasiswa harus melakukan \textit{login} menggunakan \textit{email} dan \textit{password} mahasiswa tersebut.
 
-Aplikasi \textit{screensaver} akan melakukan \textit{http request} ke Portal Akademik Mahasiswa untuk mendapatkan data untuk setiap kebutuhan dari masing-masing fitur yang ada. Pengambilan data secara langsung dari Portal Akademik Mahasiswa dilakukan menggunakan \textit{library} jsoup. Beberapa implementasi pemanfaatan jsoup untuk mengambil data-data tersebut sudah diimplementasikan pada skripsi Andrianto Sugiarto \cite{ifstupor} sebelumnya. Data yang telah didapat dari Portal Akademik Mahasiswa kemudian diolah ke dalam SIAModels, dan ditampilkan sesuai dengan fitur-fitur yang ada pada aplikasi Mahasiswa Wali \textit{Screensaver}.
+Aplikasi \textit{screensaver} akan melakukan \textit{http request} ke Portal Akademik Mahasiswa untuk mendapatkan data untuk setiap kebutuhan dari masing-masing fitur yang ada, dimana fitur-fitur yang terdapat dalam aplikasi Mahasiswa Wali \textit{Screensaver} adalah informasi umum mengenai mahasiswa, serta prestasi akademik mahasiswa. Pengambilan data secara langsung dari Portal Akademik Mahasiswa dilakukan menggunakan \textit{library} jsoup. Beberapa implementasi pemanfaatan jsoup untuk mengambil data-data tersebut sudah diimplementasikan pada skripsi Andrianto Sugiarto \cite{ifstupor} sebelumnya. Data yang telah didapat dari Portal Akademik Mahasiswa kemudian diolah ke dalam SIAModels, dan ditampilkan sesuai dengan fitur-fitur yang ada pada aplikasi Mahasiswa Wali \textit{Screensaver}.
 
 \subsection{\textit{Login}}
 Halaman \textit{Login} (Gambar \ref{fig:3_login} dan \ref{fig:3_login_2}) merupakan halaman dimana mahasiswa memasukkan \textit{email} dan \textit{password} untuk mengakses menu-menu Portal Akademik Mahasiswa.
@@ -169,14 +170,119 @@ Terdapat beberapa perubahan (Kode \ref{diff_halaman_utama}) yang perlu dilakukan
 Pada halaman utama Portal Akademik Mahasiswa juga terdapat beberapa menu yang dapat digunakan sebagai sumber data yaitu:
 
 \subsection{Profil}
-    Menu Profil merupakan halaman yang menampilkan data diri mahasiswa (Gambar \ref{fig:3_profil}). Pada halaman ini tempat, dan tanggal lahir mahasiswa akan diambil untuk ditampilkan pada \textit{screensaver}. Implementasi jsoup tersebut belum diimplementasikan pada skripsi Andrianto Sugiarto \cite{ifstupor}, sehingga perlu dilakukan penambahan fitur untuk mengambil data tersebut. Tempat, dan tanggal lahir mahasiswa dapat diambil dengan mencari elemen "div" yang memiliki kelas "offset-md-1 col-md-10 col-12 headerWrapper my-0 border-bottom", sehingga kueri css yang dihasilkan adalah "div[class=offset-md-1 col-md-10 col-12 headerWrapper my-0 border-bottom]".
+    Menu Profil merupakan halaman yang menampilkan data diri mahasiswa (Gambar \ref{fig:3_profil}). Pada halaman ini tanggal lahir mahasiswa akan diambil untuk ditampilkan pada \textit{screensaver}. Implementasi jsoup tersebut belum diimplementasikan pada skripsi Andrianto Sugiarto \cite{ifstupor}, sehingga perlu dilakukan penambahan fitur untuk mengambil data tersebut. Tanggal lahir mahasiswa dapat diambil dengan mencari elemen "div" yang memiliki kelas "offset-md-1 col-md-10 col-12 headerWrapper my-0 border-bottom", sehingga kueri css yang dihasilkan adalah "div[class=offset-md-1 col-md-10 col-12 headerWrapper my-0 border-bottom]".
     \begin{figure}[H]
     	\centering
     	\includegraphics[scale=0.45]{Gambar/profil.png}
     	\caption{Halaman Profil} 
     	\label{fig:3_profil}
     \end{figure}
+
+\subsection{Jadwal}
+    Menu Jadwal terdiri dari beberapa submenu:
+		\begin{itemize}
+		    \item Kehadiran\\
+		    Submenu ini berfungsi untuk menandakan kehadiran mahasiswa di suatu mata kuliah pada hari dimana mahasiswa tersebut mengakses halaman tersebut (Gambar \ref{fig:3_kehadiran}).
+		    \begin{figure}[H]
+    			\centering
+    			\includegraphics[scale=0.45]{Gambar/jadwal_kehadiran.png}
+    			\caption{Halaman Kehadiran}
+    			\label{fig:3_kehadiran}
+			\end{figure}
+			\item Ketidakhadiran\\
+		    Submenu ini berfungsi untuk mengunggah surat sakit atau surat izin mahasiswa. (Gambar \ref{fig:3_ketidakhadiran}).
+		    \begin{figure}[H]
+    			\centering
+    			\includegraphics[scale=0.45]{Gambar/jadwal_ketidakhadiran.png}
+    			\caption{Halaman Ketidakhadiran}
+    			\label{fig:3_ketidakhadiran}
+			\end{figure}
+			\item Kuliah \\
+			Submenu ini berisi tentang jadwal kuliah yang dapat disusun per semester dan terdapat 2 tampilan, yaitu tabel waktu (Gambar \ref{fig:3_jadwal_kuliah}) dan tabel biasa (Gambar \ref{fig:3_jadwal_kuliah_table}).
+			\begin{figure}[H]
+    			\centering
+    			\includegraphics[scale=0.45]{Gambar/jadwal_kuliah.png}
+    			\caption{Halaman Jadwal Kuliah Dalam Tabel Waktu}
+    			\label{fig:3_jadwal_kuliah}
+			\end{figure}
+			\begin{figure}[H]
+    			\centering
+    			\includegraphics[scale=0.45]{Gambar/jadwal_kuliah_table.png}
+    			\caption{Halaman Jadwal Kuliah Tabel}
+    			\label{fig:3_jadwal_kuliah_table}
+			\end{figure}
+			\item UTS \\
+			Submenu ini berisi tentang UTS yang dapat disusun per semester (Gambar \ref{fig:3_uts}).
+			\begin{figure}[H]
+    			\centering
+    			\includegraphics[scale=0.45]{Gambar/jadwal_uts.png}
+    			\caption{Halaman UTS}
+    			\label{fig:3_uts}
+			\end{figure}
+			\item UAS \\
+			Submenu ini berisi tentang UAS yang dapat disusun per semester (Gambar \ref{fig:3_uas}).
+			\begin{figure}[H]
+    			\centering
+    			\includegraphics[scale=0.45]{Gambar/jadwal_uas.png}
+    			\caption{Halaman UAS}
+    			\label{fig:3_uas}
+			\end{figure}
+			\item MKU \\
+			Submenu ini menampilkan seluruh jadwal Mata Kuliah Umum (MKU) yang memberikan informasi tentang kelas-kelas yang dibuka oleh Pusat Kajian Humaniora (PKH) (Gambar \ref{fig:3_mku}).
+			\begin{figure}[H]
+    			\centering
+    			\includegraphics[scale=0.45]{Gambar/jadwal_mku.png}
+    			\caption{Halaman MKU}
+    			\label{fig:3_mku}
+			\end{figure}
+			\item Kalender Akademik \\
+			Submenu ini menampilkan informasi mengenai kalender akademik UNPAR (Gambar \ref{fig:3_kalender_akademik}).
+			\begin{figure}[H]
+    			\centering
+    			\includegraphics[scale=0.45]{Gambar/jadwal_kalenderakademik.png}
+    			\caption{Halaman Kalender Akademik}
+    			\label{fig:3_kalender_akademik}
+			\end{figure}
+			\item Daftar Kehadiran \\
+			Submenu ini menampilkan informasi mengenai daftar kehadiran mahasiswa pada setiap mata kuliah yang dapat disusun per semester (Gambar \ref{fig:3_daftar_kehadiran}).
+			\begin{figure}[H]
+    			\centering
+    			\includegraphics[scale=0.45]{Gambar/jadwal_daftarkehadiran.png}
+    			\caption{Halaman Daftar Kehadiran}
+    			\label{fig:3_daftar_kehadiran}
+			\end{figure}
+		\end{itemize}
     
+\subsection{Pembayaran}
+    Menu ini berfungsi untuk melihat data tagihan pembayaran uang kuliah, riwayat pembayaran, dan keterangan cara-cara pembayaran uang kuliah yang dapat disusun per semester (Gambar \ref{fig:3_pembayaran}).
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.45]{Gambar/pembayaran.png}
+		\caption{Halaman Pembayaran}
+		\label{fig:3_pembayaran}
+	\end{figure}  
+
+\subsection{FRS/PRS}
+    Menu FRS/PRS terdiri dari beberapa submenu:
+% 		\begin{itemize}
+% 			\item FRS/PRS \\
+% 			Digunakan sebagai formulir pengisian rencana studi awal (FRS), perubahan rencana studi(PRS) dan menampilkan informasi mata kuliah yang telah diambil saat FRS atau PRS (Gambar \ref{fig:studentportal_frs_prs}).
+% 			\begin{figure}[H]
+% 				\centering
+% 				\includegraphics[scale=0.3]{Gambar/studentportal_frs_prs}
+% 				\caption{Tampilan FRS/PRS}
+% 				\label{fig:studentportal_frs_prs}
+% 			\end{figure}
+% 			\item Ubah Jadwal MKU \\
+% 			Mahasiswa dapat mengubah jadwal kelas MKU (Gambar \ref{fig:studentportal_ubah_jadwal_mku}).
+% 			\begin{figure}[H]
+% 				\centering
+% 				\includegraphics[scale=0.3]{Gambar/studentportal_ubah_jadwal_mku}
+% 				\caption{Tampilan Ubah Jadwal MKU}
+% 				\label{fig:studentportal_ubah_jadwal_mku}
+% 			\end{figure}
+% 		\end{itemize}
+	
 \subsection{Nilai}
     Menu Nilai terdiri dari beberapa submenu:
     
@@ -187,7 +293,7 @@ Pada halaman utama Portal Akademik Mahasiswa juga terdapat beberapa menu yang da
         
         \begin{figure}[H]
         	\centering
-        	\includegraphics[scale=0.4]{Gambar/nilai_per_semester.png}
+        	\includegraphics[scale=0.45]{Gambar/nilai_per_semester.png}
         	\caption{Halaman Nilai Per Semester} 
         	\label{fig:3_nilai_per_semester}
         \end{figure}
@@ -196,14 +302,14 @@ Pada halaman utama Portal Akademik Mahasiswa juga terdapat beberapa menu yang da
         Submenu ini menampilkan seluruh riwayat mata kuliah dan nilai yang pernah ditempuh mahasiswa (Gambar \ref{fig:3_dps_1}). Submenu ini juga menampilkan statistik sks, nilai, dan indeks prestasi mahasiswa (Gambar \ref{fig:3_dps_2}).
         \begin{figure}[H]
         	\centering
-        	\includegraphics[scale=0.4]{Gambar/nilai_dps_1.png}
+        	\includegraphics[scale=0.45]{Gambar/nilai_dps_1.png}
         	\caption{Halaman Daftar Perkembangan Studi (1)} 
         	\label{fig:3_dps_1}
         \end{figure}
         
          \begin{figure}[H]
         	\centering
-        	\includegraphics[scale=0.4]{Gambar/nilai_dps_2.png}
+        	\includegraphics[scale=0.45]{Gambar/nilai_dps_2.png}
         	\caption{Halaman Daftar Perkembangan Studi (2)} 
         	\label{fig:3_dps_2}
         \end{figure}
@@ -310,7 +416,7 @@ Pada halaman utama Portal Akademik Mahasiswa juga terdapat beberapa menu yang da
        
        \begin{figure}[H]
         	\centering
-        	\includegraphics[scale=0.4]{Gambar/nilai_rip.png}
+        	\includegraphics[scale=0.45]{Gambar/nilai_rip.png}
         	\caption{Halaman Riwayat Indeks Prestasi} 
         	\label{fig:3_rip}
         \end{figure}
@@ -424,4 +530,39 @@ Pada halaman utama Portal Akademik Mahasiswa juga terdapat beberapa menu yang da
         \end{lstlisting}
 
     \end{itemize}
+    
+\subsection{Angket}
+    Menu Angket merupakan halaman dimana mahasiswa diminta untuk mengisi angket dari para dosen yang mengajarnya di semester yang sedang ditempuh mahasiswa tersebut (Gambar \ref{fig:3_angket}).
+        \begin{figure}[H]
+        	\centering
+        	\includegraphics[scale=0.45]{Gambar/angket.png}
+        	\caption{Halaman Angket} 
+        	\label{fig:3_angket}
+        \end{figure}
+        
+\subsection{Saran \& Komentar}
+    Menu Saran \& Komentar akan membuka halaman \url{https://suaramahasiswa.unpar.ac.id/} (Gambar \ref{fig:3_saran_komentar}).
+    \begin{figure}[H]
+    	\centering
+    	\includegraphics[scale=0.45]{Gambar/sarankomentar.png}
+    	\caption{Halaman Saran \& Komentar} 
+    	\label{fig:3_saran_komentar}
+    \end{figure}
+        
+\subsection{Kelulusan}
+    Menu Kelulusan sedang dalam tahap pembangunan (Gambar \ref{fig:3_kelulusan}).
+    \begin{figure}[H]
+    	\centering
+    	\includegraphics[scale=0.45]{Gambar/kelulusan.png}
+    	\caption{Halaman Kelulusan} 
+    	\label{fig:3_kelulusan}
+    \end{figure}
 
+\subsection{Pengajuan}
+    Menu Pengajuan merupakan halaman dimana mahasiswa dapat mengajukan topik skripsi atau tugas akhir (Gambar \ref{fig:3_pengajuan}).
+    \begin{figure}[H]
+    	\centering
+    	\includegraphics[scale=0.45]{Gambar/pengajuan.png}
+    	\caption{Halaman Pengajuan} 
+    	\label{fig:3_pengajuan}
+    \end{figure}

@@ -1,23 +1,12 @@
 \chapter{Landasan Teori}
 \label{chap:teori}
 
-Bab Landasan Teori ini berisi teori-teori yang menjadi dasar penelitian ini, meliputi \textit{web scraping}, jsoup, JavaFX, dan SIAModels.
-
-\section{\textit{Web Scraping}}
-\label{sec:webscraping} 
-
-Menurut Bo Zhao \cite{zhao}, \textit{web scraping} juga dikenal sebagai ekstraksi atau pemanenan web, adalah teknik untuk mengekstrak data dari \textit{World Wide Web} (WWW) dan menyimpannya ke sistem file atau basis data untuk diambil atau dianalisis. Secara khusus, proses \textit{web scraping} yaitu:
-\begin{enumerate}
-    \item Membuat HTTP \textit{request} untuk memperoleh sumber daya dari situs web yang ditargetkan. Permintaan ini dapat diformat baik dalam URL yang berisi kueri GET atau bagian dari pesan HTTP yang berisi kueri POST.
-    \item Setelah \textit{request} berhasil diterima dan diproses oleh situs web yang ditargetkan, sumber daya yang diminta akan diambil dari situs web dan kemudian dikirim kembali ke program \textit{web scraping}. Sumber daya bisa dalam berbagai format, seperti halaman web yang dibuat dari HTML, \textit{data feed} dalam format XML atau JSON, atau data multimedia seperti gambar, audio, atau video. 
-    \item Setelah data web diunduh, proses ekstraksi dilanjutkan dengan mengurai, memformat ulang, dan mengatur data secara terstruktur.
-\end{enumerate}
-
+Bab Landasan Teori ini berisi teori-teori yang menjadi dasar penelitian ini, meliputi jsoup, JavaFX, dan SIAModels.
 
 \section{Jsoup}
 \label{sec:jsoup} 
  
-Salah satu teknologi yang dapat dimanfaatkan untuk melakukan \textit{web scraping} yaitu \textit{library} Java jsoup. Jsoup adalah \textit{library} Java untuk mengerjakan dokumen HTML yang menyediakan API yang baik untuk mengekstraksi, memanipulasi data, dan menyelesaikan pembersihan data awal menggunakan metode terbaik dari \textit{Document Object Model} (DOM), \textit{Cascading Style Sheets} (CSS), dan metode lain yang mirip dengan jQuery. Jsoup mengimplementasikan spesifikasi WHATWG HTML5, dan mem-parsing HTML ke DOM yang sama seperti yang dilakukan \textit{browser} modern. Pada skripsi ini akan digunakan jsoup versi 1.13.1. Berikut adalah layanan utama yang tersedia di jsoup \cite{cokrowibowo}:
+Salah satu teknologi yang dapat dimanfaatkan untuk melakukan \textit{scraping} yaitu \textit{library} Java jsoup. Jsoup adalah \textit{library} Java untuk mengerjakan dokumen HTML yang menyediakan API yang baik untuk mengekstraksi, memanipulasi data, dan menyelesaikan pembersihan data awal menggunakan metode terbaik dari \textit{Document Object Model} (DOM), \textit{Cascading Style Sheets} (CSS), dan metode lain yang mirip dengan jQuery. Jsoup mengimplementasikan spesifikasi WHATWG HTML5, dan mem-parsing HTML ke DOM yang sama seperti yang dilakukan \textit{browser} modern. Pada skripsi ini akan digunakan jsoup versi 1.13.1. Berikut adalah layanan utama yang tersedia di jsoup \cite{cokrowibowo}:
 \begin{enumerate}
     \item \textit{Scrape} dan \textit{parse} HTML dari URL, \textit{file}, atau string.
     \item Mencari dan ekstrak data menggunakan traversal DOM dan CSS \textit{selector}.
