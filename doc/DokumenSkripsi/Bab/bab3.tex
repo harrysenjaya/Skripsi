@@ -489,6 +489,7 @@ Pada Halaman Profil (Gambar \ref{fig:3_profil}), tanggal lahir mahasiswa akan di
 Pada Halaman Daftar Perkembangan Studi (Gambar \ref{fig:3_dps_1} dan \ref{fig:3_dps_2}), data yang dapat dimanfaatkan dari halaman ini adalah IPK, IPS, jumlah sks yang lulus, dan jumlah sks yang ditempuh. Namun, pada SIAModels sudah terdapat \textit{method} yang melakukan kalkulasi untuk mendapatkan data-data tersebut, sehingga tidak perlu dilakukan pengambilan data menggunakan jsoup. Untuk dapat memanfaatkan \textit{method} tersebut diperlukan seluruh riwayat mata kuliah dan nilai yang pernah ditempuh mahasiswa, sehingga perlu dilakukan pengambilan data menggunakan jsoup.  Implementasi pengambilan data tersebut sudah diimplementasikan sebelumnya pada skripsi Andrianto Sugiarto \cite{ifstupor}. Proses dari pengambilan data tersebut yaitu:
     \begin{itemize}
         \item Mengambil data nilai berdasarkan tahun dan semester dengan mencari elemen "select" yang memiliki id "dropdownSemester", dan memiliki kelas "custom-select mr-3" sehingga kueri css yang dihasilkan adalah "select\#dropdownSemester.custom-select.mr-3".
+        \label{multipleRequest}
         \item Dikarenakan perlunya melakukan koneksi berkali-kali sebanyak semester yang telah ditempuh mahasiswa, sehingga dibutuhkan waktu yang tidak sebentar. Karena pada halaman nilai tidak dapat menampilkan seluruh semester seperti Portal Akademik Mahasiswa yang lama, sehingga untuk mengatasi masalah ini dibuat menjadi paralel. Untuk itu dibuat kelas yang mengimplementasikan kelas \textit{interface} \texttt{Runnable}, yaitu kelas \texttt{MultipleRequest}. Kelas inilah yang melakukan koneksi ke setiap semester yang telah ditempuh mahasiswa, dan mengambil data-data tersebut.
     \end{itemize}
     Namun, terdapat beberapa perubahan (Kode \ref{diff_halaman_dps}) yang perlu dilakukan:
@@ -605,10 +606,12 @@ dari \textit{screensaver} yaitu, melihat biodata dan data akademik mahasiswa sec
 
 \subsection{Diagram Kelas \textit{Screensaver}}
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=0.45]{Gambar/ClassDiagram.png}
-	\caption{Diagram Kelas \textit{Screensaver}}
-	\label{fig:3_class_diagram}
-\end{figure}
+% \begin{figure}[H]
+% 	\centering
+% 	\includegraphics[scale=0.4]{Gambar/ClassDiagram.png}
+% 	\caption{Diagram Kelas \textit{Screensaver}}
+% 	\label{fig:3_class_diagram}
+% \end{figure}
+
+
 
