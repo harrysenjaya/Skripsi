@@ -588,6 +588,33 @@ Terdapat beberapa perubahan yang terjadi pada halaman TOEFL semenjak skripsi And
                          Integer.parseInt(tanggal[0]));
         \end{lstlisting}
 
+\subsection{SIAKAD}
+
+\textit{Subbab ini ditulis oleh dosen pembimbing.}
+
+\subsubsection{Mendapatkan daftar mahasiswa}
+
+Untuk mendapatkan daftar mahasiswa, bisa memanfaatkan halaman ``Cari Mahasiswa''. Caranya dengan mensimulasikan penekanan tombol ``Cari'' dengan parameter \textit{default}, yang akan menampilkan daftar mahasiswa dari dosen wali yang bersangkutan. Hasilnya dalam bentuk tabel dan di-\textit{parsing}, dengan ketentuan sebagai berikut:
+
+\begin{enumerate}
+    \item NPM tersedia pada kolom kedua.
+    \item Nama Mahasiswa tersedia pada kolom ketiga.
+    \item Kolom-kolom lainnya diabaikan.
+\end{enumerate}
+
+\subsubsection{Mendapatkan detail mahasiswa}
+
+\paragraph{Riwayat Nilai} Pada SIAKAD, riwayat nilai mahasiswa tersedia pada beberapa halaman:
+
+\begin{enumerate}
+    \item \textbf{Nilai Per Tahun Semester} berisikan tabel nilai yang dibagi per tahun semester. Data dari halaman inilah yang dipakai untuk mendapatkan nilai mahasiswa, mencakup: kode dan nama mata kuliah, SKS, kelas, TP1 s.d. TP20, UTS, UAS, AA, dan NA.
+    \item \textbf{Nilai Berdasarkan Kurikulum} berisikan tabel nilai yang dibagi berdasarkan linimasa kurikulum. Data ini kurang cocok dipakai karena tidak mengandung nilai tugas dan ujian, hanya nilai akhir saja.
+    \item \textbf{Evaluasi} berisikan tabel nilai lengkap dalam bentuk Daftar Perkembangan Studi dengan format PDF. Data ini sulit diekstraksi karena tidak dalam bentuk HTML.
+\end{enumerate}
+
+Kesimpulannya, riwayat nilai diambil dari halaman ``Nilai Per Tahun Semester''.
+
+\paragraph{Data Diri} Pada SIAKAD, data diri dapat diambil dari halaman ``Data Diri'', tab identitas mahasiswa. Foto tersedia dalam bentuk Data URL\footnote{\url{https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs}} yang di-\textit{encode} dalam format \textit{base64}. Data-data diri lainnya dapat diambil dengan cukup sederhana dari berbagai elemen yang ada di tab tersebut.
 
 \section{Analisis Sistem \textit{Screensaver}}
 
