@@ -40,8 +40,8 @@ Terdapat beberapa perubahan yang terjadi pada situs Portal Akademik Mahasiswa se
 
 \begin{enumerate}
     \item Menghapus pemanggilan fungsi validateTLSCertificates() dikarenakan sudah \textit{deprecated} \cite{jsoup}.
-    \item Menghapus pengambilan data dengan kueri css "input[name=lt]" dikarenakan kueri tersebut sudah dihapus oleh Portal Akademik Mahasiswa.
-    \item Menghapus \textit{form data} dengan \textit{key} "submit" yang memiliki \textit{value} "".
+    \item Menghapus pengambilan data dengan kueri css \texttt{"input[name=lt]"} dikarenakan kueri tersebut sudah dihapus oleh Portal Akademik Mahasiswa.
+    \item Menghapus \textit{form data} dengan \textit{key} \texttt{"submit"} yang memiliki \textit{value} \texttt{""}.
 \end{enumerate}
 
 \begin{lstlisting}[language=diff, caption=Perubahan Implementasi Jsoup Login, label=diff_login]
@@ -73,7 +73,7 @@ Terdapat beberapa perubahan yang terjadi pada situs Portal Akademik Mahasiswa se
 \end{lstlisting}
 
 \subsection{Halaman Utama}
-Pada Halaman Utama Portal Akademik Mahasiswa (Gambar \ref{fig:3_home}) terdapat beberapa menu yang dapat digunakan sebagai sumber data yaitu: 
+Pada Halaman Utama Portal Akademik Mahasiswa (Gambar \ref{fig:3_home}) terdapat beberapa menu yang dapat digunakan sebagai sumber data.
 
 \begin{figure}[H]
 	\centering
@@ -412,7 +412,6 @@ Pada menu Evaluasi, hanya ada satu submenu untuk dosen, yaitu Laporan Evaluasi, 
     \caption{Tangkapan Layar PDF Daftar Perkembangan Studi}
     \label{fig:3_siakad_dps_detail}
 \end{figure}
-
 \subsection{Skripsi}
 
 Bagian ini tidak dijelaskan karena tidak berkaitan dengan informasi mahasiswa.
@@ -434,12 +433,12 @@ Bagian ini tidak dijelaskan karena tidak berkaitan dengan informasi mahasiswa.
 \subsection{Portal Akademik Mahasiswa}
 
 \subsubsection{Halaman Utama}
-Pada Halaman Utama Portal Akademik Mahasiswa terdapat nama lengkap dan foto dari mahasiswa tersebut yang dapat diambil dan digunakan (Gambar \ref{fig:3_home}). Nama mahasiswa dapat diambil dengan mencari elemen "div" yang memiliki kelas "namaUser d-none d-lg-block mr-3", sehingga kueri css yang dihasilkan adalah "div[class=namaUser d-none d-lg-block mr-3]". Foto mahasiswa dapat diambil dengan mencari elemen "img" yang memiliki kelas "img-fluid fotoProfil", sehingga kueri css yang dihasilkan adalah "img[class=img-fluid fotoProfil]".
+Pada Halaman Utama Portal Akademik Mahasiswa terdapat nama lengkap dan foto dari mahasiswa tersebut yang dapat diambil dan digunakan (Gambar \ref{fig:3_home} dengan kotak merah). Nama mahasiswa dapat diambil dengan mencari elemen \texttt{"div"} yang memiliki kelas \texttt{"namaUser d-none d-lg-block mr-3"}, sehingga kueri css yang dihasilkan adalah \texttt{"div[class=namaUser d-none d-lg-block mr-3]"}. Foto mahasiswa dapat diambil dengan mencari elemen \texttt{"img"} yang memiliki kelas \texttt{"img-fluid fotoProfil"}, sehingga kueri css yang dihasilkan adalah \texttt{"img[class=img-fluid fotoProfil]"}.
 Terdapat beberapa perubahan (Kode \ref{diff_halaman_utama}) yang perlu dilakukan terhadap skripsi Andrianto Sugiarto \cite{ifstupor}: 
 
 \begin{enumerate}
     \item Menghapus pemanggilan fungsi validateTLSCertificates() dikarenakan sudah \textit{deprecated} \cite{jsoup}.
-    \item Sebelumnya semester yang sedang dijalani mahasiswa diambil dari menu FRS/PRS, namun karena terdapat perubahan dimana menu FRS/PRS tidak menuju ke Portal Akademik Mahasiswa melainkan menuju ke \url{https://restu.unpar.ac.id/frs_prs}, sehingga perlu melakukan \textit{login} kembali apabila mengakses \textit{URL} tersebut, maka semester yang sedang dijalani mahasiswa diambil dari menu Nilai. Dengan begitu, kueri css untuk pengambilan semester yang sedang dijalani juga perlu diubah, yaitu dengan mencari elemen "select" yang memiliki kelas "custom-select mr-3", sehingga kueri css yang dihasilkan adalah "select[class=custom-select mr-3]". Kemudian mengolah data yang didapat sehingga dapat dijadikan objek bertipe \texttt{TahunSemester} sesuai dengan SIAModels.
+    \item Sebelumnya semester yang sedang dijalani mahasiswa diambil dari menu FRS/PRS, namun karena terdapat perubahan dimana menu FRS/PRS tidak menuju ke Portal Akademik Mahasiswa melainkan menuju ke \url{https://restu.unpar.ac.id/frs_prs}, sehingga perlu melakukan \textit{login} kembali apabila mengakses \textit{URL} tersebut, maka semester yang sedang dijalani mahasiswa diambil dari menu Nilai. Dengan begitu, kueri css untuk pengambilan semester yang sedang dijalani juga perlu diubah, yaitu dengan mencari elemen \texttt{"select"} yang memiliki kelas \texttt{"custom-select mr-3"}, sehingga kueri css yang dihasilkan adalah \texttt{"select[class=custom-select mr-3]"}. Kemudian mengolah data yang didapat sehingga dapat dijadikan objek bertipe \texttt{TahunSemester} sesuai dengan SIAModels.
 \end{enumerate}
 
 \begin{lstlisting}[language=diff, caption=Perubahan Implementasi Jsoup Halaman Utama, label=diff_halaman_utama]
@@ -482,13 +481,13 @@ Terdapat beberapa perubahan (Kode \ref{diff_halaman_utama}) yang perlu dilakukan
 \end{lstlisting}
 
 \subsubsection{Halaman Profil}
-Pada Halaman Profil (Gambar \ref{fig:3_profil}), tanggal lahir mahasiswa akan diambil untuk ditampilkan pada \textit{screensaver}. Implementasi jsoup tersebut belum diimplementasikan pada skripsi Andrianto Sugiarto \cite{ifstupor}, sehingga perlu dilakukan penambahan fitur untuk mengambil data tersebut. Tanggal lahir mahasiswa dapat diambil dengan mencari elemen "div" yang memiliki kelas "offset-md-1 col-md-10 col-12 headerWrapper my-0 border-bottom", sehingga kueri css yang dihasilkan adalah "div[class=offset-md-1 col-md-10 col-12 headerWrapper my-0 border-bottom]".
+Pada Halaman Profil (Gambar \ref{fig:3_profil} dengan kotak merah), tanggal lahir mahasiswa akan diambil untuk ditampilkan pada \textit{screensaver}. Implementasi jsoup tersebut belum diimplementasikan pada skripsi Andrianto Sugiarto \cite{ifstupor}, sehingga perlu dilakukan penambahan fitur untuk mengambil data tersebut. Tanggal lahir mahasiswa dapat diambil dengan mencari elemen \texttt{"div"} yang memiliki kelas \texttt{"offset-md-1 col-md-10 col-12 headerWrapper my-0 border-bottom"}, sehingga kueri css yang dihasilkan adalah \texttt{"div[class=offset-md-1 col-md-10 col-12 headerWrapper my-0 border-bottom]"}.
 
 
 \subsubsection{Halaman Daftar Perkembangan Studi}
-Pada Halaman Daftar Perkembangan Studi (Gambar \ref{fig:3_dps_1} dan \ref{fig:3_dps_2}), data yang dapat dimanfaatkan dari halaman ini adalah IPK, IPS, jumlah sks yang lulus, dan jumlah sks yang ditempuh. Namun, pada SIAModels sudah terdapat \textit{method} yang melakukan kalkulasi untuk mendapatkan data-data tersebut, sehingga tidak perlu dilakukan pengambilan data menggunakan jsoup. Untuk dapat memanfaatkan \textit{method} tersebut diperlukan seluruh riwayat mata kuliah dan nilai yang pernah ditempuh mahasiswa, sehingga perlu dilakukan pengambilan data menggunakan jsoup.  Implementasi pengambilan data tersebut sudah diimplementasikan sebelumnya pada skripsi Andrianto Sugiarto \cite{ifstupor}. Proses dari pengambilan data tersebut yaitu:
+Pada Halaman Daftar Perkembangan Studi (Gambar \ref{fig:3_dps_1} dan \ref{fig:3_dps_2} dengan kotak merah), data yang dapat dimanfaatkan dari halaman ini adalah IPK, IPS, jumlah sks yang lulus, dan jumlah sks yang ditempuh. Namun, pada SIAModels sudah terdapat \textit{method} yang melakukan kalkulasi untuk mendapatkan data-data tersebut, sehingga tidak perlu dilakukan pengambilan data menggunakan jsoup. Untuk dapat memanfaatkan \textit{method} tersebut diperlukan seluruh riwayat mata kuliah dan nilai yang pernah ditempuh mahasiswa, sehingga perlu dilakukan pengambilan data menggunakan jsoup.  Implementasi pengambilan data tersebut sudah diimplementasikan sebelumnya pada skripsi Andrianto Sugiarto \cite{ifstupor}. Proses dari pengambilan data tersebut yaitu:
     \begin{itemize}
-        \item Mengambil data nilai berdasarkan tahun dan semester dengan mencari elemen "select" yang memiliki id "dropdownSemester", dan memiliki kelas "custom-select mr-3" sehingga kueri css yang dihasilkan adalah "select\#dropdownSemester.custom-select.mr-3".
+        \item Mengambil data nilai berdasarkan tahun dan semester dengan mencari elemen \texttt{"select"} yang memiliki id \texttt{"dropdownSemester"}, dan memiliki kelas \texttt{"custom-select mr-3"} sehingga kueri css yang dihasilkan adalah \texttt{"select\#dropdownSemester.custom-select.mr-3"}.
         \label{multipleRequest}
         \item Dikarenakan perlunya melakukan koneksi berkali-kali sebanyak semester yang telah ditempuh mahasiswa, sehingga dibutuhkan waktu yang tidak sebentar. Karena pada halaman nilai tidak dapat menampilkan seluruh semester seperti Portal Akademik Mahasiswa yang lama, sehingga untuk mengatasi masalah ini dibuat menjadi paralel. Untuk itu dibuat kelas yang mengimplementasikan kelas \textit{interface} \texttt{Runnable}, yaitu kelas \texttt{MultipleRequest}. Kelas inilah yang melakukan koneksi ke setiap semester yang telah ditempuh mahasiswa, dan mengambil data-data tersebut.
     \end{itemize}
@@ -522,7 +521,7 @@ Pada Halaman Daftar Perkembangan Studi (Gambar \ref{fig:3_dps_1} dan \ref{fig:3_
         
         
 \subsubsection{Halaman TOEFL}
-Pada Halaman TOEFL (Gambar \ref{fig:3_toefl}), riwayat skor TOEFL dapat diambil dengan mencari elemen "table" yang memiliki elemen "tbody" didalamnya, serta memiliki elemen "tr" didalam elemen "tbody".
+Pada Halaman TOEFL (Gambar \ref{fig:3_toefl} dengan kotak merah), riwayat skor TOEFL dapat diambil dengan mencari elemen \texttt{"table"} yang memiliki elemen \texttt{"tbody"} didalamnya, serta memiliki elemen \texttt{"tr"} didalam elemen \texttt{"tbody"}.
 Terdapat beberapa perubahan yang terjadi pada halaman TOEFL semenjak skripsi Andrianto Sugiarto \cite{ifstupor}, yang mengakibatkan perlunya perubahan (Kode \ref{diff_toefl}) terhadap implementasi jsoup:
 
     \begin{enumerate}
@@ -616,6 +615,7 @@ Kesimpulannya, riwayat nilai diambil dari halaman ``Nilai Per Tahun Semester''.
 
 \paragraph{Data Diri} Pada SIAKAD, data diri dapat diambil dari halaman ``Data Diri'', tab identitas mahasiswa. Foto tersedia dalam bentuk Data URL\footnote{\url{https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs}} yang di-\textit{encode} dalam format \textit{base64}. Data-data diri lainnya dapat diambil dengan cukup sederhana dari berbagai elemen yang ada di tab tersebut.
 
+
 \section{Analisis Sistem \textit{Screensaver}}
 
 \subsection{Diagram \textit{Use Case Screensaver}}
@@ -629,16 +629,3 @@ Kesimpulannya, riwayat nilai diambil dari halaman ``Nilai Per Tahun Semester''.
     
 Pada diagram \textit{use case screensaver} (Gambar \ref{fig:3_usecase_diagram}) terdapat 1 fitur utama
 dari \textit{screensaver} yaitu, melihat biodata dan data akademik mahasiswa secara umum. Dimana biodata yang dimaksud adalah nama, angkatan, tanggal lahir. Serta data akademik yang dimaksud adalah status, email, nilai TOEFL, IPS, IPK, SKS lulus, SKS tempuh mahasiswa.
-
-
-\subsection{Diagram Kelas \textit{Screensaver}}
-
-% \begin{figure}[H]
-% 	\centering
-% 	\includegraphics[scale=0.4]{Gambar/ClassDiagram.png}
-% 	\caption{Diagram Kelas \textit{Screensaver}}
-% 	\label{fig:3_class_diagram}
-% \end{figure}
-
-
-

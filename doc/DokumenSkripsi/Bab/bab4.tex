@@ -6,49 +6,155 @@ Pada bab ini akan dijelaskan mengenai perancangan kelas beserta deskripsi kelas 
 \section{Perancangan Kelas}
 \label{perancanganKelas}
 
-Diagram kelas secara keseluruhan dapat dilihat pada gambar \ref{fig:4_class_diagram}, dimana ~terdapat ~\textit{package screensaver} (Gambar \ref{fig:4_class_diagram_screensaver}) yang didalamnya terdapat \textit{package studentportal} (Gambar \ref{fig:4_class_diagram_stupor}).
+Diagram kelas secara keseluruhan dapat dilihat pada gambar \ref{fig:4_class_diagram}, dimana ~terdapat ~\textit{package screensaver} yang didalamnya terdapat \textit{package} siakad (Gambar \ref{fig:4_class_diagram_siakad}), dan \textit{package} studentportal (Gambar \ref{fig:4_class_diagram_stupor}).
 Penjelasan mengenai kelas, \textit{method}, dan atribut jsoup terdapat pada bagian \ref{sec:jsoup}.
-Penjelasan mengenai kelas, \textit{method}, dan atribut JavaFX serta FXML terdapat pada bagian \ref{sec:javafx}. Penjelasan mengenai kelas, \textit{method}, dan atribut SIAModels terdapat pada bagian \ref{sec:siamodels}. Penjelasan mengenai kelas, \textit{method}, dan atribut pada \textit{package studentportal} adalah sebagai berikut:
+Penjelasan mengenai kelas, \textit{method}, dan atribut JavaFX serta FXML terdapat pada bagian \ref{sec:javafxfxml}. Penjelasan mengenai kelas, \textit{method}, dan atribut SIAModels terdapat pada bagian \ref{sec:siamodels}. 
 
-\begin{figure}[ht]
+\begin{figure}[h]
 	\centering
-	\includegraphics[angle=-90, scale=0.3]{Gambar/ClassDiagram.png}
+	\includegraphics[scale=0.39]{Gambar/ClassDiagram.png}
 	\caption{Diagram Kelas Keseluruhan}
 	\label{fig:4_class_diagram}
 \end{figure}
 
-\begin{figure}[ht]
+\begin{figure}[h]
 	\centering
-	\includegraphics[scale=0.45]{Gambar/ClassDiagram_screensaver.png}
-	\caption{Diagram Kelas \textit{Screensaver}}
-	\label{fig:4_class_diagram_screensaver}
+	\includegraphics[scale=0.45]{Gambar/ClassDiagram_siakad.png}
+	\caption{Diagram Kelas SIAKAD}
+	\label{fig:4_class_diagram_siakad}
 \end{figure}
 
-\begin{figure}[ht]
+\begin{figure}[h]
 	\centering
 	\includegraphics[scale=0.34]{Gambar/ClassDiagram_stupor.png}
-	\caption{Diagram Kelas \textit{Studentportal}}
+	\caption{Diagram Kelas Studentportal}
 	\label{fig:4_class_diagram_stupor}
 \end{figure}
 
+Penjelasan mengenai kelas, \textit{method}, dan atribut pada \textit{package screensaver} adalah sebagai berikut:
 \begin{enumerate}
-	\item Scrapper\\
-	Kelas ini memiliki fungsi untuk melakukan pengambilan data dari Portal Akademik Mahasiswa untuk kemudian diolah dan ditampilkan. Atribut yang dimiliki kelas ini adalah sebagai berikut:
+
+\item{App}\\
+Kelas ini merupakan turunan dari kelas Application \ref{application}. Atribut yang dimiliki kelas ini adalah sebagai berikut:
+\begin{itemize}
+    \item \texttt{private static Scene scene:} menyimpan objek \texttt{Scene}.
+\end{itemize}
+\textit{Method} yang dimiliki kelas ini adalah sebagai berikut:
+\begin{itemize}
+    \item \texttt{public void start(Stage stage)}\\
+    Berfungsi untuk menampilkan \texttt{Stage} dengan \texttt{Scene} yang digunakan.\\
+    \textbf{Parameter:}
 	\begin{itemize}
-        \item \texttt{String BASE\_URL:} menyimpan \textit{url} utama Portal Akademik Mahasiswa.
-        \item \texttt{String LOGIN\_URL:} menyimpan \textit{url}  halaman \textit{login} Portal Akademik Mahasiswa.
-        \item \texttt{String SSO\_URL:} menyimpan \textit{url}  halaman \textit{login} \textit{Single Sign On}(SSO) UNPAR.
-        \item \texttt{String JADWAL\_URL:} menyimpan \textit{url}  halaman jadwal Portal Akademik Mahasiswa.
-        \item \texttt{String NILAI\_URL:} menyimpan \textit{url}  halaman nilai Portal Akademik Mahasiswa.
-        \item \texttt{String TOEFL\_URL:} menyimpan \textit{url}  halaman nilai TOEFL Portal Akademik Mahasiswa.
-        \item \texttt{String LOGOUT\_URL:} menyimpan \textit{url}  untuk melakukan \textit{logout}.
-        \item \texttt{String HOME\_URL:} menyimpan \textit{url}  halaman utama Portal Akademik Mahasiswa setelah melakukan \textit{login}.
-        \item \texttt{String PROFILE\_URL:} menyimpan \textit{url}  halaman profil mahasiswa Portal Akademik Mahasiswa.
-        \item \texttt{String FRSPRS\_URL:} menyimpan \textit{url}  halaman FRS/PRS Portal Akademik Mahasiswa.
-        \item \texttt{String[] MONTH\_NAMES:} menyimpan nama-nama bulan dalam bahasa Indonesia.
+		\item \texttt{stage:} \textit{stage} utama untuk aplikasi ini.
+	\end{itemize}
+    \item \texttt{private static Parent loadFXML(String fxml)}\\
+    Berfungsi untuk memuat hierarki objek dari dokumen FXML.\\
+    \textbf{Parameter:}
+	\begin{itemize}
+		\item \texttt{fxml:} dokumen fxml.
+	\end{itemize}
+	\textbf{Kembalian:} hierarki objek dari dokumen FXML.
+    \item \texttt{public static void main(String[] args)}\\
+    Berfungsi untuk memanggil \textit{method} \texttt{launch()} pada kelas \texttt{Application}.
+\end{itemize}
+
+\item{PrimaryController}\\
+Kelas ini mengimplementasikan kelas \textit{interface Initializable} \ref{fxml}. Atribut yang dimiliki kelas ini adalah sebagai berikut:
+\begin{itemize}
+    \item \texttt{private int indexOfMahasiswa:} menyimpan indeks mahasiswa yang akan ditampilkan pada \textit{screensaver}.
+    \item \texttt{private Text nama:} menyimpan objek \texttt{Text} yang digunakan untuk keterangan nama mahasiswa.
+    \item \texttt{private Text angkatan:} menyimpan objek \texttt{Text} yang digunakan untuk keterangan angkatan mahasiswa.
+    \item \texttt{private Text usia:} menyimpan objek \texttt{Text} yang digunakan untuk keterangan usia mahasiswa.
+    \item \texttt{private Text status:} menyimpan objek \texttt{Text} yang digunakan untuk keterangan status mahasiswa.
+    \item \texttt{private Text email:} menyimpan objek \texttt{Text} yang digunakan untuk keterangan \textit{email} mahasiswa.
+    \item \texttt{private Text toefl:} menyimpan objek \texttt{Text} yang digunakan untuk keterangan nilai TOEFL mahasiswa.
+    \item \texttt{private Text ipk:} menyimpan objek \texttt{Text} yang digunakan untuk keterangan IPK mahasiswa.
+    \item \texttt{private Text sks:} menyimpan objek \texttt{Text} yang digunakan untuk keterangan SKS mahasiswa.
+    \item \texttt{private ImageView foto:} menyimpan objek \texttt{ImageView} yang digunakan untuk foto mahasiswa.
+\end{itemize}
+\textit{Method} yang dimiliki kelas ini adalah sebagai berikut:
+\begin{itemize}
+    \item \texttt{public int getIndexOfMahasiswa()}\\
+    Berfungsi untuk mengambil indeks mahasiswa.\\
+	\textbf{Kembalian:} indeks mahasiswa.
+    \item \texttt{public void setIndexOfMahasiswa(int indexOfMahasiswa)}\\
+    Berfungsi untuk menyimpan indeks mahasiswa.\\
+    \textbf{Parameter:}
+	\begin{itemize}
+		\item \texttt{indexOfMahasiswa:} indeks mahasiswa.
+	\end{itemize}
+    \item \texttt{public PrimaryController()}\\
+    Berfungsi sebagai \textit{constructor} kelas PrimaryController.
+    \item \texttt{public void initialize(URL url, ResourceBundle rb)}\\
+    Berfungsi untuk mengambil \textit{list} mahasiswa beserta dengan keterangan detil mahasiswa.
+%      \textbf{Parameter:}
+% 	\begin{itemize}
+% 		\item \texttt{url:} indeks mahasiswa.
+% 	\end{itemize}
+    \item \texttt{public void updateView(Mahasiswa mahasiswa)}\\
+    Berfungsi untuk memperbarui tampilan \textit{screensaver} dengan data mahasiswa yang menjadi parameter. \\
+    \textbf{Parameter:}
+	\begin{itemize}
+		\item \texttt{mahasiswa:} objek mahasiswa.
+	\end{itemize}
+\end{itemize}
+
+\end{enumerate}
+
+Penjelasan mengenai kelas, \textit{method}, dan atribut pada \textit{package studentportal} adalah sebagai berikut:
+\begin{enumerate}
+    \item{DataPuller}\\
+    \label{datapuller}
+	Kelas ini merupakan \textit{abstract class}. \textit{Method} yang dimiliki kelas ini adalah sebagai berikut:
+	\begin{itemize}
+		\item \texttt{public abstract Mahasiswa[] pullMahasiswas()}\\
+	    Merupakan \textit{abstract method} yang akan diimplementasikan oleh turunannya.
+		
+		\item \texttt{public abstract Mahasiswa pullMahasiswaDetail()}\\
+        Merupakan \textit{abstract method} yang akan diimplementasikan oleh turunannya.
+	\end{itemize}
+
+	
+	\item{StudentPortalDataPuller}\\
+	Kelas ini merupakan turunan dari kelas \texttt{DataPuller} \ref{datapuller}. Kelas ini memiliki fungsi untuk mengambil npm dan \textit{password} mahasiswa yang disimpan dalam sebuah \textit{file}, dan kemudian memanggil \textit{method} pada kelas \texttt{Scraper}. Atribut yang dimiliki kelas ini adalah sebagai berikut:
+	\begin{itemize}
+        \item \texttt{private Scraper scraper:} menyimpan objek \texttt{Scraper}.
+        \item \texttt{private final Properties credentials:} mengakses \textit{file} yang berisi npm dan \textit{password} mahasiswa.
+        \item \texttt{private Mahasiswa mahasiswa:} menyimpan objek mahasiswa yang akan ditambahkan datanya dari pengambilan data di Portal Akademik Mahasiswa.
+        \item \texttt{private String session:} menyimpan \textit{session} yang dapat digunakan untuk mengakses menu di Portal Akademik Mahasiswa.
 	\end{itemize}
 	
-	\textit{Method} yang dimiliki kelas ini adalah sebagai berikut :
+	\textit{Method} yang dimiliki kelas ini adalah sebagai berikut:
+	\begin{itemize}
+		\item \texttt{public StudentPortalDataPuller()}\\
+		Berfungsi sebagai \textit{constructor} kelas \texttt{StudentPortalDataPuller}.
+		
+		\item \texttt{public Mahasiswa[] pullMahasiswas()}\\
+	    Berfungsi untuk memanggil \textit{method} \texttt{requestMahasiswaList} pada kelas \texttt{Scraper} (\ref{requestMahasiswaList}).\\
+		\textbf{Kembalian:} \textit{array} yang berisi seluruh mahasiswa yang memiliki dosen wali yang sama dengan yang melakukan \textit{login} (dalam implementasi menggunakan Portal Akademik Mahasiswa, mahasiswa yang diambil adalah hanya mahasiswa yang melakukan \textit{login}).
+		
+		\item \texttt{public Mahasiswa pullMahasiswaDetail()}\\
+	    Berfungsi untuk memanggil \textit{method} \texttt{requestMahasiswaDetail} pada kelas \texttt{Scraper} (\ref{requestMahasiswaDetail}).\\
+		\textbf{Kembalian:} objek mahasiswa yang telah ditambahkan datanya dari pengambilan data di Portal Akademik Mahasiswa.
+	\end{itemize}
+
+	\item Scraper\\
+	Kelas ini memiliki fungsi untuk melakukan pengambilan data dari Portal Akademik Mahasiswa untuk kemudian diolah dan ditampilkan. Atribut yang dimiliki kelas ini adalah sebagai berikut:
+	\begin{itemize}
+        \item \texttt{public static final String BASE\_URL:} menyimpan \textit{url} utama Portal Akademik Mahasiswa.
+        \item \texttt{public static final String LOGIN\_URL:} menyimpan \textit{url}  halaman \textit{login} Portal Akademik Mahasiswa.
+        \item \texttt{public static final String SSO\_URL:} menyimpan \textit{url}  halaman \textit{login} \textit{Single Sign On}(SSO) UNPAR.
+        \item \texttt{public static final String JADWAL\_URL:} menyimpan \textit{url}  halaman jadwal Portal Akademik Mahasiswa.
+        \item \texttt{public static final String NILAI\_URL:} menyimpan \textit{url}  halaman nilai Portal Akademik Mahasiswa.
+        \item \texttt{public static final String TOEFL\_URL:} menyimpan \textit{url}  halaman nilai TOEFL Portal Akademik Mahasiswa.
+        \item \texttt{public static final String LOGOUT\_URL:} menyimpan \textit{url}  untuk melakukan \textit{logout}.
+        \item \texttt{public static final String HOME\_URL:} menyimpan \textit{url}  halaman utama Portal Akademik Mahasiswa setelah melakukan \textit{login}.
+        \item \texttt{public static final String PROFILE\_URL:} menyimpan \textit{url}  halaman profil mahasiswa Portal Akademik Mahasiswa.
+        \item \texttt{public static final String FRSPRS\_URL:} menyimpan \textit{url}  halaman FRS/PRS Portal Akademik Mahasiswa.
+        \item \texttt{public static final String[] MONTH\_NAMES:} menyimpan nama-nama bulan dalam bahasa Indonesia.
+	\end{itemize}
+	
+	\textit{Method} yang dimiliki kelas ini adalah sebagai berikut:
 	\begin{itemize}
 		
 		\item \texttt{public Scrapper()}\\
@@ -100,7 +206,7 @@ Penjelasan mengenai kelas, \textit{method}, dan atribut JavaFX serta FXML terdap
 			\end{itemize}
 			
 		\item \texttt{public void logout()}\\
-	    Berfungsi untuk melakukan \textit{logout} dari Portal Akademik Mahasiswa.\\
+	    Berfungsi untuk melakukan \textit{logout} dari Portal Akademik Mahasiswa.
 		
 		\item \texttt{public String[] parseSemester(String sem\_raw)}\\
 	    Berfungsi untuk melakukan \textit{parsing} data semester mahasiswa dari Portal Akademik Mahasiswa agar dapat diolah lebih lanjut.\\
@@ -131,22 +237,30 @@ Penjelasan mengenai kelas, \textit{method}, dan atribut JavaFX serta FXML terdap
 		\textbf{Kembalian:} objek mahasiswa yang telah ditambahkan datanya dari pengambilan data di Portal Akademik Mahasiswa.
 	\end{itemize}
 	
-	\item{MultipleRequest}
-	Kelas ini memiliki fungsi untuk melakukan koneksi ke setiap semester yang telah ditempuh mahasiswa pada halaman nilai di Portal Akademik Mahasiswa (penjelasan lebih lanjut di \ref{multipleRequest}). Atribut yang dimiliki kelas ini adalah sebagai berikut:
+	\item{MultipleRequest}\\
+	Kelas ini mengimplementasikan kelas \texttt{interface Runnable} milik Java. Kelas ini memiliki fungsi untuk melakukan koneksi ke setiap semester yang telah ditempuh mahasiswa pada halaman nilai di Portal Akademik Mahasiswa (penjelasan lebih lanjut di \ref{multipleRequest}). Atribut yang dimiliki kelas ini adalah sebagai berikut:
 	\begin{itemize}
-        \item \texttt{int index:} menyimpan indeks semester yang akan digunakan untuk mengakses \texttt{listSemester}.
-        \item \texttt{ArrayList<String> listSemester:} menyimpan daftar semester yang telah ditempuh mahasiswa.
-        \item \texttt{String NILAI\_URL:} menyimpan \textit{url} halaman nilai Portal Akademik Mahasiswa.
-        \item \texttt{String phpsessid:} menyimpan \textit{session} yang dapat digunakan untuk mengakses menu di Portal Akademik Mahasiswa.
-        \item \texttt{Mahasiswa mahasiswa:} menyimpan objek mahasiswa yang akan ditambahkan datanya dari pengambilan data di Portal Akademik Mahasiswa.
-        \item \texttt{ScriptEngineManager factory:} untuk menjalankan \textit{javascript}.
-        \item \texttt{ScriptEngine engine:} untuk menjalankan \textit{javascript}.
+        \item \texttt{private int index:} menyimpan indeks semester yang akan digunakan untuk mengakses \texttt{listSemester}.
+        \item \texttt{private ArrayList<String> listSemester:} menyimpan daftar semester yang telah ditempuh mahasiswa.
+        \item \texttt{private String NILAI\_URL:} menyimpan \textit{url} halaman nilai Portal Akademik Mahasiswa.
+        \item \texttt{private String phpsessid:} menyimpan \textit{session} yang dapat digunakan untuk mengakses menu di Portal Akademik Mahasiswa.
+        \item \texttt{private Mahasiswa mahasiswa:} menyimpan objek mahasiswa yang akan ditambahkan datanya dari pengambilan data di Portal Akademik Mahasiswa.
+        \item \texttt{private ScriptEngineManager factory:} untuk menjalankan \textit{javascript}.
+        \item \texttt{private ScriptEngine engine:} untuk menjalankan \textit{javascript}.
 	\end{itemize}
 	
-	\textit{Method} yang dimiliki kelas ini adalah sebagai berikut :
+	\textit{Method} yang dimiliki kelas ini adalah sebagai berikut:
 	\begin{itemize}
 		\item \texttt{public MultipleRequest(int index, ArrayList<String> listSemester, String NILAI\_URL, String phpsessid, Mahasiswa mahasiswa)}\\
-		Berfungsi sebagai \textit{constructor} kelas \texttt{MultipleRequest}.
+		Berfungsi sebagai \textit{constructor} kelas \texttt{MultipleRequest}.\\
+		\textbf{Parameter:}
+		\begin{itemize}
+			\item \texttt{index:} indeks semester.
+			\item \texttt{listSemester:} \textit{list} semester yang ditempuh mahasiswa.
+			\item \texttt{NILAI\_URL:}  \textit{url} halaman nilai pada Portal Akademik Mahasiswa.
+			\item \texttt{phpsessid:} \textit{session} yang didapatkan dari proses login ke Portal Akademik Mahasiswa.
+			\item \texttt{mahasiswa:} objek mahasiswa yang akan ditambahkan datanya dari pengambilan data di Portal Akademik Mahasiswa.
+		\end{itemize}
 		
 		\item \texttt{public void run()}\\
     	 \textit{Method} ini merupakan \textit{method} turunan dari kelas \texttt{interface Runnable}. Untuk mendapatkan data nilai dilakukan dengan cara:
@@ -160,36 +274,21 @@ Penjelasan mengenai kelas, \textit{method}, dan atribut JavaFX serta FXML terdap
     		\item Setelah berhasil, kemudian memasukkan data nilai ke daftar riwayat nilai mahasiswa pada atribut kelas \texttt{Mahasiswa} yaitu \texttt{List<Nilai> riwayatNilai} menggunakan method \texttt{List<Nilai> getRiwayatNilai()}. Proses ini dilakukan berulang kali sebanyak jumlah mata kuliah per semesternya.
     	\end{enumerate}
     	
-    	\begin{figure}[ht]
+    	\begin{figure}[H]
         	\centering
         	\includegraphics[scale=0.5]{Gambar/nilai_script.png}
         	\caption{\textit{Script} Data Nilai Mahasiswa Pada Halaman Nilai}
         	\label{fig:4_nilai_script}
         \end{figure}
 	\end{itemize}
-	
-	
-	\item{StudentPortalDataPuller}
-	Kelas ini memiliki fungsi untuk mengambil npm dan \textit{password} mahasiswa yang disimpan dalam sebuah \textit{file}, dan kemudian memanggil \textit{method} pada kelas \texttt{Scraper}. Atribut yang dimiliki kelas ini adalah sebagai berikut:
-	\begin{itemize}
-        \item \texttt{Scraper scraper:} menyimpan objek \texttt{Scraper}.
-        \item \texttt{Properties credentials:} mengakses \textit{file} yang berisi npm dan \textit{password} mahasiswa.
-        \item \texttt{Mahasiswa mahasiswa:} menyimpan objek mahasiswa yang akan ditambahkan datanya dari pengambilan data di Portal Akademik Mahasiswa.
-        \item \texttt{String session:} menyimpan \textit{session} yang dapat digunakan untuk mengakses menu di Portal Akademik Mahasiswa.
-	\end{itemize}
-	
-	\textit{Method} yang dimiliki kelas ini adalah sebagai berikut :
-	\begin{itemize}
-		\item \texttt{public StudentPortalDataPuller()}\\
-		Berfungsi sebagai \textit{constructor} kelas \texttt{StudentPortalDataPuller}.
-		
-		\item \texttt{public Mahasiswa[] pullMahasiswas()}\\
-	    Berfungsi untuk memanggil \textit{method} \texttt{requestMahasiswaList} pada kelas \texttt{Scraper} (\ref{requestMahasiswaList}).\\
-		\textbf{Kembalian:} \textit{array} yang berisi seluruh mahasiswa yang memiliki dosen wali yang sama dengan yang melakukan \textit{login} (dalam implementasi menggunakan Portal Akademik Mahasiswa, mahasiswa yang diambil adalah hanya mahasiswa yang melakukan \textit{login}).
-		
-		\item \texttt{public Mahasiswa pullMahasiswaDetail()}\\
-	    Berfungsi untuk memanggil \textit{method} \texttt{requestMahasiswaDetail} pada kelas \texttt{Scraper} (\ref{requestMahasiswaDetail}).\\
-		\textbf{Kembalian:} objek mahasiswa yang telah ditambahkan datanya dari pengambilan data di Portal Akademik Mahasiswa.
-	\end{itemize}
 \end{enumerate}
+
+\section{Perancangan Antarmuka}
+Gambar \ref{fig:4_antarmuka} menunjukkan rancangan antarmuka dari aplikasi \textit{screensaver}.
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{Gambar/UI.png}
+	\caption{Rancangan Antarmuka \textit{Screensaver}}
+	\label{fig:4_antarmuka}
+\end{figure}
 

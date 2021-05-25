@@ -151,12 +151,15 @@ Kelas ini merepresentasikan sebuah elemen HTML yang berisikan \textit{tag}, atri
 \end{itemize}
 
 \section{JavaFX dan FXML}
+\label{sec:javafxfxml}
+
 \subsection{JavaFX}
 \label{sec:javafx}
 JavaFX adalah platform aplikasi klien \textit{open source} generasi berikutnya untuk \textit{desktop}, \textit{mobile}, dan \textit{embedded systems} yang dibangun dengan Java. JavaFX memungkinkan untuk membuat aplikasi Java dengan antarmuka pengguna (UI) modern dengan akselerasi perangkat keras yang sangat portabel. \cite{javafx}. Subbab-subbab berikut menjelaskan beberapa kelas dari JavaFX. \cite{javafx}
 
 
 \subsubsection{Application}
+\label{application}
 Titik masuk untuk aplikasi JavaFX adalah kelas \texttt{Application}. JavaFX melakukan hal berikut, secara berurutan, setiap kali aplikasi diluncurkan:
 \begin{enumerate}
     \item Membuat \textit{instance} kelas \texttt{Application} yang ditentukan
@@ -210,7 +213,7 @@ Kelas \texttt{Scene} adalah wadah untuk semua konten dalam grafik \textit{scene}
 Beberapa \textit{method} yang dimiliki kelas ini adalah sebagai berikut:
 \begin{itemize}
 	\item \texttt{public Scene(Parent root, double width, double height)}\\
-    Merupakan \textit{constructor} dari kelas \texttt{Scene}.
+    Merupakan \textit{constructor} dari kelas \texttt{Scene}.\\
     \textbf{Parameter:}
 	\begin{itemize}
 		\item \texttt{root:} Node root dari grafik \textit{scene}.
@@ -226,7 +229,7 @@ Memuat hierarki objek dari dokumen XML.
 Beberapa \textit{method} yang dimiliki kelas ini adalah sebagai berikut:
 \begin{itemize}
 	\item \texttt{public FXMLLoader(URL location)}\\
-    Merupakan \textit{constructor} dari kelas \texttt{FXMLLoader}.
+    Merupakan \textit{constructor} dari kelas \texttt{FXMLLoader}.\\
 	\textbf{Parameter:}
 	\begin{itemize}
 		\item \texttt{location:} lokasi dokumen fxml.
@@ -237,6 +240,7 @@ Beberapa \textit{method} yang dimiliki kelas ini adalah sebagai berikut:
 \end{itemize}
 
 \subsection{FXML}
+\label{fxml}
 FXML adalah bahasa \textit{markup} berbasis XML yang dapat dituliskan untuk membangun grafik objek Java. FXML memberikan alternatif yang nyaman untuk membuat grafik dalam kode prosedural, dan cocok untuk mendefinisikan antarmuka pengguna aplikasi JavaFX, karena struktur hierarki dari dokumen XML sangat mirip dengan struktur grafik \textit{scene} JavaFX. \cite{javafx} Subbab-subbab berikut menjelaskan beberapa bagian dari FXML.
 
 
