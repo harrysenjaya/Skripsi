@@ -99,21 +99,20 @@ Kelas ini mengimplementasikan kelas \textit{interface Initializable} \ref{fxml}.
 	\end{itemize}
 \end{itemize}
 
+\item{DataPuller}\\
+\label{datapuller}
+Kelas ini merupakan \textit{abstract class}. \textit{Method} yang dimiliki kelas ini adalah sebagai berikut:
+\begin{itemize}
+	\item \texttt{public abstract Mahasiswa[] pullMahasiswas()}\\
+    Merupakan \textit{abstract method} yang akan diimplementasikan oleh turunannya.
+	
+	\item \texttt{public abstract Mahasiswa pullMahasiswaDetail(Mahasiswa m)}\\
+    Merupakan \textit{abstract method} yang akan diimplementasikan oleh turunannya.
+\end{itemize}
 \end{enumerate}
 
 Penjelasan mengenai kelas, \textit{method}, dan atribut pada \textit{package studentportal} adalah sebagai berikut:
 \begin{enumerate}
-    \item{DataPuller}\\
-    \label{datapuller}
-	Kelas ini merupakan \textit{abstract class}. \textit{Method} yang dimiliki kelas ini adalah sebagai berikut:
-	\begin{itemize}
-		\item \texttt{public abstract Mahasiswa[] pullMahasiswas()}\\
-	    Merupakan \textit{abstract method} yang akan diimplementasikan oleh turunannya.
-		
-		\item \texttt{public abstract Mahasiswa pullMahasiswaDetail()}\\
-        Merupakan \textit{abstract method} yang akan diimplementasikan oleh turunannya.
-	\end{itemize}
-
 	
 	\item{StudentPortalDataPuller}\\
 	Kelas ini merupakan turunan dari kelas \texttt{DataPuller} \ref{datapuller}. Kelas ini memiliki fungsi untuk mengambil npm dan \textit{password} mahasiswa yang disimpan dalam sebuah \textit{file}, dan kemudian memanggil \textit{method} pada kelas \texttt{Scraper}. Atribut yang dimiliki kelas ini adalah sebagai berikut:
@@ -283,8 +282,139 @@ Penjelasan mengenai kelas, \textit{method}, dan atribut pada \textit{package stu
 	\end{itemize}
 \end{enumerate}
 
+Penjelasan mengenai kelas, \textit{method}, dan atribut pada \textit{package SIAKAD} adalah sebagai berikut:
+\begin{enumerate}
+
+\item{SIAkadDataPuller}\\
+	Kelas ini merupakan turunan dari kelas \texttt{DataPuller} \ref{datapuller}. Kelas ini memiliki fungsi untuk mengambil username dan \textit{password} dosen yang disimpan dalam sebuah \textit{file}, dan kemudian memanggil \textit{method} pada kelas \texttt{SIAkad}. Atribut yang dimiliki kelas ini adalah sebagai berikut:
+	\begin{itemize}
+        \item \texttt{private final SIAkad siakad:} menyimpan objek \texttt{SIAkad}.
+	\end{itemize}
+	
+	\textit{Method} yang dimiliki kelas ini adalah sebagai berikut:
+	\begin{itemize}
+		\item \texttt{public SIAkadDataPuller()}\\
+		Berfungsi sebagai \textit{constructor} kelas \texttt{SIAkadDataPuller}.
+		
+		\item \texttt{public Mahasiswa[] pullMahasiswas()}\\
+	    Berfungsi untuk memanggil \textit{method} \texttt{requestMahasiswaList} pada kelas \texttt{SIAkad}.\\
+		\textbf{Kembalian:} \textit{array} yang berisi daftar mahasiswa yang diwalikan oleh dosen terlogin.
+		
+		\item \texttt{public Mahasiswa pullMahasiswaDetail()}\\
+	    Berfungsi untuk memanggil \textit{method} \texttt{requestRiwayatNilai}, dan \texttt{requestDataDiri} pada kelas \texttt{SIAkad}.\\
+		\textbf{Kembalian:} objek mahasiswa yang telah ditambahkan datanya dari pengambilan data di SIAKAD.
+	\end{itemize}
+	
+\item{SIAkad}\\
+Kelas ini memiliki fungsi untuk melakukan pengambilan data dari SIAKAD untuk kemudian diolah dan ditampilkan. Atribut yang dimiliki kelas ini adalah sebagai berikut:
+	\begin{itemize}
+        \item \texttt{protected static final String SIAKAD\_BASE\_URL:} menyimpan \textit{url} utama SIAKAD.
+        \item \texttt{protected static final String SSO\_BASE\_URL:} menyimpan \textit{url} halaman \textit{login} \textit{Single Sign On}(SSO) UNPAR.
+        \item \texttt{protected static final String MU\_BASE\_URL:} menyimpan \textit{url} MU UNPAR.
+        \item \texttt{protected static final int DEFAULT\_TIMEOUT:} waktu \textit{timeout}.
+        \item \texttt{protected final Logger logger:} 
+        \item \texttt{public static final String[] MONTH\_NAMES:} menyimpan nama-nama bulan dalam bahasa Indonesia.
+        \item \texttt{Token token:} menyimpan \textit{cookies} yang dapat digunakan untuk mengakses menu di SIAKAD.
+    \end{itemize}
+    
+	\textit{Method} yang dimiliki kelas ini adalah sebagai berikut:
+	\begin{itemize}
+	    \item \texttt{public SIAkad()}\\
+	    Berfungsi sebagai \textit{constructor} kelas \texttt{SIAkad}.
+	    
+	    \item \texttt{public SIAkad(boolean verbose)}\\
+	    Berfungsi sebagai \textit{constructor} kelas \texttt{SIAkad}.\\
+	    \textbf{Parameter:}
+		\begin{itemize}
+			\item \texttt{verbose:} 
+		\end{itemize}
+		
+	    \item \texttt{public boolean login(String username, String password)}\\
+	    Berfungsi untuk melakukan login ke SI Akademik. Semua transaksi lain harus diawali dengan login.\\
+	    \textbf{Parameter:}
+		\begin{itemize}
+			\item \texttt{username:} username dosen.
+			\item \texttt{password:} password dosen.
+		\end{itemize}
+        \textbf{Kembalian:} \textit{true} jika \textit{login} berhasil, \textit{false} jika \textit{username/password} salah.
+        
+        \item \texttt{public void logout()}\\
+	    Berfungsi untuk melakukan \textit{logout} dari SIAKAD.
+	    
+	    \item \texttt{public List<Mahasiswa> requestMahasiswaList()}\\
+	    Berfungsi untuk mendapatkan daftar mahasiswa yang diwalikan oleh dosen terlogin.\\
+        \textbf{Kembalian:} daftar mahasiswa yang diwalikan oleh dosen terlogin.
+        
+        \item \texttt{public List<Mahasiswa> requestMahasiswaList(Set<ProgramStudi> programStudi, Mahasiswa.Status status, Integer angkatan)}\\
+         Berfungsi untuk mendapatkan daftar mahasiswa yang diwalikan oleh dosen terlogin.\\
+        \textbf{Parameter:}
+		\begin{itemize}
+			\item \texttt{programStudi:} program studi yang dipilih, atau null jika ingin mencari dari seluruh program studi yang terdaftar di SIAModels.
+			\item \texttt{status:} status mahasiswa yang ingin ditampilkan, atau null jika default (aktif).
+			\item \texttt{angkatan:} tahun angkatan, atau null jika semua.
+		\end{itemize}
+        \textbf{Kembalian:} daftar mahasiswa yang diwalikan oleh dosen terlogin.
+
+	    \item \texttt{public Mahasiswa requestDataDiri(Mahasiswa mahasiswa)}\\
+	    Berfungsi untuk mendapatkan data diri mahasiswa. Saat ini hanya mendukung \textit{URL} foto, tanggal lahir, dan jenis kelamin tanpa data diri yang lain.\\
+	    \textbf{Parameter:}
+		\begin{itemize}
+			\item \texttt{mahasiswa:} mahasiswa yang ingin diperiksa.
+		\end{itemize}
+        \textbf{Kembalian:} objek mahasiswa yang sama, dengan data diri yang sudah dilengkapi.
+        
+        \item \texttt{public Mahasiswa requestRiwayatNilai(Mahasiswa mahasiswa, boolean includeLastSemester)}\\
+        Berfungsi untuk mendapatkan daftar lengkap riwayat nilai mahasiswa, berdasarkan halaman "Data Akademik". Metode ini dapat mengisi lengkap kelas, nilai-nilai Tugas, UTS, UAS, serta NA.\\
+        \textbf{Parameter:}
+		\begin{itemize}
+			\item \texttt{mahasiswa:} mahasiswa yang ingin diperiksa.
+			\item \texttt{includeLastSemester:}apakah ingin mengikutsertakan nilai semester terakhir yang tercatat. Kelemahan metode "Data Akademik" adalah tidak bisa membedakan antara nilai yang belum rilis dengan yang sudah. Jika mahasiswa sedang menjalani mata kuliah tersebut, nilai sudah muncul tetapi kemungkinan NA nya berisi E karena nilai tugas/UTS/UAS belum lengkap. Jika mahasiswa sedang tidak menjalani kuliah tersebut (misal, saat FRS atau saat libur, maka nilai semester terakhir perlu diikutsertakan, karena mengacu ke nilai yang sudah rilis). Tentu saja ke depannya perlu mekanisme yang lebih baik yang dapat mendeteksi nilai yang sudah/belum rilis ini.
+		\end{itemize}
+        \textbf{Kembalian:} objek mahasiswa yang sama, dengan nilai yang sudah didapatkan (terurut secara kronologis dari yang paling lama ke baru).
+        
+        \item \texttt{protected Connection createBaseConnection(String url, Token token)}\\
+        Berfungsi untuk membuat koneksi, dengan kondisi sudah melakukan \textit{login}.\\
+        \textbf{Parameter:}
+		\begin{itemize}
+		    \item \texttt{url:} \textit{URL} yang dituju.
+		    \item \texttt{token:} token autentikasi.
+		\end{itemize}
+        \textbf{Kembalian:} koneksi tersebut.
+
+        \item \texttt{protected void logConnnection(Connection connection)}\\
+        Berfungsi untuk memeriksa \textit{verbose flag}, dan apabila \textit{true}, akan menampilkan \textit{debug output}.\\
+        \textbf{Parameter:}
+		\begin{itemize}
+		    \item \texttt{connection:} \textit{connection request} dan \textit{response}.
+		\end{itemize}
+	\end{itemize}
+    
+\item{Token}\\
+Kelas ini memiliki fungsi untuk menyimpan \textit{cookies}. Atribut yang dimiliki kelas ini adalah sebagai berikut:
+	\begin{itemize}
+        \item \texttt{private final Map<String, String> cookies:} menyimpan \textit{cookies}.
+	\end{itemize}
+	
+	\textit{Method} yang dimiliki kelas ini adalah sebagai berikut:
+	\begin{itemize}
+	    \item \texttt{public Token(Map<String, String> cookies)}\\
+	    Berfungsi sebagai \textit{constructor} kelas \texttt{Token}.
+	    
+	    \item \texttt{public Map<String, String> getCookies()}\\
+	    Berfungsi untuk mendapatkan \textit{cookies}.\\
+        \textbf{Kembalian:} \textit{cookies}.
+        
+        \item \texttt{public void injectToConnection(Connection connection)}
+        Berfungsi untuk memasukkan \textit{session} ke dalam \textit{connection}.\\
+        \textbf{Parameter:}
+		\begin{itemize}
+		    \item \texttt{connection:} koneksi yang ingin dimasukkan \textit{session}.
+		\end{itemize}
+    \end{itemize}
+\end{enumerate}
+
 \section{Perancangan Antarmuka}
-Gambar \ref{fig:4_antarmuka} menunjukkan rancangan antarmuka dari aplikasi \textit{screensaver}.
+Gambar \ref{fig:4_antarmuka} menunjukkan rancangan antarmuka dari aplikasi \textit{screensaver}. Antarmuka aplikasi akan menampilkan foto dari mahasiswa apabila foto tersebut tersedia. Baris pertama merupakan nama dari mahasiswa, kemudian baris kedua akan diisi oleh angkatan dari mahasiswa tersebut. Baris ketiga menampilkan usia dan tanggal lahir mahasiswa. Baris keempat merupakan status dari mahasiswa tersebut apabila tersedia. Baris kelima merupakan \textit{email} mahasiswa dimana format \textit{email} mahasiswa UNPAR adalah \textbf{NomorPokokMahasiswa@student.unpar.ac.id}. Baris keenam berisi nilai TOEFL terakhir mahasiswa apabila mahasiswa tersebut sudah mengambil ujian TOEFL, atau diisi "Tidak Tersedia" apabila mahasiswa tersebut belum mengambil ujian TOEFL. Baris ketujuh menampilkan IPS dan IPK dari mahasiswa tersebut. Baris terakhir diisi oleh jumlah sks yang telah lulus dan jumlah sks yang telah ditempuh oleh mahasiswa tersebut. Setiap 5 detik tampilan aplikasi akan berubah ke mahasiswa berikutnya. Namun pada aplikasi yang dibuat oleh terbimbing, data yang ditampilkan hanya mahasiswa itu sendiri, sedangkan pada aplikasi yang dibuat oleh pembimbing, data yang ditampilkan akan berubah.
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.5]{Gambar/UI.png}
@@ -292,3 +422,9 @@ Gambar \ref{fig:4_antarmuka} menunjukkan rancangan antarmuka dari aplikasi \text
 	\label{fig:4_antarmuka}
 \end{figure}
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.2]{Gambar/UI2.png}
+	\caption{Rancangan Antarmuka \textit{Screensaver}}
+	\label{fig:4_antarmuka}
+\end{figure}
