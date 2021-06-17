@@ -12,7 +12,7 @@ Penjelasan mengenai kelas, \textit{method}, dan atribut JavaFX serta FXML terdap
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[scale=0.39]{Gambar/ClassDiagram.png}
+	\includegraphics[scale=0.37]{Gambar/ClassDiagram.png}
 	\caption{Diagram Kelas Keseluruhan}
 	\label{fig:4_class_diagram}
 \end{figure}
@@ -62,6 +62,8 @@ Kelas ini merupakan turunan dari kelas Application \ref{application}. Atribut ya
 Kelas ini mengimplementasikan kelas \textit{interface Initializable} \ref{fxml}. Atribut yang dimiliki kelas ini adalah sebagai berikut:
 \begin{itemize}
     \item \texttt{private int indexOfMahasiswa:} menyimpan indeks mahasiswa yang akan ditampilkan pada \textit{screensaver}.
+    \item \texttt{private Mahasiswa[] listMahasiswa:} menyimpan daftar mahasiswa yang akan ditampilkan pada \textit{screensaver}.
+    \item \texttt{private DataPuller puller:} menyimpan objek \texttt{DataPuller}.
     \item \texttt{private Text nama:} menyimpan objek \texttt{Text} yang digunakan untuk keterangan nama mahasiswa.
     \item \texttt{private Text angkatan:} menyimpan objek \texttt{Text} yang digunakan untuk keterangan angkatan mahasiswa.
     \item \texttt{private Text usia:} menyimpan objek \texttt{Text} yang digunakan untuk keterangan usia mahasiswa.
@@ -86,17 +88,20 @@ Kelas ini mengimplementasikan kelas \textit{interface Initializable} \ref{fxml}.
     \item \texttt{public PrimaryController()}\\
     Berfungsi sebagai \textit{constructor} kelas PrimaryController.
     \item \texttt{public void initialize(URL url, ResourceBundle rb)}\\
-    Berfungsi untuk mengambil \textit{list} mahasiswa beserta dengan keterangan detil mahasiswa.
-%      \textbf{Parameter:}
-% 	\begin{itemize}
-% 		\item \texttt{url:} indeks mahasiswa.
-% 	\end{itemize}
+    Berfungsi untuk menginisialisasi pengontrol setelah elemen akarnya diproses sepenuhnya. \textit{Method} ini juga berfungsi untuk mengambil \textit{list} mahasiswa beserta dengan keterangan detil mahasiswa.
+     \textbf{Parameter:}
+	\begin{itemize}
+		\item \texttt{url:} Lokasi yang digunakan untuk menyelesaikan jalur relatif untuk objek \texttt{root}, atau \texttt{null} jika lokasi tidak diketahui.
+		item \texttt{rb:} \textit{resource} yang digunakan untuk melokalisasi objek \texttt{root}, atau \texttt{null} jika objek \texttt{root} tidak dilokalkan.
+	\end{itemize}
     \item \texttt{public void updateView(Mahasiswa mahasiswa)}\\
     Berfungsi untuk memperbarui tampilan \textit{screensaver} dengan data mahasiswa yang menjadi parameter. \\
     \textbf{Parameter:}
 	\begin{itemize}
 		\item \texttt{mahasiswa:} objek mahasiswa.
 	\end{itemize}
+	\item \texttt{public void updateView()}\\
+    Berfungsi untuk memperbarui tampilan \textit{screensaver} ketika koneksi internet tidak berjalan dengan normal. \\
 \end{itemize}
 
 \item{DataPuller}\\
@@ -171,7 +176,7 @@ Penjelasan mengenai kelas, \textit{method}, dan atribut pada \textit{package stu
 			\end{itemize}
 		\textbf{Kembalian:} \textit{session} yang dapat digunakan untuk mengakses menu di Portal Akademik Mahasiswa.
 		
-	    \item \texttt{public TahunSemester requestNamePhotoTahunSemester(String phpsessid, Mahasiswa mahasiswa)}\\
+	    \item \texttt{public TahunSemester requestNamePhotoTahunSemester(String phpsessid,\\ Mahasiswa mahasiswa)}\\
 		    Berfungsi untuk melakukan pengambilan nama, foto, serta semester yang sedang dijalani mahasiswa dari Portal Akademik Mahasiswa.\\
 		\textbf{Parameter:}
 			\begin{itemize}
@@ -215,7 +220,7 @@ Penjelasan mengenai kelas, \textit{method}, dan atribut pada \textit{package stu
 			\end{itemize}
 		\textbf{Kembalian:} \textit{array} yang berisi semester yang sudah dilakukan \textit{parsing}.
 		
-		\item \texttt{public Mahasiswa[] requestMahasiswaList(String phpsessid, Mahasiswa mahasiswa)}\\
+		\item \texttt{public Mahasiswa[] requestMahasiswaList(String phpsessid, Mahasiswa\\ mahasiswa)}\\
 		\label{requestMahasiswaList}
 	    Berfungsi untuk mengambil seluruh mahasiswa dengan data yang diambil berupa nama, foto, semester yang sedang dijalani, dimana seluruh mahasiswa tersebut memiliki dosen wali yang sama dengan yang melakukan \textit{login} (dalam implementasi menggunakan Portal Akademik Mahasiswa, mahasiswa yang diambil adalah hanya mahasiswa yang melakukan \textit{login}).\\
 		\textbf{Parameter:}
@@ -225,7 +230,7 @@ Penjelasan mengenai kelas, \textit{method}, dan atribut pada \textit{package stu
 			\end{itemize}
 		\textbf{Kembalian:} \textit{array} yang berisi seluruh mahasiswa yang memiliki dosen wali yang sama dengan yang melakukan \textit{login} (dalam implementasi menggunakan Portal Akademik Mahasiswa, mahasiswa yang diambil adalah hanya mahasiswa yang melakukan \textit{login}).
 		
-		\item \texttt{public Mahasiswa requestMahasiswaDetail(String phpsessid, Mahasiswa mahasiswa)}\\
+		\item \texttt{public Mahasiswa requestMahasiswaDetail(String phpsessid, Mahasiswa\\ mahasiswa)}\\
 		\label{requestMahasiswaDetail}
 	    Berfungsi untuk mengambil detil lebih lanjut mengenai data mahasiswa berupa nilai TOEFL, seluruh nilai mata kuliah, tanggal lahir mahasiswa.\\
 		\textbf{Parameter:}
@@ -250,7 +255,8 @@ Penjelasan mengenai kelas, \textit{method}, dan atribut pada \textit{package stu
 	
 	\textit{Method} yang dimiliki kelas ini adalah sebagai berikut:
 	\begin{itemize}
-		\item \texttt{public MultipleRequest(int index, ArrayList<String> listSemester, String NILAI\_URL, String phpsessid, Mahasiswa mahasiswa)}\\
+		\item \texttt{public MultipleRequest(int index, ArrayList<String> listSemester,\\
+		String NILAI\_URL, String phpsessid, Mahasiswa mahasiswa)}\\
 		Berfungsi sebagai \textit{constructor} kelas \texttt{MultipleRequest}.\\
 		\textbf{Parameter:}
 		\begin{itemize}
@@ -267,7 +273,7 @@ Penjelasan mengenai kelas, \textit{method}, dan atribut pada \textit{package stu
     		\item Mendapatkan tahun dan semester yang ditempuh mahasiswa dari atribut \texttt{Arraylist\\<String> listSemester} diambil dari value atribut \texttt{int index}. Kemudian String dibagi menjadi tahun dan semester yang dibutuhkan.
     		\item Setelah mendapatkan tahun dan semester. Kemudian melakukan koneksi ke \textit{url} nilai berdasarkan tahun dan semester (sebagai contoh dalam gambar \ref{fig:4_nilai_script}, \textit{url} yang digunakan yaitu \url{https://studentportal.unpar.ac.id/nilai/2017/1}).
     		\item Setelah berhasil, kemudian melakukan kueri css berdasarkan script yang mengandung nilai mahasiswa (Gambar \ref{fig:4_nilai_script}). 
-    		\item Selanjutnya adalah mendapatkan script yang mengandung script ``var data\_mata\_kuliah = [];'' sampai indeks dari ``var data\_angket = [];''.
+    		\item Selanjutnya adalah mendapatkan script yang mengandung script ``var data\_mata\_\\kuliah = [];'' sampai indeks dari ``var data\_angket = [];''.
     		\item Setelah mendapatkan script yang dibutuhkan, selanjutnya menjalankan script menggunakan \textit{method} milik kelas \texttt{ScriptEngine} yaitu \texttt{Object eval(String script)}.
     		\item Setelah berhasil, data yang didapatkan bertipe \texttt{ScriptObjectMirror} yang membungkus hasil eksekusi. Data nilai didapatkan dengan menggunakan \textit{method} \texttt{Object get(Object key)}.
     		\item Setelah berhasil, kemudian memasukkan data nilai ke daftar riwayat nilai mahasiswa pada atribut kelas \texttt{Mahasiswa} yaitu \texttt{List<Nilai> riwayatNilai} menggunakan method \texttt{List<Nilai> getRiwayatNilai()}. Proses ini dilakukan berulang kali sebanyak jumlah mata kuliah per semesternya.
@@ -310,9 +316,9 @@ Kelas ini memiliki fungsi untuk melakukan pengambilan data dari SIAKAD untuk kem
 	\begin{itemize}
         \item \texttt{protected static final String SIAKAD\_BASE\_URL:} menyimpan \textit{url} utama SIAKAD.
         \item \texttt{protected static final String SSO\_BASE\_URL:} menyimpan \textit{url} halaman \textit{login} \textit{Single Sign On}(SSO) UNPAR.
-        \item \texttt{protected static final String MU\_BASE\_URL:} menyimpan \textit{url} MU UNPAR.
+        \item \texttt{protected static final String MU\_BASE\_URL:} menyimpan \textit{url} MU UNPAR yang digunakan untuk memeriksa apakah ada pengguna dengan id tertentu.
         \item \texttt{protected static final int DEFAULT\_TIMEOUT:} waktu \textit{timeout}.
-        \item \texttt{protected final Logger logger:} 
+        \item \texttt{protected final Logger logger:} untuk menulis log.
         \item \texttt{public static final String[] MONTH\_NAMES:} menyimpan nama-nama bulan dalam bahasa Indonesia.
         \item \texttt{Token token:} menyimpan \textit{cookies} yang dapat digunakan untuk mengakses menu di SIAKAD.
     \end{itemize}
@@ -326,7 +332,7 @@ Kelas ini memiliki fungsi untuk melakukan pengambilan data dari SIAKAD untuk kem
 	    Berfungsi sebagai \textit{constructor} kelas \texttt{SIAkad}.\\
 	    \textbf{Parameter:}
 		\begin{itemize}
-			\item \texttt{verbose:} 
+			\item \texttt{verbose:} apabila bernilai \texttt{true}, akan menampilkan informasi-informasi yang detil. Apabila bernilai \texttt{false}, tidak akan menampilkan informasi-informasi yang detil.
 		\end{itemize}
 		
 	    \item \texttt{public boolean login(String username, String password)}\\
@@ -345,7 +351,7 @@ Kelas ini memiliki fungsi untuk melakukan pengambilan data dari SIAKAD untuk kem
 	    Berfungsi untuk mendapatkan daftar mahasiswa yang diwalikan oleh dosen terlogin.\\
         \textbf{Kembalian:} daftar mahasiswa yang diwalikan oleh dosen terlogin.
         
-        \item \texttt{public List<Mahasiswa> requestMahasiswaList(Set<ProgramStudi> programStudi, Mahasiswa.Status status, Integer angkatan)}\\
+        \item \texttt{public List<Mahasiswa> requestMahasiswaList(Set<ProgramStudi>\\ programStudi, Mahasiswa.Status status, Integer angkatan)}\\
          Berfungsi untuk mendapatkan daftar mahasiswa yang diwalikan oleh dosen terlogin.\\
         \textbf{Parameter:}
 		\begin{itemize}
@@ -363,7 +369,7 @@ Kelas ini memiliki fungsi untuk melakukan pengambilan data dari SIAKAD untuk kem
 		\end{itemize}
         \textbf{Kembalian:} objek mahasiswa yang sama, dengan data diri yang sudah dilengkapi.
         
-        \item \texttt{public Mahasiswa requestRiwayatNilai(Mahasiswa mahasiswa, boolean includeLastSemester)}\\
+        \item \texttt{public Mahasiswa requestRiwayatNilai(Mahasiswa mahasiswa, boolean\\ includeLastSemester)}\\
         Berfungsi untuk mendapatkan daftar lengkap riwayat nilai mahasiswa, berdasarkan halaman "Data Akademik". Metode ini dapat mengisi lengkap kelas, nilai-nilai Tugas, UTS, UAS, serta NA.\\
         \textbf{Parameter:}
 		\begin{itemize}
@@ -415,16 +421,10 @@ Kelas ini memiliki fungsi untuk menyimpan \textit{cookies}. Atribut yang dimilik
 
 \section{Perancangan Antarmuka}
 Gambar \ref{fig:4_antarmuka} menunjukkan rancangan antarmuka dari aplikasi \textit{screensaver}. Antarmuka aplikasi akan menampilkan foto dari mahasiswa apabila foto tersebut tersedia. Baris pertama merupakan nama dari mahasiswa, kemudian baris kedua akan diisi oleh angkatan dari mahasiswa tersebut. Baris ketiga menampilkan usia dan tanggal lahir mahasiswa. Baris keempat merupakan status dari mahasiswa tersebut apabila tersedia. Baris kelima merupakan \textit{email} mahasiswa dimana format \textit{email} mahasiswa UNPAR adalah \textbf{NomorPokokMahasiswa@student.unpar.ac.id}. Baris keenam berisi nilai TOEFL terakhir mahasiswa apabila mahasiswa tersebut sudah mengambil ujian TOEFL, atau diisi "Tidak Tersedia" apabila mahasiswa tersebut belum mengambil ujian TOEFL. Baris ketujuh menampilkan IPS dan IPK dari mahasiswa tersebut. Baris terakhir diisi oleh jumlah sks yang telah lulus dan jumlah sks yang telah ditempuh oleh mahasiswa tersebut. Setiap 5 detik tampilan aplikasi akan berubah ke mahasiswa berikutnya. Namun pada aplikasi yang dibuat oleh terbimbing, data yang ditampilkan hanya mahasiswa itu sendiri, sedangkan pada aplikasi yang dibuat oleh pembimbing, data yang ditampilkan akan berubah.
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=0.5]{Gambar/UI.png}
-	\caption{Rancangan Antarmuka \textit{Screensaver}}
-	\label{fig:4_antarmuka}
-\end{figure}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.2]{Gambar/UI2.png}
+	\includegraphics[scale=0.3]{Gambar/UI2.png}
 	\caption{Rancangan Antarmuka \textit{Screensaver}}
 	\label{fig:4_antarmuka}
 \end{figure}

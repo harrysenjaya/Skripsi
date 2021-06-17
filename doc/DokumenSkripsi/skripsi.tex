@@ -62,13 +62,6 @@
 \usepackage{.sty/digsig}% untuk digital signature
 \usepackage{nomencl} % daftar simbol
 
-\lstdefinelanguage{diff}{
-  morecomment=[f][\color{blue}]{@@},     % group identifier
-  morecomment=[f][\color{red}]-,         % deleted lines 
-  morecomment=[f][\color{green}]+,       % added lines
-  morecomment=[f][\color{magenta}]{---}, % Diff header lines (must appear after +,-)
-  morecomment=[f][\color{magenta}]{+++},
-}
 
 \newcommand{\vtemplateauthor}{lionov}
 \newcommand{\dtext}[1]{{\color{lightgray} \lipsum[#1]}}%command untuk dummy text
@@ -247,8 +240,21 @@
 	tabsize=4, breaklines=true, basicstyle=\fontfamily{fvm}\selectfont\tiny, 
 	commentstyle=\itshape\color{gray}, keywordstyle=\bfseries\color{blue}, 
 	identifierstyle=\color{black}, stringstyle=\color{orange},
-	literate={-}{-}1{-\,-}{--}1
+	literate=*{-}{-}1,
+	literate=*{-\,-}{--}1
 } 
+
+\definecolor{color-diff}{RGB}{150,0,0}
+\definecolor{color+diff}{RGB}{0, 150, 0}
+
+\lstdefinelanguage{diff}{
+  morecomment=[f][\color{blue}]{@@},     % group identifier
+  morecomment=[f][\color{color-diff}]-,         % deleted lines 
+  morecomment=[f][\color{color+diff}]+,       % added lines
+  morecomment=[f][\color{magenta}]{---}, % Diff header lines (must appear after +,-)
+  morecomment=[f][\color{magenta}]{+++},
+}
+
 %\toggletrue{develop} % aktifkan untuk mode develop
 %apakah dalam develop mode ?
 \iftoggle{develop}{ 

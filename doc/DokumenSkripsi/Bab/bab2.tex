@@ -83,9 +83,9 @@ Kelas ini merupakan \textit{interface} yang menyediakan antarmuka yang nyaman un
 \subsection{Response}
 Kelas ini merepresentasikan \textit{response} HTTP. Beberapa \textit{method} yang dimiliki kelas ini adalah sebagai berikut:
 \begin{itemize}
-% 	\item \textbf{Map<String,String> cookies()} \\
-% 		\textit{Method} ini berfungsi untuk mendapatkan seluruh \textit{cookies}. \\
-% 		\textbf{Kembalian:} seluruh \textit{cookies}.	
+	    \item \texttt{Map<String,String> cookies()} \\
+		Berfungsi untuk mendapatkan seluruh \textit{cookies}. \\
+		\textbf{Kembalian:} seluruh \textit{cookies}.	
 		
 		\item \texttt{Document parse()} \\
 		Berfungsi untuk mengurai \textit{body} jawaban menjadi dokumen. \\
@@ -241,18 +241,18 @@ Beberapa \textit{method} yang dimiliki kelas ini adalah sebagai berikut:
 
 \subsection{FXML}
 \label{fxml}
-FXML adalah bahasa \textit{markup} berbasis XML yang dapat dituliskan untuk membangun grafik objek Java. FXML memberikan alternatif yang nyaman untuk membuat grafik dalam kode prosedural, dan cocok untuk mendefinisikan antarmuka pengguna aplikasi JavaFX, karena struktur hierarki dari dokumen XML sangat mirip dengan struktur grafik \textit{scene} JavaFX. \cite{javafx} Subbab-subbab berikut menjelaskan beberapa bagian dari FXML.
+FXML adalah bahasa \textit{markup} berbasis XML yang dapat dituliskan untuk membangun grafik objek Java. FXML memberikan alternatif yang nyaman untuk membuat grafik dalam kode prosedural, dan cocok untuk mendefinisikan antarmuka pengguna aplikasi JavaFX, karena struktur hierarki dari dokumen XML sangat mirip dengan struktur grafik \textit{scene} JavaFX. \cite{javafx} Subbab-subbab berikut menjelaskan beberapa bagian dari FXML. \cite{fxml}
 
-% \subsubsection{Static Properties}
-% Sebuah elemen dapat merepresentasikan properti "statis" (terkadang disebut \textit{"attached property"}). Properti statis adalah properti yang hanya berguna dalam konteks tertentu. Properti statis tidak intrinsik ke kelas tempat mereka diterapkan, tetapi didefinisikan oleh kelas lain (seringkali, wadah induk dari sebuah kontrol).
+\subsubsection{Controller Method Event Handlers}
+\textit{Controller Method Event Handlers} adalah \textit{method} yang ditentukan oleh "pengontrol" dokumen. \textit{Controller} adalah objek yang dikaitkan dengan konten \textit{deserialized} dari dokumen FXML dan bertanggung jawab untuk mengoordinasikan perilaku objek (seringkali elemen antarmuka pengguna) yang ditentukan oleh dokumen. Sebuah \textit{event handler metode controller} ditentukan oleh simbol \textit{hash} terkemuka diikuti dengan nama \textit{method}.
 
-% Properti statis diawali dengan nama kelas yang mendefinisikannya.
-
+\subsubsection{Variable Resolution}
+Dokumen FXML mendefinisikan \textit{namespace} variabel dimana elemen bernama dan variabel  dapat diidentifikasi secara unik. Menetapkan nilai fx:id ke elemen akan membuat variabel dokumen yang nantinya dapat dirujuk oleh atribut dereferensi variabel. Selain itu, jika tipe objek mendefinisikan properti \texttt{id}, nilai ini juga akan diteruskan ke \textit{method} \texttt{setId()} milik objek.
 
 \section{SIAModels}
 \label{sec:siamodels}
 
-SIAModels merupakan kelas-kelas dalam bahasa Java yang merepresentasikan objek-objek yang tersedia di Sistem Informasi Akademik UNPAR \cite{siamodels}. Pada skripsi ini akan digunakan SIAModels versi 4.0.0.
+SIAModels merupakan kelas-kelas dalam bahasa Java yang merepresentasikan objek-objek yang tersedia di Sistem Informasi Akademik UNPAR \cite{siamodels}. Pada skripsi ini akan digunakan SIAModels versi 5.1.1.
 
 \subsection{Mahasiswa}
 Kelas ini merepresentasikan mahasiswa. Atribut yang dimiliki kelas ini antara lain:
@@ -442,7 +442,7 @@ Kelas ini merepresentasikan nilai yang ada pada riwayat nilai mahasiswa. Atribut
 
 Beberapa \textit{method} yang dimiliki kelas ini adalah sebagai berikut:
 \begin{itemize}
-	\item \texttt{public Nilai(TahunSemester tahunSemester, MataKuliah mataKuliah, Character kelas, Map<String, Double> nilaiTugas, Double nilaiUTS, Double nilaiUAS, String nilaiAkhir)}\\
+	\item \texttt{public Nilai(TahunSemester tahunSemester, MataKuliah mataKuliah,\\ Character kelas, Map<String, Double> nilaiTugas, Double nilaiUTS,\\ Double nilaiUAS, String nilaiAkhir)}\\
 	Merupakan \textit{constructor} dari kelas \texttt{Nilai}.\\
 	\textbf{Parameter:}
 	\begin{itemize}
